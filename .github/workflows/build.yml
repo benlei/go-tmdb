@@ -27,3 +27,5 @@ jobs:
           go test -v -coverprofile=profile.cov ./...
       - name: Send coverage
         uses: coverallsapp/github-action@v2
+        with:
+          file: profile.cov

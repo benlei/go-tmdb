@@ -18,22 +18,24 @@ type AccountCreatedListsResult struct {
 
 // AccountFavoriteMoviesResults Result Types
 type AccountFavoriteMoviesResults struct {
-	Results []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int   `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		PosterPath       string  `json:"poster_path"`
-		Popularity       float64 `json:"popularity"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		VoteAverage      float64 `json:"vote_average"`
-		VoteCount        int64   `json:"vote_count"`
-	} `json:"results"`
+	Results []AccountFavoriteMoviesResult `json:"results"`
+}
+
+type AccountFavoriteMoviesResult struct {
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	GenreIDs         []int   `json:"genre_ids"`
+	ID               int64   `json:"id"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
+	PosterPath       string  `json:"poster_path"`
+	Popularity       float64 `json:"popularity"`
+	Title            string  `json:"title"`
+	Video            bool    `json:"video"`
+	VoteAverage      float64 `json:"vote_average"`
+	VoteCount        int64   `json:"vote_count"`
 }
 
 // AccountFavoriteTVShowsResults Result Types

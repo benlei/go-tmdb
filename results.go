@@ -40,21 +40,23 @@ type AccountFavoriteMoviesResult struct {
 
 // AccountFavoriteTVShowsResults Result Types
 type AccountFavoriteTVShowsResults struct {
-	Results []struct {
-		BackdropPath     string   `json:"backdrop_path"`
-		FirstAirDate     string   `json:"first_air_date"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		ID               int64    `json:"id"`
-		OriginalLanguage string   `json:"original_language"`
-		OriginalName     string   `json:"original_name"`
-		Overview         string   `json:"overview"`
-		OriginCountry    []string `json:"origin_country"`
-		PosterPath       string   `json:"poster_path"`
-		Popularity       float64  `json:"popularity"`
-		Name             string   `json:"name"`
-		VoteAverage      float64  `json:"vote_average"`
-		VoteCount        int64    `json:"vote_count"`
-	} `json:"results"`
+	Results []AccountFavoriteTVShowsResult `json:"results"`
+}
+
+type AccountFavoriteTVShowsResult struct {
+	BackdropPath     string   `json:"backdrop_path"`
+	FirstAirDate     string   `json:"first_air_date"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	ID               int64    `json:"id"`
+	OriginalLanguage string   `json:"original_language"`
+	OriginalName     string   `json:"original_name"`
+	Overview         string   `json:"overview"`
+	OriginCountry    []string `json:"origin_country"`
+	PosterPath       string   `json:"poster_path"`
+	Popularity       float64  `json:"popularity"`
+	Name             string   `json:"name"`
+	VoteAverage      float64  `json:"vote_average"`
+	VoteCount        int64    `json:"vote_count"`
 }
 
 // AccountRatedTVEpisodesResults Result Types

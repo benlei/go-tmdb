@@ -16,6 +16,7 @@ func (suite *TMBDTestSuite) TestGetCertificationTV() {
 	certification, err := suite.client.GetCertificationTV()
 	suite.Nil(err)
 	suite.NotNil(certification.Certifications)
+	suite.NotEmpty(certification.Certifications.AU)
 }
 
 func (suite *TMBDTestSuite) TestGetCertificationTVFail() {

@@ -73,10 +73,12 @@ type AccountRatedTVEpisodesResults struct {
 
 // ChangesMovieResults Result Types
 type ChangesMovieResults struct {
-	Results []struct {
-		ID    int64 `json:"id"`
-		Adult bool  `json:"adult"`
-	} `json:"results"`
+	Results []ChangesMovieResult `json:"results"`
+}
+
+type ChangesMovieResult struct {
+	ID    int64 `json:"id"`
+	Adult bool  `json:"adult"`
 }
 
 // CompanyAlternativeNamesResult Result Types

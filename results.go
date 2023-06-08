@@ -2,16 +2,18 @@ package tmdb
 
 // AccountCreatedListsResults Result Types
 type AccountCreatedListsResults struct {
-	Results []struct {
-		Description   string `json:"description"`
-		FavoriteCount int64  `json:"favorite_count"`
-		ID            int64  `json:"id"`
-		ItemCount     int64  `json:"item_count"`
-		Iso639_1      string `json:"iso_639_1"`
-		ListType      string `json:"list_type"`
-		Name          string `json:"name"`
-		PosterPath    string `json:"poster_path"`
-	} `json:"results"`
+	Results []AccountCreatedListsResult `json:"results"`
+}
+
+type AccountCreatedListsResult struct {
+	Description   string `json:"description"`
+	FavoriteCount int64  `json:"favorite_count"`
+	ID            int64  `json:"id"`
+	ItemCount     int64  `json:"item_count"`
+	Iso639_1      string `json:"iso_639_1"`
+	ListType      string `json:"list_type"`
+	Name          string `json:"name"`
+	PosterPath    string `json:"poster_path"`
 }
 
 // AccountFavoriteMoviesResults Result Types

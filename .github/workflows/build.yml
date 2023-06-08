@@ -22,9 +22,14 @@ jobs:
       - name: Install dependencies
         run: |
           go mod download
+
       - name: Run tests
         run: |
           go test -v -coverprofile=profile.cov ./...
+        env:
+          SESSION_ID: ${{ secrets.TMDB_SESSION_ID }}
+          API_KEY: ${{ secrets.TMDB_API_KEY }}
+
       - name: Send coverage
         uses: coverallsapp/github-action@v2
         with:

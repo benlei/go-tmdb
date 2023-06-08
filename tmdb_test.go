@@ -2,20 +2,31 @@ package tmdb
 
 import (
 	"bytes"
+	"github.com/joho/godotenv"
 	"io"
 	"net/http"
+	"os"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/suite"
 )
 
-const sessionID = "a5722b9dd3467bd630c28e9ca63baf880c9940ae"
-const apiKey = "9aca69849a23528a419aea463387945f"
+// see https://www.themoviedb.org/talk/5cd1d7490e0a262fcd0ad383 for how to make session id
+// tl;dr use http://dev.travisbell.com/play/v3_auth.html
+var sessionID = "<set SESSION_ID in .env>"
+var apiKey = "<set API_KEY in .env>"
 
 type TMBDTestSuite struct {
 	suite.Suite
 	client Client
+}
+
+func init() {
+	godotenv.Load()
+
+	apiKey = os.Getenv("API_KEY")
+	sessionID = os.Getenv("SESSION_ID")
 }
 
 func (suite *TMBDTestSuite) SetupTest() {

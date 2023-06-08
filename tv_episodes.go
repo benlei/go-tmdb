@@ -78,12 +78,7 @@ type TVEpisodeVideosAppend struct {
 // Supports append_to_response.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
-func (c *Client) GetTVEpisodeDetails(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-	urlOptions map[string]string,
-) (*TVEpisodeDetails, error) {
+func (c *Client) GetTVEpisodeDetails(id int64, seasonNumber int, episodeNumber int, urlOptions map[string]string) (*TVEpisodeDetails, error) {
 	options := c.fmtOptions(urlOptions)
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d?api_key=%s%s",
@@ -132,10 +127,7 @@ type TVEpisodeChanges struct {
 // the start_date and end_date query parameters.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes
-func (c *Client) GetTVEpisodeChanges(
-	id int,
-	urlOptions map[string]string,
-) (*TVEpisodeChanges, error) {
+func (c *Client) GetTVEpisodeChanges(id int64, urlOptions map[string]string) (*TVEpisodeChanges, error) {
 	options := c.fmtOptions(urlOptions)
 	tmdbURL := fmt.Sprintf(
 		"%s%sepisode/%d/changes?api_key=%s%s",
@@ -187,11 +179,7 @@ type TVEpisodeCredits struct {
 // GetTVEpisodeCredits get the credits (cast, crew and guest stars) for a TV episode.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-credits
-func (c *Client) GetTVEpisodeCredits(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-) (*TVEpisodeCredits, error) {
+func (c *Client) GetTVEpisodeCredits(id int64, seasonNumber int, episodeNumber int) (*TVEpisodeCredits, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d/credits?api_key=%s",
 		baseURL,
@@ -228,11 +216,7 @@ type TVEpisodeExternalIDs struct {
 // *Defunct or no longer available as a service.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-external-ids
-func (c *Client) GetTVEpisodeExternalIDs(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-) (*TVEpisodeExternalIDs, error) {
+func (c *Client) GetTVEpisodeExternalIDs(id int64, seasonNumber int, episodeNumber int) (*TVEpisodeExternalIDs, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d/external_ids?api_key=%s",
 		baseURL,
@@ -273,11 +257,7 @@ type TVEpisodeImages struct {
 // This should be a comma separated value like so: include_image_language=en,null.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-images
-func (c *Client) GetTVEpisodeImages(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-) (*TVEpisodeImages, error) {
+func (c *Client) GetTVEpisodeImages(id int64, seasonNumber int, episodeNumber int) (*TVEpisodeImages, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d/images?api_key=%s",
 		baseURL,
@@ -314,11 +294,7 @@ type TVEpisodeTranslations struct {
 // GetTVEpisodeTranslations get the translation data for an episode.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-translations
-func (c *Client) GetTVEpisodeTranslations(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-) (*TVEpisodeTranslations, error) {
+func (c *Client) GetTVEpisodeTranslations(id int64, seasonNumber int, episodeNumber int) (*TVEpisodeTranslations, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d/translations?api_key=%s",
 		baseURL,
@@ -361,12 +337,7 @@ type TVEpisodeVideos struct {
 // GetTVEpisodeVideos get the videos that have been added to a TV episode.
 //
 // https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-videos
-func (c *Client) GetTVEpisodeVideos(
-	id int,
-	seasonNumber int,
-	episodeNumber int,
-	urlOptions map[string]string,
-) (*TVEpisodeVideos, error) {
+func (c *Client) GetTVEpisodeVideos(id int64, seasonNumber int, episodeNumber int, urlOptions map[string]string) (*TVEpisodeVideos, error) {
 	options := c.fmtOptions(urlOptions)
 	tmdbURL := fmt.Sprintf(
 		"%s%s%d%s%d%s%d/videos?api_key=%s%s",

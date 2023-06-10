@@ -61,20 +61,22 @@ type AccountFavoriteTVShowsResult struct {
 
 // AccountRatedTVEpisodesResults Result Types
 type AccountRatedTVEpisodesResults struct {
-	Results []struct {
-		AirDate        string  `json:"air_date"`
-		EpisodeNumber  int     `json:"episode_number"`
-		ID             int64   `json:"id"`
-		Name           string  `json:"name"`
-		Overview       string  `json:"overview"`
-		ProductionCode string  `json:"production_code"`
-		SeasonNumber   int     `json:"season_number"`
-		ShowID         int64   `json:"show_id"`
-		StillPath      string  `json:"still_path"`
-		VoteAverage    float64 `json:"vote_average"`
-		VoteCount      int64   `json:"vote_count"`
-		Rating         float32 `json:"rating"`
-	} `json:"results"`
+	Results []AccountRatedTVEpisodesResult `json:"results"`
+}
+
+type AccountRatedTVEpisodesResult struct {
+	AirDate        string  `json:"air_date"`
+	EpisodeNumber  int     `json:"episode_number"`
+	ID             int64   `json:"id"`
+	Name           string  `json:"name"`
+	Overview       string  `json:"overview"`
+	ProductionCode string  `json:"production_code"`
+	SeasonNumber   int     `json:"season_number"`
+	ShowID         int64   `json:"show_id"`
+	StillPath      string  `json:"still_path"`
+	VoteAverage    float64 `json:"vote_average"`
+	VoteCount      int64   `json:"vote_count"`
+	Rating         float32 `json:"rating"`
 }
 
 // ChangesMovieResults Result Types
@@ -89,10 +91,12 @@ type ChangesMovieResult struct {
 
 // CompanyAlternativeNamesResult Result Types
 type CompanyAlternativeNamesResult struct {
-	Results []struct {
-		Name string `json:"name"`
-		Type string `json:"type"`
-	} `json:"results"`
+	Results []CompanyAlternativeNamesResultEntry `json:"results"`
+}
+
+type CompanyAlternativeNamesResultEntry struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 // DiscoverMovieResults Result Types

@@ -609,33 +609,37 @@ type TVWatchProvidersResult struct {
 
 // TVVideosResults Result Types
 type TVVideosResults struct {
-	Results []struct {
-		ID        string `json:"id"`
-		Iso639_1  string `json:"iso_639_1"`
-		Iso3166_1 string `json:"iso_3166_1"`
-		Key       string `json:"key"`
-		Name      string `json:"name"`
-		Site      string `json:"site"`
-		Size      int    `json:"size"`
-		Type      string `json:"type"`
-	} `json:"results"`
+	Results []TVVideosResult `json:"results"`
+}
+
+type TVVideosResult struct {
+	ID        string `json:"id"`
+	Iso639_1  string `json:"iso_639_1"`
+	Iso3166_1 string `json:"iso_3166_1"`
+	Key       string `json:"key"`
+	Name      string `json:"name"`
+	Site      string `json:"site"`
+	Size      int    `json:"size"`
+	Type      string `json:"type"`
 }
 
 // TVAiringTodayResults Result Types
 type TVAiringTodayResults struct {
-	Results []struct {
-		OriginalName     string   `json:"original_name"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		Name             string   `json:"name"`
-		Popularity       float32  `json:"popularity"`
-		OriginCountry    []string `json:"origin_country"`
-		VoteCount        int64    `json:"vote_count"`
-		FirstAirDate     string   `json:"first_air_date"`
-		BackdropPath     string   `json:"backdrop_path"`
-		OriginalLanguage string   `json:"original_language"`
-		ID               int64    `json:"id"`
-		VoteAverage      float32  `json:"vote_average"`
-		Overview         string   `json:"overview"`
-		PosterPath       string   `json:"poster_path"`
-	} `json:"results"`
+	Results []TVAiringTodayResult `json:"results"`
+}
+
+type TVAiringTodayResult struct {
+	OriginalName     string   `json:"original_name"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	Name             string   `json:"name"`
+	Popularity       float32  `json:"popularity"`
+	OriginCountry    []string `json:"origin_country"`
+	VoteCount        int64    `json:"vote_count"`
+	FirstAirDate     string   `json:"first_air_date"`
+	BackdropPath     string   `json:"backdrop_path"`
+	OriginalLanguage string   `json:"original_language"`
+	ID               int64    `json:"id"`
+	VoteAverage      float32  `json:"vote_average"`
+	Overview         string   `json:"overview"`
+	PosterPath       string   `json:"poster_path"`
 }

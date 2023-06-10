@@ -4,16 +4,18 @@ import "fmt"
 
 // ConfigurationAPI type is a struct for api configuration JSON response.
 type ConfigurationAPI struct {
-	Images struct {
-		BaseURL       string   `json:"base_url"`
-		SecureBaseURL string   `json:"secure_base_url"`
-		BackdropSizes []string `json:"backdrop_sizes"`
-		LogoSizes     []string `json:"logo_sizes"`
-		PosterSizes   []string `json:"poster_sizes"`
-		ProfileSizes  []string `json:"profile_sizes"`
-		StillSizes    []string `json:"still_sizes"`
-	} `json:"images"`
-	ChangeKeys []string `json:"change_keys"`
+	Images     ConfigurationImage `json:"images"`
+	ChangeKeys []string           `json:"change_keys"`
+}
+
+type ConfigurationImage struct {
+	BaseURL       string   `json:"base_url"`
+	SecureBaseURL string   `json:"secure_base_url"`
+	BackdropSizes []string `json:"backdrop_sizes"`
+	LogoSizes     []string `json:"logo_sizes"`
+	PosterSizes   []string `json:"poster_sizes"`
+	ProfileSizes  []string `json:"profile_sizes"`
+	StillSizes    []string `json:"still_sizes"`
 }
 
 // GetConfigurationAPI get the system wide configuration information.

@@ -17,15 +17,15 @@ type AccountDetails struct {
 }
 
 type AvatarDetails struct {
-	Gravatar AvatarGravatar `json:"gravatar"`
-	TMDB     TMDBAvatar     `json:"tmdb"`
+	Gravatar AccountAvatarGravatar `json:"gravatar"`
+	TMDB     AccountTMDBAvatar     `json:"tmdb"`
 }
 
-type AvatarGravatar struct {
+type AccountAvatarGravatar struct {
 	Hash string `json:"hash"`
 }
 
-type TMDBAvatar struct {
+type AccountTMDBAvatar struct {
 	AvatarPath string `json:"avatar_path"`
 }
 

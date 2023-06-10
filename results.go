@@ -358,57 +358,57 @@ type TrendingKnownForResult struct {
 
 // MovieReleaseDatesResults Result Types
 type MovieReleaseDatesResults struct {
-	Results []struct {
-		Iso3166_1    string `json:"iso_3166_1"`
-		ReleaseDates []struct {
-			Certification string `json:"certification"`
-			Iso639_1      string `json:"iso_639_1"`
-			ReleaseDate   string `json:"release_date"`
-			Type          int    `json:"type"`
-			Note          string `json:"note"`
-		} `json:"release_dates"`
-	} `json:"results"`
+	Results []MovieReleaseDatesResult `json:"results"`
+}
+
+type MovieReleaseDatesResult struct {
+	Iso3166_1    string                   `json:"iso_3166_1"`
+	ReleaseDates []MovieReleaseDateResult `json:"release_dates"`
+}
+
+type MovieReleaseDateResult struct {
+	Certification string `json:"certification"`
+	Iso639_1      string `json:"iso_639_1"`
+	ReleaseDate   string `json:"release_date"`
+	Type          int    `json:"type"`
+	Note          string `json:"note"`
 }
 
 // MovieVideosResults Result Types
 type MovieVideosResults struct {
-	Results []struct {
-		ID          string `json:"id"`
-		Iso639_1    string `json:"iso_639_1"`
-		Iso3166_1   string `json:"iso_3166_1"`
-		Key         string `json:"key"`
-		Name        string `json:"name"`
-		Official    bool   `json:"official"`
-		PublishedAt string `json:"published_at"`
-		Site        string `json:"site"`
-		Size        int    `json:"size"`
-		Type        string `json:"type"`
-	} `json:"results"`
+	Results []MovieVideosResult `json:"results"`
+}
+
+type MovieVideosResult struct {
+	ID          string `json:"id"`
+	Iso639_1    string `json:"iso_639_1"`
+	Iso3166_1   string `json:"iso_3166_1"`
+	Key         string `json:"key"`
+	Name        string `json:"name"`
+	Official    bool   `json:"official"`
+	PublishedAt string `json:"published_at"`
+	Site        string `json:"site"`
+	Size        int    `json:"size"`
+	Type        string `json:"type"`
 }
 
 // MovieWatchProvidersResults Result Types
 type MovieWatchProvidersResults struct {
-	Results map[string]struct {
-		Link     string `json:"link"`
-		Flatrate []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"flatrate,omitempty"`
-		Rent []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"rent,omitempty"`
-		Buy []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"buy,omitempty"`
-	} `json:"results"`
+	Results map[string]MovieWatchProvidersResult `json:"results"`
+}
+
+type MovieWatchProvidersResult struct {
+	Link     string                     `json:"link"`
+	FlatRate []MovieWatchProviderResult `json:"flatrate,omitempty"`
+	Rent     []MovieWatchProviderResult `json:"rent,omitempty"`
+	Buy      []MovieWatchProviderResult `json:"buy,omitempty"`
+}
+
+type MovieWatchProviderResult struct {
+	DisplayPriority int64  `json:"display_priority"`
+	LogoPath        string `json:"logo_path"`
+	ProviderID      int64  `json:"provider_id"`
+	ProviderName    string `json:"provider_name"`
 }
 
 // MovieRecommendationsResults Result Types

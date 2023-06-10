@@ -518,28 +518,34 @@ type TVAlternativeTitlesResult struct {
 
 // TVContentRatingsResults Result Types
 type TVContentRatingsResults struct {
-	Results []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
-		Rating    string `json:"rating"`
-	} `json:"results"`
+	Results []TVContentRatingsResult `json:"results"`
+}
+
+type TVContentRatingsResult struct {
+	Iso3166_1 string `json:"iso_3166_1"`
+	Rating    string `json:"rating"`
 }
 
 // TVEpisodeGroupsResults Result Types
 type TVEpisodeGroupsResults struct {
-	Results []struct {
-		Description  string `json:"description"`
-		EpisodeCount int    `json:"episode_count"`
-		GroupCount   int    `json:"group_count"`
-		ID           string `json:"id"`
-		Name         string `json:"name"`
-		Network      struct {
-			ID            int64  `json:"id"`
-			LogoPath      string `json:"logo_path"`
-			Name          string `json:"name"`
-			OriginCountry string `json:"origin_country"`
-		} `json:"network"`
-		Type int `json:"type"`
-	} `json:"results"`
+	Results []TVEpisodeGroupsResult `json:"results"`
+}
+
+type TVEpisodeGroupsResult struct {
+	Description  string                `json:"description"`
+	EpisodeCount int                   `json:"episode_count"`
+	GroupCount   int                   `json:"group_count"`
+	ID           string                `json:"id"`
+	Name         string                `json:"name"`
+	Network      TVEpisodeGroupNetwork `json:"network"`
+	Type         int                   `json:"type"`
+}
+
+type TVEpisodeGroupNetwork struct {
+	ID            int64  `json:"id"`
+	LogoPath      string `json:"logo_path"`
+	Name          string `json:"name"`
+	OriginCountry string `json:"origin_country"`
 }
 
 // TVKeywordsResults Result Types

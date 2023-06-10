@@ -413,46 +413,52 @@ type MovieWatchProviderResult struct {
 
 // MovieRecommendationsResults Result Types
 type MovieRecommendationsResults struct {
-	Results []struct {
-		PosterPath       string  `json:"poster_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalTitle    string  `json:"original_title"`
-		OriginalLanguage string  `json:"original_language"`
-		Title            string  `json:"title"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Popularity       float32 `json:"popularity"`
-		VoteCount        int64   `json:"vote_count"`
-		Video            bool    `json:"video"`
-		VoteAverage      float32 `json:"vote_average"`
-	} `json:"results"`
+	Results []MovieRecommendationsResult `json:"results"`
+}
+
+type MovieRecommendationsResult struct {
+	PosterPath       string  `json:"poster_path"`
+	Adult            bool    `json:"adult"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	ID               int64   `json:"id"`
+	OriginalTitle    string  `json:"original_title"`
+	OriginalLanguage string  `json:"original_language"`
+	Title            string  `json:"title"`
+	BackdropPath     string  `json:"backdrop_path"`
+	Popularity       float32 `json:"popularity"`
+	VoteCount        int64   `json:"vote_count"`
+	Video            bool    `json:"video"`
+	VoteAverage      float32 `json:"vote_average"`
 }
 
 // MovieReviewsResults Result Types
 type MovieReviewsResults struct {
-	Results []struct {
-		ID      string `json:"id"`
-		Author  string `json:"author"`
-		Content string `json:"content"`
-		URL     string `json:"url"`
-	} `json:"results"`
+	Results []MovieReviewsResult `json:"results"`
+}
+
+type MovieReviewsResult struct {
+	ID      string `json:"id"`
+	Author  string `json:"author"`
+	Content string `json:"content"`
+	URL     string `json:"url"`
 }
 
 // MovieListsResults Result Types
 type MovieListsResults struct {
-	Results []struct {
-		Description   string `json:"description"`
-		FavoriteCount int64  `json:"favorite_count"`
-		ID            int64  `json:"id"`
-		ItemCount     int64  `json:"item_count"`
-		Iso639_1      string `json:"iso_639_1"`
-		ListType      string `json:"list_type"`
-		Name          string `json:"name"`
-		PosterPath    string `json:"poster_path"`
-	} `json:"results"`
+	Results []MovieListsResult `json:"results"`
+}
+
+type MovieListsResult struct {
+	Description   string `json:"description"`
+	FavoriteCount int64  `json:"favorite_count"`
+	ID            int64  `json:"id"`
+	ItemCount     int64  `json:"item_count"`
+	Iso639_1      string `json:"iso_639_1"`
+	ListType      string `json:"list_type"`
+	Name          string `json:"name"`
+	PosterPath    string `json:"poster_path"`
 }
 
 // MovieNowPlayingResults Result Types

@@ -232,21 +232,21 @@ type SearchMultiResult struct {
 }
 
 type SearchMultiKnownFor struct {
-	PosterPath       string  `json:"poster_path"`
-	Adult            bool    `json:"adult"`
-	Overview         string  `json:"overview"`
-	ReleaseDate      string  `json:"release_date"`
-	OriginalTitle    string  `json:"original_title"`
-	GenreIDs         []int64 `json:"genre_ids"`
 	ID               int64   `json:"id"`
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	GenreIDs         []int64 `json:"genre_ids"`
 	MediaType        string  `json:"media_type"`
 	OriginalLanguage string  `json:"original_language"`
-	Title            string  `json:"title"`
-	BackdropPath     string  `json:"backdrop_path"`
+	OriginalTitle    string  `json:"original_title"`
+	Overview         string  `json:"overview"`
+	PosterPath       string  `json:"poster_path"`
 	Popularity       float32 `json:"popularity"`
-	VoteCount        int64   `json:"vote_count"`
+	ReleaseDate      string  `json:"release_date"`
+	Title            string  `json:"title"`
 	Video            bool    `json:"video"`
 	VoteAverage      float32 `json:"vote_average"`
+	VoteCount        int64   `json:"vote_count"`
 }
 
 // SearchPeopleResults Result Types
@@ -293,19 +293,19 @@ type SearchTVShowsResults struct {
 }
 
 type SearchTVShowsResult struct {
-	OriginalName     string   `json:"original_name"`
 	ID               int64    `json:"id"`
-	Name             string   `json:"name"`
-	VoteCount        int64    `json:"vote_count"`
-	VoteAverage      float32  `json:"vote_average"`
-	PosterPath       string   `json:"poster_path"`
-	FirstAirDate     string   `json:"first_air_date"`
-	Popularity       float32  `json:"popularity"`
-	GenreIDs         []int64  `json:"genre_ids"`
-	OriginalLanguage string   `json:"original_language"`
 	BackdropPath     string   `json:"backdrop_path"`
-	Overview         string   `json:"overview"`
+	FirstAirDate     string   `json:"first_air_date"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	Name             string   `json:"name"`
+	OriginalLanguage string   `json:"original_language"`
+	OriginalName     string   `json:"original_name"`
 	OriginCountry    []string `json:"origin_country"`
+	Overview         string   `json:"overview"`
+	PosterPath       string   `json:"poster_path"`
+	Popularity       float32  `json:"popularity"`
+	VoteAverage      float32  `json:"vote_average"`
+	VoteCount        int64    `json:"vote_count"`
 }
 
 // TrendingResults Result Types

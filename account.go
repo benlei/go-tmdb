@@ -7,20 +7,26 @@ import (
 
 // AccountDetails type is a struct for details JSON response.
 type AccountDetails struct {
-	Avatar struct {
-		Gravatar struct {
-			Hash string `json:"hash"`
-		} `json:"gravatar"`
-		TMDB struct {
-			AvatarPath string `json:"avatar_path"`
-		} `json:"tmdb"`
-	} `json:"avatar"`
-	ID           int64  `json:"id"`
-	Iso639_1     string `json:"iso_639_1"`
-	Iso3166_1    string `json:"iso_3166_1"`
-	Name         string `json:"name"`
-	IncludeAdult bool   `json:"include_adult"`
-	Username     string `json:"username"`
+	Avatar       AvatarDetails `json:"avatar"`
+	ID           int64         `json:"id"`
+	Iso639_1     string        `json:"iso_639_1"`
+	Iso3166_1    string        `json:"iso_3166_1"`
+	Name         string        `json:"name"`
+	IncludeAdult bool          `json:"include_adult"`
+	Username     string        `json:"username"`
+}
+
+type AvatarDetails struct {
+	Gravatar AvatarGravatar `json:"gravatar"`
+	TMDB     TMDBAvatar     `json:"tmdb"`
+}
+
+type AvatarGravatar struct {
+	Hash string `json:"hash"`
+}
+
+type TMDBAvatar struct {
+	AvatarPath string `json:"avatar_path"`
 }
 
 // GetAccountDetails get your account details.

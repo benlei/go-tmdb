@@ -4,10 +4,12 @@ import "fmt"
 
 // GenreMovieList type is a struct for genres movie list JSON response.
 type GenreMovieList struct {
-	Genres []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"genres"`
+	Genres []Genre `json:"genres"`
+}
+
+type Genre struct {
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
 }
 
 // GetGenreMovieList get the list of official genres for movies.

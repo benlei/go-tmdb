@@ -372,16 +372,8 @@ func (c *Client) GetPersonExternalIDs(id int64, urlOptions map[string]string) (*
 
 // PersonImages type is a struct for images JSON response.
 type PersonImages struct {
-	Profiles []struct {
-		Iso639_1    string  `json:"iso_639_1"`
-		Width       int     `json:"width"`
-		Height      int     `json:"height"`
-		VoteCount   int64   `json:"vote_count"`
-		VoteAverage float32 `json:"vote_average"`
-		FilePath    string  `json:"file_path"`
-		AspectRatio float32 `json:"aspect_ratio"`
-	} `json:"profiles"`
-	ID int `json:"id,omitempty"`
+	Profiles []Image `json:"profiles"`
+	ID       int     `json:"id,omitempty"`
 }
 
 // GetPersonImages get the images for a person.

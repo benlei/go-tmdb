@@ -6,18 +6,20 @@ import (
 
 // CompanyDetails type is a struct for details JSON response.
 type CompanyDetails struct {
-	Description   string `json:"description"`
-	Headquarters  string `json:"headquarters"`
-	Homepage      string `json:"homepage"`
-	ID            int64  `json:"id"`
-	LogoPath      string `json:"logo_path"`
-	Name          string `json:"name"`
-	OriginCountry string `json:"origin_country"`
-	ParentCompany struct {
-		Name     string `json:"name"`
-		ID       int64  `json:"id"`
-		LogoPath string `json:"logo_path"`
-	} `json:"parent_company"`
+	Description   string        `json:"description"`
+	Headquarters  string        `json:"headquarters"`
+	Homepage      string        `json:"homepage"`
+	ID            int64         `json:"id"`
+	LogoPath      string        `json:"logo_path"`
+	Name          string        `json:"name"`
+	OriginCountry string        `json:"origin_country"`
+	ParentCompany ParentCompany `json:"parent_company"`
+}
+
+type ParentCompany struct {
+	Name     string `json:"name"`
+	ID       int64  `json:"id"`
+	LogoPath string `json:"logo_path"`
 }
 
 // GetCompanyDetails get a companies details by id.
@@ -65,17 +67,8 @@ func (c *Client) GetCompanyAlternativeNames(id int64) (*CompanyAlternativeNames,
 
 // CompanyImages type is a struct for images JSON response.
 type CompanyImages struct {
-	ID    int64 `json:"id"`
-	Logos []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		ID          string  `json:"id"`
-		FileType    string  `json:"file_type"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"logos"`
+	ID    int64   `json:"id"`
+	Logos []Image `json:"logos"`
 }
 
 // GetCompanyImages get a companies logos by id.

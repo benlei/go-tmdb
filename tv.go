@@ -542,25 +542,9 @@ func (c *Client) GetTVExternalIDs(id int64, urlOptions map[string]string) (*TVEx
 
 // TVImages type is a struct for images JSON response.
 type TVImages struct {
-	ID        int64 `json:"id,omitempty"`
-	Backdrops []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		Iso639_1    string  `json:"iso_639_1"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"backdrops"`
-	Posters []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		Iso639_1    string  `json:"iso_639_1"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"posters"`
+	ID        int64   `json:"id,omitempty"`
+	Backdrops []Image `json:"backdrops"`
+	Posters   []Image `json:"posters"`
 }
 
 // GetTVImages get the images that belong to a TV show.

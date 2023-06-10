@@ -223,16 +223,8 @@ func (c *Client) GetTVSeasonExternalIDs(id int64, seasonNumber int, urlOptions m
 
 // TVSeasonImages type is a struct for images JSON response.
 type TVSeasonImages struct {
-	ID      int64 `json:"id,omitempty"`
-	Posters []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		Iso639_1    string  `json:"iso_639_1"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"posters"`
+	ID      int64   `json:"id,omitempty"`
+	Posters []Image `json:"posters"`
 }
 
 // GetTVSeasonImages get the images that belong to a TV season.

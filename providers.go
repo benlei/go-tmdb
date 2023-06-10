@@ -19,7 +19,7 @@ type WatchProviderList struct {
 }
 
 type WatchProvider struct {
-	ID              int64  `json:"id"`
+	ID              int64  `json:"id,omitempty"`
 	Name            string `json:"name"`
 	DisplayPriority int64  `json:"display_priority"`
 	LogoPath        string `json:"logo_path"`

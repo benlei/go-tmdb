@@ -47,19 +47,9 @@ func (c *Client) GetCollectionDetails(id int64, urlOptions map[string]string) (*
 
 // CollectionImages type is a struct for images JSON response.
 type CollectionImages struct {
-	ID        int64             `json:"id"`
-	Backdrops []CollectionImage `json:"backdrops"`
-	Posters   []CollectionImage `json:"posters"`
-}
-
-type CollectionImage struct {
-	AspectRatio float32 `json:"aspect_ratio"`
-	FilePath    string  `json:"file_path"`
-	Height      int     `json:"height"`
-	Iso639_1    string  `json:"iso_639_1"`
-	VoteAverage float32 `json:"vote_average"`
-	VoteCount   int64   `json:"vote_count"`
-	Width       int     `json:"width"`
+	ID        int64   `json:"id"`
+	Backdrops []Image `json:"backdrops"`
+	Posters   []Image `json:"posters"`
 }
 
 // GetCollectionImages get the images for a collection by id.

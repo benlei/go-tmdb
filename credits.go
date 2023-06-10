@@ -58,6 +58,8 @@ type CreditsDetails struct {
 		KnownFor []struct {
 			Adult        bool   `json:"adult,omitempty"`
 			BackdropPath string `json:"backdrop_path"`
+			// TODO: these two fields can be both an int as well as floats... can unmarshal be modified to handle both?
+			//       food for thought: maybe use json.Number?
 			// GenreIDs         []int64  `json:"genre_ids"` // FIXME: -> []float32
 			// ID               int64    `json:"id"` // FIXME: -> float32
 			OriginalLanguage string  `json:"original_language"`

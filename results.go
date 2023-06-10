@@ -89,105 +89,117 @@ type ChangesMovieResult struct {
 	Adult bool  `json:"adult"`
 }
 
-// CompanyAlternativeNamesResult Result Types
-type CompanyAlternativeNamesResult struct {
-	Results []CompanyAlternativeNamesResultEntry `json:"results"`
+// CompanyAlternativeNamesResults Result Types
+type CompanyAlternativeNamesResults struct {
+	Results []CompanyAlternativeNamesResult `json:"results"`
 }
 
-type CompanyAlternativeNamesResultEntry struct {
+type CompanyAlternativeNamesResult struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
 }
 
 // DiscoverMovieResults Result Types
 type DiscoverMovieResults struct {
-	Results []struct {
-		VoteCount        int64   `json:"vote_count"`
-		ID               int64   `json:"id"`
-		Video            bool    `json:"video"`
-		VoteAverage      float32 `json:"vote_average"`
-		Title            string  `json:"title"`
-		Popularity       float32 `json:"popularity"`
-		PosterPath       string  `json:"poster_path"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-	} `json:"results"`
+	Results []DiscoverMovieResult `json:"results"`
+}
+
+type DiscoverMovieResult struct {
+	VoteCount        int64   `json:"vote_count"`
+	ID               int64   `json:"id"`
+	Video            bool    `json:"video"`
+	VoteAverage      float32 `json:"vote_average"`
+	Title            string  `json:"title"`
+	Popularity       float32 `json:"popularity"`
+	PosterPath       string  `json:"poster_path"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	BackdropPath     string  `json:"backdrop_path"`
+	Adult            bool    `json:"adult"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
 }
 
 // DiscoverTVResults Result Types
 type DiscoverTVResults struct {
-	Results []struct {
-		OriginalName     string   `json:"original_name"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		Name             string   `json:"name"`
-		Popularity       float32  `json:"popularity"`
-		OriginCountry    []string `json:"origin_country"`
-		VoteCount        int64    `json:"vote_count"`
-		FirstAirDate     string   `json:"first_air_date"`
-		BackdropPath     string   `json:"backdrop_path"`
-		OriginalLanguage string   `json:"original_language"`
-		ID               int64    `json:"id"`
-		VoteAverage      float32  `json:"vote_average"`
-		Overview         string   `json:"overview"`
-		PosterPath       string   `json:"poster_path"`
-	} `json:"results"`
+	Results []DiscoverTVResult `json:"results"`
+}
+
+type DiscoverTVResult struct {
+	OriginalName     string   `json:"original_name"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	Name             string   `json:"name"`
+	Popularity       float32  `json:"popularity"`
+	OriginCountry    []string `json:"origin_country"`
+	VoteCount        int64    `json:"vote_count"`
+	FirstAirDate     string   `json:"first_air_date"`
+	BackdropPath     string   `json:"backdrop_path"`
+	OriginalLanguage string   `json:"original_language"`
+	ID               int64    `json:"id"`
+	VoteAverage      float32  `json:"vote_average"`
+	Overview         string   `json:"overview"`
+	PosterPath       string   `json:"poster_path"`
 }
 
 // SearchCompaniesResults Result Types
 type SearchCompaniesResults struct {
-	Results []struct {
-		ID            int64  `json:"id"`
-		LogoPath      string `json:"logo_path"`
-		Name          string `json:"name"`
-		OriginCountry string `json:"origin_country"`
-	} `json:"results"`
+	Results []SearchCompaniesResult `json:"results"`
+}
+
+type SearchCompaniesResult struct {
+	ID            int64  `json:"id"`
+	LogoPath      string `json:"logo_path"`
+	Name          string `json:"name"`
+	OriginCountry string `json:"origin_country"`
 }
 
 // SearchCollectionsResults Result Types
 type SearchCollectionsResults struct {
-	Results []struct {
-		Adult            bool   `json:"adult"`
-		BackdropPath     string `json:"backdrop_path"`
-		ID               int64  `json:"id"`
-		Name             string `json:"name"`
-		OriginalLanguage string `json:"original_language"`
-		OriginalName     string `json:"original_name"`
-		Overview         string `json:"overview"`
-		PosterPath       string `json:"poster_path"`
-	} `json:"results"`
+	Results []SearchCollectionsResult `json:"results"`
+}
+
+type SearchCollectionsResult struct {
+	Adult            bool   `json:"adult"`
+	BackdropPath     string `json:"backdrop_path"`
+	ID               int64  `json:"id"`
+	Name             string `json:"name"`
+	OriginalLanguage string `json:"original_language"`
+	OriginalName     string `json:"original_name"`
+	Overview         string `json:"overview"`
+	PosterPath       string `json:"poster_path"`
 }
 
 // SearchKeywordsResults Result Types
 type SearchKeywordsResults struct {
-	Results []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"results"`
+	Results []SearchKeywordsResult `json:"results"`
+}
+
+type SearchKeywordsResult struct {
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
 }
 
 // SearchMoviesResults Result Types
 type SearchMoviesResults struct {
-	Results []struct {
-		VoteCount        int64   `json:"vote_count"`
-		ID               int64   `json:"id"`
-		Video            bool    `json:"video"`
-		VoteAverage      float32 `json:"vote_average"`
-		Title            string  `json:"title"`
-		Popularity       float32 `json:"popularity"`
-		PosterPath       string  `json:"poster_path"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-	} `json:"results"`
+	Results []SearchMoviesResult `json:"results"`
+}
+
+type SearchMoviesResult struct {
+	VoteCount        int64   `json:"vote_count"`
+	ID               int64   `json:"id"`
+	Video            bool    `json:"video"`
+	VoteAverage      float32 `json:"vote_average"`
+	Title            string  `json:"title"`
+	Popularity       float32 `json:"popularity"`
+	PosterPath       string  `json:"poster_path"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	BackdropPath     string  `json:"backdrop_path"`
+	Adult            bool    `json:"adult"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
 }
 
 // SearchMultiResults Result Types

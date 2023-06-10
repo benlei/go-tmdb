@@ -42,7 +42,7 @@ func (c *Client) GetCompanyDetails(id int64) (*CompanyDetails, error) {
 // names JSON response.
 type CompanyAlternativeNames struct {
 	ID int64 `json:"id"`
-	*CompanyAlternativeNamesResult
+	*CompanyAlternativeNamesResults
 }
 
 // GetCompanyAlternativeNames get the alternative names of a company.

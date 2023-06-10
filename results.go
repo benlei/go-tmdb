@@ -341,7 +341,7 @@ type TrendingResult struct {
 type TrendingKnownFor struct {
 	Adult            bool    `json:"adult"`
 	BackdropPath     string  `json:"backdrop_path"`
-	GenreIds         []int   `json:"genre_ids"`
+	GenreIDs         []int   `json:"genre_ids"`
 	ID               int     `json:"id"`
 	OriginalLanguage string  `json:"original_language"`
 	OriginalTitle    string  `json:"original_title"`

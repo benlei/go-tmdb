@@ -398,17 +398,10 @@ type MovieWatchProvidersResults struct {
 }
 
 type MovieWatchProvidersResult struct {
-	Link     string               `json:"link"`
-	FlatRate []MovieWatchProvider `json:"flatrate,omitempty"`
-	Rent     []MovieWatchProvider `json:"rent,omitempty"`
-	Buy      []MovieWatchProvider `json:"buy,omitempty"`
-}
-
-type MovieWatchProvider struct {
-	DisplayPriority int64  `json:"display_priority"`
-	LogoPath        string `json:"logo_path"`
-	ProviderID      int64  `json:"provider_id"`
-	ProviderName    string `json:"provider_name"`
+	Link     string          `json:"link"`
+	FlatRate []WatchProvider `json:"flatrate,omitempty"`
+	Rent     []WatchProvider `json:"rent,omitempty"`
+	Buy      []WatchProvider `json:"buy,omitempty"`
 }
 
 // MovieRecommendationsResults Result Types
@@ -550,73 +543,68 @@ type TVEpisodeGroupNetwork struct {
 
 // TVKeywordsResults Result Types
 type TVKeywordsResults struct {
-	Results []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"results"`
+	Results []TVKeywordsResult `json:"results"`
+}
+
+type TVKeywordsResult struct {
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
 }
 
 // TVRecommendationsResults Result Types
 type TVRecommendationsResults struct {
-	Results []struct {
-		PosterPath       string   `json:"poster_path"`
-		Popularity       float32  `json:"popularity"`
-		ID               int64    `json:"id"`
-		BackdropPath     string   `json:"backdrop_path"`
-		VoteAverage      float32  `json:"vote_average"`
-		Overview         string   `json:"overview"`
-		FirstAirDate     string   `json:"first_air_date"`
-		OriginCountry    []string `json:"origin_country"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		OriginalLanguage string   `json:"original_language"`
-		VoteCount        int64    `json:"vote_count"`
-		Name             string   `json:"name"`
-		OriginalName     string   `json:"original_name"`
-	} `json:"results"`
+	Results []TVRecommendationsResult `json:"results"`
+}
+
+type TVRecommendationsResult struct {
+	PosterPath       string   `json:"poster_path"`
+	Popularity       float32  `json:"popularity"`
+	ID               int64    `json:"id"`
+	BackdropPath     string   `json:"backdrop_path"`
+	VoteAverage      float32  `json:"vote_average"`
+	Overview         string   `json:"overview"`
+	FirstAirDate     string   `json:"first_air_date"`
+	OriginCountry    []string `json:"origin_country"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	OriginalLanguage string   `json:"original_language"`
+	VoteCount        int64    `json:"vote_count"`
+	Name             string   `json:"name"`
+	OriginalName     string   `json:"original_name"`
 }
 
 // TVReviewsResults Result Types
 type TVReviewsResults struct {
-	Results []struct {
-		ID      string `json:"id"`
-		Author  string `json:"author"`
-		Content string `json:"content"`
-		URL     string `json:"url"`
-	} `json:"results"`
+	Results []TVReviewsResult `json:"results"`
+}
+
+type TVReviewsResult struct {
+	ID      string `json:"id"`
+	Author  string `json:"author"`
+	Content string `json:"content"`
+	URL     string `json:"url"`
 }
 
 // TVScreenedTheatricallyResults Result Types
 type TVScreenedTheatricallyResults struct {
-	Results []struct {
-		ID            int64 `json:"id"`
-		EpisodeNumber int   `json:"episode_number"`
-		SeasonNumber  int   `json:"season_number"`
-	} `json:"results"`
+	Results []TVScreenedTheatricallyResult `json:"results"`
+}
+
+type TVScreenedTheatricallyResult struct {
+	ID            int64 `json:"id"`
+	EpisodeNumber int   `json:"episode_number"`
+	SeasonNumber  int   `json:"season_number"`
 }
 
 // TVWatchProvidersResults Result Types
 type TVWatchProvidersResults struct {
-	Results map[string]struct {
-		Link     string `json:"link"`
-		Flatrate []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"flatrate,omitempty"`
-		Rent []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"rent,omitempty"`
-		Buy []struct {
-			DisplayPriority int64  `json:"display_priority"`
-			LogoPath        string `json:"logo_path"`
-			ProviderID      int64  `json:"provider_id"`
-			ProviderName    string `json:"provider_name"`
-		} `json:"buy,omitempty"`
-	} `json:"results"`
+	Results map[string]TVWatchProvidersResult `json:"results"`
+}
+
+type TVWatchProvidersResult struct {
+	Link     string          `json:"link"`
+	FlatRate []WatchProvider `json:"flatrate,omitempty"`
+	Rent     []WatchProvider `json:"rent,omitempty"`
+	Buy      []WatchProvider `json:"buy,omitempty"`
 }
 
 // TVVideosResults Result Types

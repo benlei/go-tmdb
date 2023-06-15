@@ -9,9 +9,9 @@ import (
 type FindByID struct {
 	MovieResults     []FindMovieResult     `json:"movie_results,omitempty"`
 	PersonResults    []FindPersonResult    `json:"person_results,omitempty"`
-	TvResults        []FindTvResult        `json:"tv_results,omitempty"`
-	TvSeasonResults  []FindTvSeasonResult  `json:"tv_season_results,omitempty"`
-	TvEpisodeResults []FindTvEpisodeResult `json:"tv_episode_results,omitempty"`
+	TVResults        []FindTVResult        `json:"tv_results,omitempty"`
+	TVSeasonResults  []FindTVSeasonResult  `json:"tv_season_results,omitempty"`
+	TVEpisodeResults []FindTVEpisodeResult `json:"tv_episode_results,omitempty"`
 }
 
 type FindMovieResult struct {
@@ -64,7 +64,7 @@ type FindPersonKnownFor struct {
 	VoteCount        json.Number   `json:"vote_count"`
 }
 
-type FindTvResult struct {
+type FindTVResult struct {
 	OriginalName     string   `json:"original_name"`
 	ID               int64    `json:"id"`
 	Name             string   `json:"name"`
@@ -80,7 +80,7 @@ type FindTvResult struct {
 	Popularity       float32  `json:"popularity"`
 }
 
-type FindTvSeasonResult struct {
+type FindTVSeasonResult struct {
 	AirDate      string `json:"air_date"`
 	Name         string `json:"name"`
 	ID           int64  `json:"id"`
@@ -88,7 +88,7 @@ type FindTvSeasonResult struct {
 	ShowID       int64  `json:"show_id"`
 }
 
-type FindTvEpisodeResult struct {
+type FindTVEpisodeResult struct {
 	AirDate        string  `json:"air_date"`
 	EpisodeNumber  int     `json:"episode_number"`
 	ID             int64   `json:"id"`

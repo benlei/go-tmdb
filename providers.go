@@ -74,7 +74,7 @@ func (c *Client) GetWatchProvidersMovie(
 // You can specify a watch_region param if you want to further filter the list by country.
 //
 // https://developers.themoviedb.org/3/watch-providers/get-tv-providers
-func (c *Client) GetWatchProvidersTv(
+func (c *Client) GetWatchProvidersTV(
 	urlOptions map[string]string,
 ) (*WatchProviderList, error) {
 	options := c.fmtOptions(urlOptions)

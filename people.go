@@ -339,9 +339,9 @@ type PersonExternalIDs struct {
 	ID          int64  `json:"id,omitempty"`
 	TwitterID   string `json:"twitter_id"`
 	FacebookID  string `json:"facebook_id"`
-	TvrageID    int64  `json:"tvrage_id"`
+	TVRageID    int64  `json:"tvrage_id"`
 	InstagramID string `json:"instagram_id"`
-	FreebaseMid string `json:"freebase_mid"`
+	FreebaseMID string `json:"freebase_mid"`
 	IMDbID      string `json:"imdb_id"`
 	FreebaseID  string `json:"freebase_id"`
 }

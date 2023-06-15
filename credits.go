@@ -1,6 +1,7 @@
 package tmdb
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -70,29 +71,29 @@ type CreditPerson struct {
 	Popularity         float32                `json:"popularity"`
 }
 
-// CreditPersonKnownFor This can have issues:
+// CreditPersonKnownFor some fields can be both an integer and a float...
 // - https://github.com/cyruzin/golang-tmdb/pull/34
 // - https://www.themoviedb.org/talk/6026eebd6a3448003e155bbc
 type CreditPersonKnownFor struct {
-	Adult        bool   `json:"adult,omitempty"`
-	BackdropPath string `json:"backdrop_path"`
-	// GenreIDs         []int64  `json:"genre_ids"` // FIXME: -> []float32
-	// ID               int64    `json:"id"` // FIXME: -> float32
-	OriginalLanguage string  `json:"original_language"`
-	OriginalTitle    string  `json:"original_title,omitempty"`
-	Overview         string  `json:"overview"`
-	PosterPath       string  `json:"poster_path"`
-	ReleaseDate      string  `json:"release_date,omitempty"`
-	Title            string  `json:"title,omitempty"`
-	Video            bool    `json:"video,omitempty"`
-	VoteAverage      float32 `json:"vote_average"`
-	// VoteCount        int64    `json:"vote_count"` // FIXME: -> float32
-	Popularity    float32  `json:"popularity"`
-	MediaType     string   `json:"media_type"`
-	OriginalName  string   `json:"original_name,omitempty"`
-	Name          string   `json:"name,omitempty"`
-	FirstAirDate  string   `json:"first_air_date,omitempty"`
-	OriginCountry []string `json:"origin_country,omitempty"`
+	Adult            bool          `json:"adult,omitempty"`
+	BackdropPath     string        `json:"backdrop_path"`
+	GenreIDs         []json.Number `json:"genre_ids"`
+	ID               json.Number   `json:"id"`
+	OriginalLanguage string        `json:"original_language"`
+	OriginalTitle    string        `json:"original_title,omitempty"`
+	Overview         string        `json:"overview"`
+	PosterPath       string        `json:"poster_path"`
+	ReleaseDate      string        `json:"release_date,omitempty"`
+	Title            string        `json:"title,omitempty"`
+	Video            bool          `json:"video,omitempty"`
+	VoteAverage      float32       `json:"vote_average"`
+	VoteCount        json.Number   `json:"vote_count"`
+	Popularity       float32       `json:"popularity"`
+	MediaType        string        `json:"media_type"`
+	OriginalName     string        `json:"original_name,omitempty"`
+	Name             string        `json:"name,omitempty"`
+	FirstAirDate     string        `json:"first_air_date,omitempty"`
+	OriginCountry    []string      `json:"origin_country,omitempty"`
 }
 
 // GetCreditDetails get a movie or TV credit details by id.

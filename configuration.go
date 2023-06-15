@@ -55,7 +55,7 @@ func (c *Client) GetConfigurationAPI() (*ConfigurationAPI, error) {
 
 // ConfigurationCountries type is a struct for countries configuration JSON response.
 type ConfigurationCountries []struct {
-	ISO3166_1   string `json:"iso_3166_1"`
+	CountryCode string `json:"iso_3166_1"`
 	EnglishName string `json:"english_name"`
 	NativeName  string `json:"native_name"`
 }
@@ -106,9 +106,9 @@ func (c *Client) GetConfigurationJobs() (*ConfigurationJobs, error) {
 
 // ConfigurationLanguages type is a struct for languages configuration JSON response.
 type ConfigurationLanguages []struct {
-	ISO639_1    string `json:"iso_639_1"`
-	EnglishName string `json:"english_name"`
-	Name        string `json:"name"`
+	LanguageCode string `json:"iso_639_1"`
+	EnglishName  string `json:"english_name"`
+	Name         string `json:"name"`
 }
 
 // GetConfigurationLanguages get the list of languages
@@ -176,8 +176,8 @@ func (c *Client) GetConfigurationPrimaryTranslations() (
 // ConfigurationTimezones type is a struct for timezones
 // configuration JSON response.
 type ConfigurationTimezones []struct {
-	ISO3166_1 string   `json:"iso_3166_1"`
-	Zones     []string `json:"zones"`
+	CountryCode string   `json:"iso_3166_1"`
+	Zones       []string `json:"zones"`
 }
 
 // GetConfigurationTimezones get the list of timezones

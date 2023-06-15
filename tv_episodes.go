@@ -107,8 +107,8 @@ type TVEpisodeChanges struct {
 			ID            string `json:"id"`
 			Action        string `json:"action"`
 			Time          string `json:"time"`
-			ISO639_1      string `json:"iso_639_1"`
-			ISO3166_1     string `json:"iso_3166_1"`
+			LanguageCode  string `json:"iso_639_1"`
+			CountryCode   string `json:"iso_3166_1"`
 			OriginalValue struct {
 				PersonID  int64  `json:"person_id"`
 				Character string `json:"character"`
@@ -272,11 +272,11 @@ func (c *Client) GetTVEpisodeImages(id int64, seasonNumber int, episodeNumber in
 type TVEpisodeTranslations struct {
 	ID           int64 `json:"id,omitempty"`
 	Translations []struct {
-		ISO3166_1   string `json:"iso_3166_1"`
-		ISO639_1    string `json:"iso_639_1"`
-		Name        string `json:"name"`
-		EnglishName string `json:"english_name"`
-		Data        struct {
+		CountryCode  string `json:"iso_3166_1"`
+		LanguageCode string `json:"iso_639_1"`
+		Name         string `json:"name"`
+		EnglishName  string `json:"english_name"`
+		Data         struct {
 			Name     string `json:"name"`
 			Overview string `json:"overview"`
 		} `json:"data"`
@@ -315,14 +315,14 @@ type TVEpisodeRate struct {
 type TVEpisodeVideos struct {
 	ID      int64 `json:"id,omitempty"`
 	Results []struct {
-		ID        string `json:"id"`
-		ISO639_1  string `json:"iso_639_1"`
-		ISO3166_1 string `json:"iso_3166_1"`
-		Key       string `json:"key"`
-		Name      string `json:"name"`
-		Site      string `json:"site"`
-		Size      int    `json:"size"`
-		Type      string `json:"type"`
+		ID           string `json:"id"`
+		LanguageCode string `json:"iso_639_1"`
+		CountryCode  string `json:"iso_3166_1"`
+		Key          string `json:"key"`
+		Name         string `json:"name"`
+		Site         string `json:"site"`
+		Size         int    `json:"size"`
+		Type         string `json:"type"`
 	} `json:"results"`
 }
 

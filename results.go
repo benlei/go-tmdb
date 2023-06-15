@@ -10,7 +10,7 @@ type AccountCreatedListsResult struct {
 	FavoriteCount int64  `json:"favorite_count"`
 	ID            int64  `json:"id"`
 	ItemCount     int64  `json:"item_count"`
-	ISO639_1      string `json:"iso_639_1"`
+	LanguageCode  string `json:"iso_639_1"`
 	ListType      string `json:"list_type"`
 	Name          string `json:"name"`
 	PosterPath    string `json:"poster_path"`
@@ -362,13 +362,13 @@ type MovieReleaseDatesResults struct {
 }
 
 type MovieReleaseDatesResult struct {
-	ISO3166_1    string                   `json:"iso_3166_1"`
+	CountryCode  string                   `json:"iso_3166_1"`
 	ReleaseDates []MovieReleaseDateResult `json:"release_dates"`
 }
 
 type MovieReleaseDateResult struct {
 	Certification string `json:"certification"`
-	ISO639_1      string `json:"iso_639_1"`
+	LanguageCode  string `json:"iso_639_1"`
 	ReleaseDate   string `json:"release_date"`
 	Type          int    `json:"type"`
 	Note          string `json:"note"`
@@ -380,16 +380,16 @@ type MovieVideosResults struct {
 }
 
 type MovieVideosResult struct {
-	ID          string `json:"id"`
-	ISO639_1    string `json:"iso_639_1"`
-	ISO3166_1   string `json:"iso_3166_1"`
-	Key         string `json:"key"`
-	Name        string `json:"name"`
-	Official    bool   `json:"official"`
-	PublishedAt string `json:"published_at"`
-	Site        string `json:"site"`
-	Size        int    `json:"size"`
-	Type        string `json:"type"`
+	ID           string `json:"id"`
+	LanguageCode string `json:"iso_639_1"`
+	CountryCode  string `json:"iso_3166_1"`
+	Key          string `json:"key"`
+	Name         string `json:"name"`
+	Official     bool   `json:"official"`
+	PublishedAt  string `json:"published_at"`
+	Site         string `json:"site"`
+	Size         int    `json:"size"`
+	Type         string `json:"type"`
 }
 
 // MovieWatchProvidersResults Result Types
@@ -448,7 +448,7 @@ type MovieListsResult struct {
 	FavoriteCount int64  `json:"favorite_count"`
 	ID            int64  `json:"id"`
 	ItemCount     int64  `json:"item_count"`
-	ISO639_1      string `json:"iso_639_1"`
+	LanguageCode  string `json:"iso_639_1"`
 	ListType      string `json:"list_type"`
 	Name          string `json:"name"`
 	PosterPath    string `json:"poster_path"`
@@ -504,9 +504,9 @@ type TVAlternativeTitlesResults struct {
 }
 
 type TVAlternativeTitlesResult struct {
-	ISO3166_1 string `json:"iso_3166_1"`
-	Title     string `json:"title"`
-	Type      string `json:"type"`
+	CountryCode string `json:"iso_3166_1"`
+	Title       string `json:"title"`
+	Type        string `json:"type"`
 }
 
 // TVContentRatingsResults Result Types
@@ -515,8 +515,8 @@ type TVContentRatingsResults struct {
 }
 
 type TVContentRatingsResult struct {
-	ISO3166_1 string `json:"iso_3166_1"`
-	Rating    string `json:"rating"`
+	CountryCode string `json:"iso_3166_1"`
+	Rating      string `json:"rating"`
 }
 
 // TVEpisodeGroupsResults Result Types
@@ -613,14 +613,14 @@ type TVVideosResults struct {
 }
 
 type TVVideosResult struct {
-	ID        string `json:"id"`
-	ISO639_1  string `json:"iso_639_1"`
-	ISO3166_1 string `json:"iso_3166_1"`
-	Key       string `json:"key"`
-	Name      string `json:"name"`
-	Site      string `json:"site"`
-	Size      int    `json:"size"`
-	Type      string `json:"type"`
+	ID           string `json:"id"`
+	LanguageCode string `json:"iso_639_1"`
+	CountryCode  string `json:"iso_3166_1"`
+	Key          string `json:"key"`
+	Name         string `json:"name"`
+	Site         string `json:"site"`
+	Size         int    `json:"size"`
+	Type         string `json:"type"`
 }
 
 // TVAiringTodayResults Result Types

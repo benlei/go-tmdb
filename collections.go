@@ -75,11 +75,11 @@ type CollectionTranslations struct {
 }
 
 type CollectionTranslation struct {
-	ISO3166_1   string                    `json:"iso_3166_1"`
-	ISO639_1    string                    `json:"iso_639_1"`
-	Name        string                    `json:"name"`
-	EnglishName string                    `json:"english_name"`
-	Data        CollectionTranslationData `json:"data"`
+	CountryCode  string                    `json:"iso_3166_1"`
+	LanguageCode string                    `json:"iso_639_1"`
+	Name         string                    `json:"name"`
+	EnglishName  string                    `json:"english_name"`
+	Data         CollectionTranslationData `json:"data"`
 }
 
 type CollectionTranslationData struct {

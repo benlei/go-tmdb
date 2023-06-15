@@ -12,14 +12,14 @@ type ReviewDetails struct {
 		Rating     float32 `json:"rating"`
 		Username   string  `json:"username"`
 	} `json:"author_details"`
-	Content    string `json:"content"`
-	CreatedAt  string `json:"created_at"`
-	UpdatedAt  string `json:"updated_at"`
-	ISO639_1   string `json:"iso_639_1"`
-	MediaID    int64  `json:"media_id"`
-	MediaTitle string `json:"media_title"`
-	MediaType  string `json:"media_type"`
-	URL        string `json:"url"`
+	Content      string `json:"content"`
+	CreatedAt    string `json:"created_at"`
+	UpdatedAt    string `json:"updated_at"`
+	LanguageCode string `json:"iso_639_1"`
+	MediaID      int64  `json:"media_id"`
+	MediaTitle   string `json:"media_title"`
+	MediaType    string `json:"media_type"`
+	URL          string `json:"url"`
 }
 
 // GetReviewDetails get review details by id.

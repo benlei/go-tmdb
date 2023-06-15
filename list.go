@@ -32,10 +32,10 @@ type ListDetails struct {
 		VoteAverage      float32  `json:"vote_average"`
 		VoteCount        int64    `json:"vote_count"`
 	} `json:"items"`
-	ItemCount  int64  `json:"item_count"`
-	ISO639_1   string `json:"iso_639_1"`
-	Name       string `json:"name"`
-	PosterPath string `json:"poster_path"`
+	ItemCount    int64  `json:"item_count"`
+	LanguageCode string `json:"iso_639_1"`
+	Name         string `json:"name"`
+	PosterPath   string `json:"poster_path"`
 }
 
 // GetListDetails get the details of a list.

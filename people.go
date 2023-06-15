@@ -401,12 +401,12 @@ type PersonTaggedImages struct {
 	TotalResults int64 `json:"total_results"`
 	TotalPages   int64 `json:"total_pages"`
 	Results      []struct {
-		ISO639_1    string  `json:"iso_639_1"`
-		VoteCount   int64   `json:"vote_count"`
-		MediaType   string  `json:"media_type"`
-		FilePath    string  `json:"file_path"`
-		AspectRatio float32 `json:"aspect_ratio"`
-		Media       struct {
+		LanguageCode string  `json:"iso_639_1"`
+		VoteCount    int64   `json:"vote_count"`
+		MediaType    string  `json:"media_type"`
+		FilePath     string  `json:"file_path"`
+		AspectRatio  float32 `json:"aspect_ratio"`
+		Media        struct {
 			Popularity       float32 `json:"popularity"`
 			VoteCount        int64   `json:"vote_count"`
 			Video            bool    `json:"video"`
@@ -451,10 +451,10 @@ func (c *Client) GetPersonTaggedImages(id int64, urlOptions map[string]string) (
 // PersonTranslations type is a struct for translations JSON response.
 type PersonTranslations struct {
 	Translations []struct {
-		ISO639_1  string `json:"iso_639_1"`
-		ISO3166_1 string `json:"iso_3166_1"`
-		Name      string `json:"name"`
-		Data      struct {
+		LanguageCode string `json:"iso_639_1"`
+		CountryCode  string `json:"iso_3166_1"`
+		Name         string `json:"name"`
+		Data         struct {
 			Biography string `json:"biography"`
 		} `json:"data"`
 		EnglishName string `json:"english_name"`

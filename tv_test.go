@@ -58,7 +58,7 @@ func (suite *TMBDTestSuite) TestGetTVAlternativeTitles() {
 	flash, err := suite.client.GetTVAlternativeTitles(flashID, nil)
 	suite.Nil(err)
 	for _, v := range flash.Results {
-		if v.ISO3166_1 == "GR" {
+		if v.CountryCode == "GR" {
 			suite.Equal("Ο Φλας", v.Title)
 		}
 	}
@@ -107,7 +107,7 @@ func (suite *TMBDTestSuite) TestGetTVChangesWithOptions() {
 func (suite *TMBDTestSuite) TestGetTVContentRatings() {
 	vikings, err := suite.client.GetTVContentRatings(vikingsID, nil)
 	suite.Nil(err)
-	suite.NotNil(vikings.Results[0].ISO3166_1)
+	suite.NotNil(vikings.Results[0].CountryCode)
 }
 
 func (suite *TMBDTestSuite) TestGetTVContentRatingsFail() {
@@ -120,7 +120,7 @@ func (suite *TMBDTestSuite) TestGetTVContentRatingsWithOptions() {
 	options["language"] = "en-US"
 	vikings, err := suite.client.GetTVContentRatings(vikingsID, options)
 	suite.Nil(err)
-	suite.NotNil(vikings.Results[0].ISO3166_1)
+	suite.NotNil(vikings.Results[0].CountryCode)
 }
 
 func (suite *TMBDTestSuite) TestGetTVCredits() {
@@ -276,7 +276,7 @@ func (suite *TMBDTestSuite) TestGetTVSimilarWithOptions() {
 func (suite *TMBDTestSuite) TestGetTVTranslations() {
 	flash, err := suite.client.GetTVTranslations(flashID, nil)
 	suite.Nil(err)
-	suite.NotEmpty(flash.Translations[0].ISO3166_1)
+	suite.NotEmpty(flash.Translations[0].CountryCode)
 }
 
 func (suite *TMBDTestSuite) TestGetTVTranslationsFail() {

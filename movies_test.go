@@ -33,7 +33,7 @@ func (suite *TMBDTestSuite) TestGetMovieAlternativeTitles() {
 	bumblebee, err := suite.client.GetMovieAlternativeTitles(bumblebeeID, nil)
 	suite.Nil(err)
 	for _, v := range bumblebee.Titles {
-		if v.ISO3166_1 == "US" {
+		if v.CountryCode == "US" {
 			suite.NotNil(v.Title)
 		}
 	}
@@ -138,7 +138,7 @@ func (suite *TMBDTestSuite) TestGetMovieKeywordsFail() {
 func (suite *TMBDTestSuite) TestGetMovieReleaseDates() {
 	bumblebee, err := suite.client.GetMovieReleaseDates(bumblebeeID)
 	suite.Nil(err)
-	suite.NotEmpty(bumblebee.Results[0].ISO3166_1)
+	suite.NotEmpty(bumblebee.Results[0].CountryCode)
 }
 
 func (suite *TMBDTestSuite) TestGetMovieReleaseDatesFail() {
@@ -181,7 +181,7 @@ func (suite *TMBDTestSuite) TestGetMovieVideosWithOptions() {
 func (suite *TMBDTestSuite) TestGetMovieTranslations() {
 	bumblebee, err := suite.client.GetMovieTranslations(bumblebeeID, nil)
 	suite.Nil(err)
-	suite.NotEmpty(bumblebee.Translations[0].ISO3166_1)
+	suite.NotEmpty(bumblebee.Translations[0].CountryCode)
 }
 
 func (suite *TMBDTestSuite) TestGetMovieTranslationsFail() {

@@ -77,7 +77,7 @@ type SessionWithLogin struct {
 // 	requestToken := struct {
 // 		RequestToken string `json:"request_token"`
 // 	}{rt}
-// 	j, err := json.Marshal(requestToken)
+// 	j, err := jsoniter.ConfigFastest.Marshal(requestToken)
 // 	if err != nil {
 // 		return nil, err
 // 	}

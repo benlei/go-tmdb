@@ -8,16 +8,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	jsoniter "github.com/json-iterator/go"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
-
-	jsoniter "github.com/json-iterator/go"
 )
-
-var json = jsoniter.ConfigFastest
 
 // TMDb constants
 const (
@@ -122,18 +119,18 @@ func (c *Client) get(url string, data interface{}) error {
 	if c.http.Timeout == 0 {
 		c.http.Timeout = time.Second * 10
 	}
-	req, err := http.NewRequest(http.MethodGet, url, nil)
-	if err != nil {
-		return fmt.Errorf("could not fetch the url: %s", err)
+	req, decodeErr := http.NewRequest(http.MethodGet, url, nil)
+	if decodeErr != nil {
+		return fmt.Errorf("could not fetch the url: %s", decodeErr)
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	req = req.WithContext(ctx)
 	req.Header.Add("content-type", "application/json;charset=utf-8")
 	for {
-		res, err := c.http.Do(req)
-		if err != nil {
-			return err
+		res, httpErr := c.http.Do(req)
+		if httpErr != nil {
+			return httpErr
 		}
 		defer res.Body.Close()
 		if res.StatusCode == http.StatusTooManyRequests && c.autoRetry {
@@ -146,8 +143,8 @@ func (c *Client) get(url string, data interface{}) error {
 		if res.StatusCode != http.StatusOK {
 			return c.decodeError(res)
 		}
-		if err = json.NewDecoder(res.Body).Decode(data); err != nil {
-			return fmt.Errorf("could not decode the data: %s", err)
+		if decodeErr = jsoniter.ConfigFastest.NewDecoder(res.Body).Decode(data); decodeErr != nil {
+			return fmt.Errorf("could not decode the data: %s", decodeErr)
 		}
 		break
 	}
@@ -167,23 +164,23 @@ func (c *Client) request(
 		c.http.Timeout = time.Second * 10
 	}
 	bodyBytes := new(bytes.Buffer)
-	json.NewEncoder(bodyBytes).Encode(body)
-	req, err := http.NewRequest(
+	jsoniter.ConfigFastest.NewEncoder(bodyBytes).Encode(body)
+	req, decodeErr := http.NewRequest(
 		method,
 		url,
 		bytes.NewBuffer(bodyBytes.Bytes()),
 	)
-	if err != nil {
-		return fmt.Errorf("could not fetch the url: %s", err)
+	if decodeErr != nil {
+		return fmt.Errorf("could not fetch the url: %s", decodeErr)
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	req = req.WithContext(ctx)
 	req.Header.Add("content-type", "application/json;charset=utf-8")
 	for {
-		res, err := c.http.Do(req)
-		if err != nil {
-			return errors.New(err.Error())
+		res, httpErr := c.http.Do(req)
+		if httpErr != nil {
+			return errors.New(httpErr.Error())
 		}
 		defer res.Body.Close()
 		if c.autoRetry && shouldRetry(res.StatusCode) {
@@ -197,8 +194,8 @@ func (c *Client) request(
 			res.StatusCode == http.StatusNoContent {
 			return c.decodeError(res)
 		}
-		if err = json.NewDecoder(res.Body).Decode(data); err != nil {
-			return fmt.Errorf("could not decode the data: %s", err)
+		if decodeErr = jsoniter.ConfigFastest.NewDecoder(res.Body).Decode(data); decodeErr != nil {
+			return fmt.Errorf("could not decode the data: %s", decodeErr)
 		}
 		break
 	}
@@ -243,9 +240,9 @@ func (e Error) Error() string {
 }
 
 func (c *Client) decodeError(r *http.Response) error {
-	resBody, err := io.ReadAll(r.Body)
-	if err != nil {
-		return fmt.Errorf("could not read body response: %s", err)
+	resBody, readErr := io.ReadAll(r.Body)
+	if readErr != nil {
+		return fmt.Errorf("could not read body response: %s", readErr)
 	}
 	if len(resBody) == 0 {
 		return fmt.Errorf(
@@ -256,7 +253,7 @@ func (c *Client) decodeError(r *http.Response) error {
 	}
 	buf := bytes.NewBuffer(resBody)
 	var clientError Error
-	if err := json.NewDecoder(buf).Decode(&clientError); err != nil {
+	if decodeErr := jsoniter.ConfigFastest.NewDecoder(buf).Decode(&clientError); decodeErr != nil {
 		return fmt.Errorf(
 			"couldn't decode error: (%d) [%s]",
 			len(resBody),

@@ -18,6 +18,37 @@ type ConfigurationImage struct {
 	StillSizes    []string `json:"still_sizes"`
 }
 
+// ConfigurationCountry type is a struct for countries configuration JSON response.
+type ConfigurationCountry struct {
+	CountryCode string `json:"iso_3166_1"`
+	EnglishName string `json:"english_name"`
+	NativeName  string `json:"native_name"`
+}
+
+// ConfigurationJobs type is a struct for jobs configuration JSON response.
+type ConfigurationJobs struct {
+	Department string   `json:"department"`
+	Jobs       []string `json:"jobs"`
+}
+
+// ConfigurationLanguages type is a struct for languages configuration JSON response.
+type ConfigurationLanguages struct {
+	LanguageCode string `json:"iso_639_1"`
+	EnglishName  string `json:"english_name"`
+	Name         string `json:"name"`
+}
+
+// ConfigurationPrimaryTranslations type is a struct for
+// primary translations configuration JSON response.
+type ConfigurationPrimaryTranslations string
+
+// ConfigurationTimezones type is a struct for timezones
+// configuration JSON response.
+type ConfigurationTimezones struct {
+	CountryCode string   `json:"iso_3166_1"`
+	Zones       []string `json:"zones"`
+}
+
 // GetConfigurationAPI get the system wide configuration information.
 //
 // Some elements of the API require some knowledge of
@@ -53,88 +84,58 @@ func (c *Client) GetConfigurationAPI() (*ConfigurationAPI, error) {
 	return &configurationAPI, nil
 }
 
-// ConfigurationCountries type is a struct for countries configuration JSON response.
-type ConfigurationCountries []struct {
-	CountryCode string `json:"iso_3166_1"`
-	EnglishName string `json:"english_name"`
-	NativeName  string `json:"native_name"`
-}
-
 // GetConfigurationCountries get the list of countries
 // (ISO 3166-1 tags) used throughout TMDb.
 //
 // https://developers.themoviedb.org/3/configuration/get-countries
-func (c *Client) GetConfigurationCountries() (
-	*ConfigurationCountries,
-	error,
-) {
+func (c *Client) GetConfigurationCountries() ([]ConfigurationCountry, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%scountries?api_key=%s",
 		baseURL,
 		configurationURL,
 		c.apiKey,
 	)
-	configurationCountries := ConfigurationCountries{}
+	var configurationCountries []ConfigurationCountry
 	if err := c.get(tmdbURL, &configurationCountries); err != nil {
 		return nil, err
 	}
-	return &configurationCountries, nil
-}
-
-// ConfigurationJobs type is a struct for jobs configuration JSON response.
-type ConfigurationJobs []struct {
-	Department string   `json:"department"`
-	Jobs       []string `json:"jobs"`
+	return configurationCountries, nil
 }
 
 // GetConfigurationJobs get a list of the jobs and departments we use on TMDb.
 //
 // https://developers.themoviedb.org/3/configuration/get-jobs
-func (c *Client) GetConfigurationJobs() (*ConfigurationJobs, error) {
+func (c *Client) GetConfigurationJobs() ([]ConfigurationJobs, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%sjobs?api_key=%s",
 		baseURL,
 		configurationURL,
 		c.apiKey,
 	)
-	configurationJobs := ConfigurationJobs{}
+	var configurationJobs []ConfigurationJobs
 	if err := c.get(tmdbURL, &configurationJobs); err != nil {
 		return nil, err
 	}
-	return &configurationJobs, nil
-}
-
-// ConfigurationLanguages type is a struct for languages configuration JSON response.
-type ConfigurationLanguages []struct {
-	LanguageCode string `json:"iso_639_1"`
-	EnglishName  string `json:"english_name"`
-	Name         string `json:"name"`
+	return configurationJobs, nil
 }
 
 // GetConfigurationLanguages get the list of languages
 // (ISO 639-1 tags) used throughout TMDb.
 //
 // https://developers.themoviedb.org/3/configuration/get-languages
-func (c *Client) GetConfigurationLanguages() (
-	*ConfigurationLanguages,
-	error,
-) {
+func (c *Client) GetConfigurationLanguages() ([]ConfigurationLanguages, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%slanguages?api_key=%s",
 		baseURL,
 		configurationURL,
 		c.apiKey,
 	)
-	configurationLanguages := ConfigurationLanguages{}
+	var configurationLanguages []ConfigurationLanguages
 	if err := c.get(tmdbURL, &configurationLanguages); err != nil {
 		return nil, err
 	}
-	return &configurationLanguages, nil
+	return configurationLanguages, nil
 }
-
-// ConfigurationPrimaryTranslations type is a struct for
-// primary translations configuration JSON response.
-type ConfigurationPrimaryTranslations []string
 
 // GetConfigurationPrimaryTranslations get a list of the officially
 // supported translations on TMDb.
@@ -158,45 +159,32 @@ type ConfigurationPrimaryTranslations []string
 // our website translation project.
 //
 // https://developers.themoviedb.org/3/configuration/get-primary-translations
-func (c *Client) GetConfigurationPrimaryTranslations() (
-	*ConfigurationPrimaryTranslations,
-	error,
-) {
+func (c *Client) GetConfigurationPrimaryTranslations() ([]ConfigurationPrimaryTranslations, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%sprimary_translations?api_key=%s",
 		baseURL, configurationURL, c.apiKey,
 	)
-	configurationPrimaryTranslations := ConfigurationPrimaryTranslations{}
+	var configurationPrimaryTranslations []ConfigurationPrimaryTranslations
 	if err := c.get(tmdbURL, &configurationPrimaryTranslations); err != nil {
 		return nil, err
 	}
-	return &configurationPrimaryTranslations, nil
-}
-
-// ConfigurationTimezones type is a struct for timezones
-// configuration JSON response.
-type ConfigurationTimezones []struct {
-	CountryCode string   `json:"iso_3166_1"`
-	Zones       []string `json:"zones"`
+	return configurationPrimaryTranslations, nil
 }
 
 // GetConfigurationTimezones get the list of timezones
 // used throughout TMDb.
 //
 // https://developers.themoviedb.org/3/configuration/get-timezones
-func (c *Client) GetConfigurationTimezones() (
-	*ConfigurationTimezones,
-	error,
-) {
+func (c *Client) GetConfigurationTimezones() ([]ConfigurationTimezones, error) {
 	tmdbURL := fmt.Sprintf(
 		"%s%stimezones?api_key=%s",
 		baseURL,
 		configurationURL,
 		c.apiKey,
 	)
-	configurationTimeZones := ConfigurationTimezones{}
+	var configurationTimeZones []ConfigurationTimezones
 	if err := c.get(tmdbURL, &configurationTimeZones); err != nil {
 		return nil, err
 	}
-	return &configurationTimeZones, nil
+	return configurationTimeZones, nil
 }

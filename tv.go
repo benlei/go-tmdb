@@ -76,7 +76,7 @@ type TVDetails struct {
 		OriginCountry string `json:"origin_country"`
 	} `json:"production_companies"`
 	ProductionCountries []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
+		ISO3166_1 string `json:"iso_3166_1"`
 		Name      string `json:"name"`
 	} `json:"production_countries"`
 	Seasons []struct {
@@ -358,8 +358,8 @@ type TVChanges struct {
 			ID            string              `json:"id"`
 			Action        string              `json:"action"`
 			Time          string              `json:"time"`
-			Iso639_1      string              `json:"iso_639_1"`
-			Iso3166_1     string              `json:"iso_3166_1"`
+			ISO639_1      string              `json:"iso_639_1"`
+			ISO3166_1     string              `json:"iso_3166_1"`
 			Value         jsoniter.RawMessage `json:"value"`
 			OriginalValue jsoniter.RawMessage `json:"original_value"`
 		} `json:"items"`
@@ -734,8 +734,8 @@ func (c *Client) GetTVWatchProviders(id int64, urlOptions map[string]string) (*T
 type TVTranslations struct {
 	ID           int64 `json:"id,omitempty"`
 	Translations []struct {
-		Iso3166_1   string `json:"iso_3166_1"`
-		Iso639_1    string `json:"iso_639_1"`
+		ISO3166_1   string `json:"iso_3166_1"`
+		ISO639_1    string `json:"iso_639_1"`
 		Name        string `json:"name"`
 		EnglishName string `json:"english_name"`
 		Data        struct {

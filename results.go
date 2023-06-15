@@ -10,7 +10,7 @@ type AccountCreatedListsResult struct {
 	FavoriteCount int64  `json:"favorite_count"`
 	ID            int64  `json:"id"`
 	ItemCount     int64  `json:"item_count"`
-	Iso639_1      string `json:"iso_639_1"`
+	ISO639_1      string `json:"iso_639_1"`
 	ListType      string `json:"list_type"`
 	Name          string `json:"name"`
 	PosterPath    string `json:"poster_path"`
@@ -362,13 +362,13 @@ type MovieReleaseDatesResults struct {
 }
 
 type MovieReleaseDatesResult struct {
-	Iso3166_1    string                   `json:"iso_3166_1"`
+	ISO3166_1    string                   `json:"iso_3166_1"`
 	ReleaseDates []MovieReleaseDateResult `json:"release_dates"`
 }
 
 type MovieReleaseDateResult struct {
 	Certification string `json:"certification"`
-	Iso639_1      string `json:"iso_639_1"`
+	ISO639_1      string `json:"iso_639_1"`
 	ReleaseDate   string `json:"release_date"`
 	Type          int    `json:"type"`
 	Note          string `json:"note"`
@@ -381,8 +381,8 @@ type MovieVideosResults struct {
 
 type MovieVideosResult struct {
 	ID          string `json:"id"`
-	Iso639_1    string `json:"iso_639_1"`
-	Iso3166_1   string `json:"iso_3166_1"`
+	ISO639_1    string `json:"iso_639_1"`
+	ISO3166_1   string `json:"iso_3166_1"`
 	Key         string `json:"key"`
 	Name        string `json:"name"`
 	Official    bool   `json:"official"`
@@ -448,7 +448,7 @@ type MovieListsResult struct {
 	FavoriteCount int64  `json:"favorite_count"`
 	ID            int64  `json:"id"`
 	ItemCount     int64  `json:"item_count"`
-	Iso639_1      string `json:"iso_639_1"`
+	ISO639_1      string `json:"iso_639_1"`
 	ListType      string `json:"list_type"`
 	Name          string `json:"name"`
 	PosterPath    string `json:"poster_path"`
@@ -504,7 +504,7 @@ type TVAlternativeTitlesResults struct {
 }
 
 type TVAlternativeTitlesResult struct {
-	Iso3166_1 string `json:"iso_3166_1"`
+	ISO3166_1 string `json:"iso_3166_1"`
 	Title     string `json:"title"`
 	Type      string `json:"type"`
 }
@@ -515,7 +515,7 @@ type TVContentRatingsResults struct {
 }
 
 type TVContentRatingsResult struct {
-	Iso3166_1 string `json:"iso_3166_1"`
+	ISO3166_1 string `json:"iso_3166_1"`
 	Rating    string `json:"rating"`
 }
 
@@ -614,8 +614,8 @@ type TVVideosResults struct {
 
 type TVVideosResult struct {
 	ID        string `json:"id"`
-	Iso639_1  string `json:"iso_639_1"`
-	Iso3166_1 string `json:"iso_3166_1"`
+	ISO639_1  string `json:"iso_639_1"`
+	ISO3166_1 string `json:"iso_3166_1"`
 	Key       string `json:"key"`
 	Name      string `json:"name"`
 	Site      string `json:"site"`

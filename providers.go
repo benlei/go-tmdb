@@ -8,7 +8,7 @@ type WatchRegionList struct {
 }
 
 type WatchRegion struct {
-	Iso3166_1   string `json:"iso_3166_1"`
+	ISO3166_1   string `json:"iso_3166_1"`
 	EnglishName string `json:"english_name"`
 	NativeName  string `json:"native_name"`
 }

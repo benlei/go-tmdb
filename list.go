@@ -33,7 +33,7 @@ type ListDetails struct {
 		VoteCount        int64    `json:"vote_count"`
 	} `json:"items"`
 	ItemCount  int64  `json:"item_count"`
-	Iso639_1   string `json:"iso_639_1"`
+	ISO639_1   string `json:"iso_639_1"`
 	Name       string `json:"name"`
 	PosterPath string `json:"poster_path"`
 }

@@ -9,8 +9,8 @@ import (
 type AccountDetails struct {
 	Avatar       AvatarDetails `json:"avatar"`
 	ID           int64         `json:"id"`
-	Iso639_1     string        `json:"iso_639_1"`
-	Iso3166_1    string        `json:"iso_3166_1"`
+	ISO639_1     string        `json:"iso_639_1"`
+	ISO3166_1    string        `json:"iso_3166_1"`
 	Name         string        `json:"name"`
 	IncludeAdult bool          `json:"include_adult"`
 	Username     string        `json:"username"`

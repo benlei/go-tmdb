@@ -37,14 +37,14 @@ type MovieDetails struct {
 		OriginCountry string `json:"origin_country"`
 	} `json:"production_companies"`
 	ProductionCountries []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
+		ISO3166_1 string `json:"iso_3166_1"`
 		Name      string `json:"name"`
 	} `json:"production_countries"`
 	ReleaseDate     string `json:"release_date"`
 	Revenue         int64  `json:"revenue"`
 	Runtime         int    `json:"runtime"`
 	SpokenLanguages []struct {
-		Iso639_1 string `json:"iso_639_1"`
+		ISO639_1 string `json:"iso_639_1"`
 		Name     string `json:"name"`
 	} `json:"spoken_languages"`
 	Status      string  `json:"status"`
@@ -208,7 +208,7 @@ func (c *Client) GetMovieAccountStates(id int64, urlOptions map[string]string) (
 type MovieAlternativeTitles struct {
 	ID     int `json:"id,omitempty"`
 	Titles []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
+		ISO3166_1 string `json:"iso_3166_1"`
 		Title     string `json:"title"`
 		Type      string `json:"type"`
 	} `json:"titles"`
@@ -242,7 +242,7 @@ type MovieChanges struct {
 			ID            jsoniter.RawMessage `json:"id"`
 			Action        jsoniter.RawMessage `json:"action"`
 			Time          jsoniter.RawMessage `json:"time"`
-			Iso639_1      jsoniter.RawMessage `json:"iso_639_1"`
+			ISO639_1      jsoniter.RawMessage `json:"iso_639_1"`
 			Value         jsoniter.RawMessage `json:"value"`
 			OriginalValue jsoniter.RawMessage `json:"original_value"`
 		} `json:"items"`
@@ -499,8 +499,8 @@ func (c *Client) GetMovieWatchProviders(id int64, urlOptions map[string]string) 
 type MovieTranslations struct {
 	ID           int64 `json:"id,omitempty"`
 	Translations []struct {
-		Iso639_1    string `json:"iso_639_1"`
-		Iso3166_1   string `json:"iso_3166_1"`
+		ISO639_1    string `json:"iso_639_1"`
+		ISO3166_1   string `json:"iso_3166_1"`
 		Name        string `json:"name"`
 		EnglishName string `json:"english_name"`
 		Data        struct {

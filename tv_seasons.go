@@ -105,8 +105,8 @@ type TVSeasonChanges struct {
 			ID        string `json:"id"`
 			Action    string `json:"action"`
 			Time      string `json:"time"`
-			Iso639_1  string `json:"iso_639_1"`
-			Iso3166_1 string `json:"iso_3166_1"`
+			ISO639_1  string `json:"iso_639_1"`
+			ISO3166_1 string `json:"iso_3166_1"`
 			Value     struct {
 				EpisodeID     int64 `json:"episode_id"`
 				EpisodeNumber int   `json:"episode_number"`
@@ -259,8 +259,8 @@ type TVSeasonVideos struct {
 	ID      int64 `json:"id,omitempty"`
 	Results []struct {
 		ID        string `json:"id"`
-		Iso639_1  string `json:"iso_639_1"`
-		Iso3166_1 string `json:"iso_3166_1"`
+		ISO639_1  string `json:"iso_639_1"`
+		ISO3166_1 string `json:"iso_3166_1"`
 		Key       string `json:"key"`
 		Name      string `json:"name"`
 		Site      string `json:"site"`

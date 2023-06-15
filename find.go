@@ -7,14 +7,14 @@ import (
 
 // FindByID type is a struct for find JSON response.
 type FindByID struct {
-	MovieResults     []FindMovieResults     `json:"movie_results,omitempty"`
-	PersonResults    []FindPersonResults    `json:"person_results,omitempty"`
-	TvResults        []FindTvResults        `json:"tv_results,omitempty"`
-	TvSeasonResults  []FindTvSeasonResults  `json:"tv_season_results,omitempty"`
-	TvEpisodeResults []FindTvEpisodeResults `json:"tv_episode_results,omitempty"`
+	MovieResults     []FindMovieResult     `json:"movie_results,omitempty"`
+	PersonResults    []FindPersonResult    `json:"person_results,omitempty"`
+	TvResults        []FindTvResult        `json:"tv_results,omitempty"`
+	TvSeasonResults  []FindTvSeasonResult  `json:"tv_season_results,omitempty"`
+	TvEpisodeResults []FindTvEpisodeResult `json:"tv_episode_results,omitempty"`
 }
 
-type FindMovieResults struct {
+type FindMovieResult struct {
 	Adult            bool    `json:"adult"`
 	BackdropPath     string  `json:"backdrop_path"`
 	GenreIDs         []int64 `json:"genre_ids"`
@@ -31,7 +31,7 @@ type FindMovieResults struct {
 	Popularity       float32 `json:"popularity"`
 }
 
-type FindPersonResults struct {
+type FindPersonResult struct {
 	Adult              bool                 `json:"adult"`
 	Gender             int                  `json:"gender"`
 	Name               string               `json:"name"`
@@ -64,7 +64,7 @@ type FindPersonKnownFor struct {
 	VoteCount        json.Number   `json:"vote_count"`
 }
 
-type FindTvResults struct {
+type FindTvResult struct {
 	OriginalName     string   `json:"original_name"`
 	ID               int64    `json:"id"`
 	Name             string   `json:"name"`
@@ -80,7 +80,7 @@ type FindTvResults struct {
 	Popularity       float32  `json:"popularity"`
 }
 
-type FindTvSeasonResults struct {
+type FindTvSeasonResult struct {
 	AirDate      string `json:"air_date"`
 	Name         string `json:"name"`
 	ID           int64  `json:"id"`
@@ -88,7 +88,7 @@ type FindTvSeasonResults struct {
 	ShowID       int64  `json:"show_id"`
 }
 
-type FindTvEpisodeResults struct {
+type FindTvEpisodeResult struct {
 	AirDate        string  `json:"air_date"`
 	EpisodeNumber  int     `json:"episode_number"`
 	ID             int64   `json:"id"`

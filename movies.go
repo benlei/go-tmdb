@@ -300,9 +300,7 @@ type MovieRecommendations struct {
 }
 
 // MovieSimilar type is a struct for similar movies JSON response.
-type MovieSimilar struct {
-	*MovieRecommendations
-}
+type MovieSimilar MovieRecommendations
 
 // MovieReviews type is a struct for reviews JSON response.
 type MovieReviews struct {
@@ -323,9 +321,7 @@ type MovieLists struct {
 }
 
 // MovieLatest type is a struct for latest JSON response.
-type MovieLatest struct {
-	*MovieDetails
-}
+type MovieLatest MovieDetails
 
 // MovieNowPlaying type is a struct for now playing JSON response.
 type MovieNowPlaying struct {
@@ -350,9 +346,7 @@ type MoviePopular struct {
 }
 
 // MovieTopRated type is a struct for top rated JSON response.
-type MovieTopRated struct {
-	*MoviePopular
-}
+type MovieTopRated MoviePopular
 
 // GetMovieDetails get the primary information about a movie.
 //

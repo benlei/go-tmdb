@@ -87,14 +87,12 @@ type MovieChangesAppend struct {
 
 // MovieCreditsAppend type is a struct for credits in append to response.
 type MovieCreditsAppend struct {
-	Credits struct {
-		*MovieCredits
-	} `json:"credits,omitempty"`
+	Credits *MovieCredits `json:"credits,omitempty"`
 }
 
 // MovieExternalIDsAppend type is a struct for external ids in append to response.
 type MovieExternalIDsAppend struct {
-	*MovieExternalIDs `json:"external_ids,omitempty"`
+	ExternalIDs *MovieExternalIDs `json:"external_ids,omitempty"`
 }
 
 // MovieImagesAppend type is a struct for images in append to response.
@@ -109,9 +107,7 @@ type MovieReleaseDatesAppend struct {
 
 // MovieVideosAppend type is a struct for videos in append to response.
 type MovieVideosAppend struct {
-	Videos struct {
-		*MovieVideos
-	} `json:"videos,omitempty"`
+	Videos *MovieVideos `json:"videos,omitempty"`
 }
 
 // MovieTranslationsAppend type is a struct for translations in append to response.
@@ -132,9 +128,7 @@ type MovieSimilarAppend struct {
 
 // MovieReviewsAppend type is a struct for reviews in append to response.
 type MovieReviewsAppend struct {
-	Reviews struct {
-		*MovieReviews
-	} `json:"reviews,omitempty"`
+	Reviews *MovieReviews `json:"reviews,omitempty"`
 }
 
 // MovieListsAppend type is a struct for lists in append to response.
@@ -144,9 +138,7 @@ type MovieListsAppend struct {
 
 // MovieKeywordsAppend type is a struct for keywords in append to response.
 type MovieKeywordsAppend struct {
-	Keywords struct {
-		*MovieKeywords
-	} `json:"keywords,omitempty"`
+	Keywords *MovieKeywords `json:"keywords,omitempty"`
 }
 
 // MovieWatchProvidersAppend type is a struct for
@@ -165,12 +157,14 @@ type MovieAccountStates struct {
 
 // MovieAlternativeTitles type is a struct for alternative titles JSON response.
 type MovieAlternativeTitles struct {
-	ID     int `json:"id,omitempty"`
-	Titles []struct {
-		CountryCode string `json:"iso_3166_1"`
-		Title       string `json:"title"`
-		Type        string `json:"type"`
-	} `json:"titles"`
+	ID     int                     `json:"id,omitempty"`
+	Titles []MovieAlternativeTitle `json:"titles"`
+}
+
+type MovieAlternativeTitle struct {
+	CountryCode string `json:"iso_3166_1"`
+	Title       string `json:"title"`
+	Type        string `json:"type"`
 }
 
 // MovieChanges type is a struct for changes JSON response.

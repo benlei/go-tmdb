@@ -16,29 +16,27 @@ func main() {
 		fmt.Println(err)
 	}
 
-	person, err := tmdbClient.GetPersonDetails(117642, nil)
+	movie, err := tmdbClient.GetMovieDetails(155, nil)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(person.Name)
+	fmt.Println(movie.Title)
 
 	fmt.Println("------")
 
 	//With options
 	options := make(map[string]string)
-	options["append_to_response"] = "images"
-	options["language"] = "pt-BR"
+	options["append_to_response"] = "videos"
+	//options["language"] = "pt-BR"
 
-	person, err = tmdbClient.GetPersonDetails(117642, options)
+	movie, err = tmdbClient.GetMovieDetails(155, options)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	// Images - Iterate profiles from append to response.
-	for _, v := range person.PersonImagesAppend.Images.Profiles {
-		fmt.Println(v.FilePath)
-	}
+	fmt.Printf("%v\n", movie.MovieVideosAppend.Videos.MovieVideosResults)
 }

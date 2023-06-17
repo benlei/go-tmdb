@@ -9,50 +9,31 @@ import (
 
 // MovieDetails type is a struct for movie details JSON response.
 type MovieDetails struct {
-	Adult               bool   `json:"adult"`
-	BackdropPath        string `json:"backdrop_path"`
-	BelongsToCollection struct {
-		ID           int64  `json:"id"`
-		Name         string `json:"name"`
-		PosterPath   string `json:"poster_path"`
-		BackdropPath string `json:"backdrop_path"`
-	} `json:"belongs_to_collection"`
-	Budget int64 `json:"budget"`
-	Genres []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"genres"`
-	Homepage            string  `json:"homepage"`
-	ID                  int64   `json:"id"`
-	IMDbID              string  `json:"imdb_id"`
-	OriginalLanguage    string  `json:"original_language"`
-	OriginalTitle       string  `json:"original_title"`
-	Overview            string  `json:"overview"`
-	Popularity          float32 `json:"popularity"`
-	PosterPath          string  `json:"poster_path"`
-	ProductionCompanies []struct {
-		Name          string `json:"name"`
-		ID            int64  `json:"id"`
-		LogoPath      string `json:"logo_path"`
-		OriginCountry string `json:"origin_country"`
-	} `json:"production_companies"`
-	ProductionCountries []struct {
-		CountryCode string `json:"iso_3166_1"`
-		Name        string `json:"name"`
-	} `json:"production_countries"`
-	ReleaseDate     string `json:"release_date"`
-	Revenue         int64  `json:"revenue"`
-	Runtime         int    `json:"runtime"`
-	SpokenLanguages []struct {
-		LanguageCode string `json:"iso_639_1"`
-		Name         string `json:"name"`
-	} `json:"spoken_languages"`
-	Status      string  `json:"status"`
-	Tagline     string  `json:"tagline"`
-	Title       string  `json:"title"`
-	Video       bool    `json:"video"`
-	VoteAverage float32 `json:"vote_average"`
-	VoteCount   int64   `json:"vote_count"`
+	Adult               bool                     `json:"adult"`
+	BackdropPath        string                   `json:"backdrop_path"`
+	BelongsToCollection MovieCollection          `json:"belongs_to_collection"`
+	Budget              int64                    `json:"budget"`
+	Genres              []Genre                  `json:"genres"`
+	Homepage            string                   `json:"homepage"`
+	ID                  int64                    `json:"id"`
+	IMDbID              string                   `json:"imdb_id"`
+	OriginalLanguage    string                   `json:"original_language"`
+	OriginalTitle       string                   `json:"original_title"`
+	Overview            string                   `json:"overview"`
+	Popularity          float32                  `json:"popularity"`
+	PosterPath          string                   `json:"poster_path"`
+	ProductionCompanies []MovieProductionCompany `json:"production_companies"`
+	ProductionCountries []MovieProductionCountry `json:"production_countries"`
+	ReleaseDate         string                   `json:"release_date"`
+	Revenue             int64                    `json:"revenue"`
+	Runtime             int                      `json:"runtime"`
+	SpokenLanguages     []MovieSpokenLanguage    `json:"spoken_languages"`
+	Status              string                   `json:"status"`
+	Tagline             string                   `json:"tagline"`
+	Title               string                   `json:"title"`
+	Video               bool                     `json:"video"`
+	VoteAverage         float32                  `json:"vote_average"`
+	VoteCount           int64                    `json:"vote_count"`
 	*MovieAlternativeTitlesAppend
 	*MovieChangesAppend
 	*MovieCreditsAppend
@@ -67,6 +48,30 @@ type MovieDetails struct {
 	*MovieReviewsAppend
 	*MovieListsAppend
 	*MovieWatchProvidersAppend
+}
+
+type MovieCollection struct {
+	ID           int64  `json:"id"`
+	Name         string `json:"name"`
+	PosterPath   string `json:"poster_path"`
+	BackdropPath string `json:"backdrop_path"`
+}
+
+type MovieProductionCompany struct {
+	Name          string `json:"name"`
+	ID            int64  `json:"id"`
+	LogoPath      string `json:"logo_path"`
+	OriginCountry string `json:"origin_country"`
+}
+
+type MovieProductionCountry struct {
+	CountryCode string `json:"iso_3166_1"`
+	Name        string `json:"name"`
+}
+
+type MovieSpokenLanguage struct {
+	LanguageCode string `json:"iso_639_1"`
+	Name         string `json:"name"`
 }
 
 // MovieAlternativeTitlesAppend type is a struct for alternative
@@ -150,58 +155,12 @@ type MovieWatchProvidersAppend struct {
 	WatchProviders *MovieWatchProviders `json:"watch/providers,omitempty"`
 }
 
-// GetMovieDetails get the primary information about a movie.
-//
-// https://developers.themoviedb.org/3/movies
-func (c *Client) GetMovieDetails(id int64, urlOptions map[string]string) (*MovieDetails, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d?api_key=%s%s",
-		baseURL,
-		movieURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	movieDetails := MovieDetails{}
-	if err := c.get(tmdbURL, &movieDetails); err != nil {
-		return nil, err
-	}
-	return &movieDetails, nil
-}
-
 // MovieAccountStates type is a struct for account states JSON response.
 type MovieAccountStates struct {
 	ID        int64               `json:"id"`
 	Favorite  bool                `json:"favorite"`
 	Rated     jsoniter.RawMessage `json:"rated"`
 	Watchlist bool                `json:"watchlist"`
-}
-
-// GetMovieAccountStates grab the following account states for a session:
-//
-// Movie rating.
-//
-// If it belongs to your watchlist.
-//
-// If it belongs to your favourite list.
-//
-// https://developers.themoviedb.org/3/movies/get-movie-account-states
-func (c *Client) GetMovieAccountStates(id int64, urlOptions map[string]string) (*MovieAccountStates, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/account_states?api_key=%s%s",
-		baseURL,
-		movieURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	movieAccountStates := MovieAccountStates{}
-	if err := c.get(tmdbURL, &movieAccountStates); err != nil {
-		return nil, err
-	}
-	return &movieAccountStates, nil
 }
 
 // MovieAlternativeTitles type is a struct for alternative titles JSON response.
@@ -212,26 +171,6 @@ type MovieAlternativeTitles struct {
 		Title       string `json:"title"`
 		Type        string `json:"type"`
 	} `json:"titles"`
-}
-
-// GetMovieAlternativeTitles get all of the alternative titles for a movie.
-//
-// https://developers.themoviedb.org/3/movies/get-movie-alternative-titles
-func (c *Client) GetMovieAlternativeTitles(id int64, urlOptions map[string]string) (*MovieAlternativeTitles, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/alternative_titles?api_key=%s%s",
-		baseURL,
-		movieURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	movieAlternativeTitles := MovieAlternativeTitles{}
-	if err := c.get(tmdbURL, &movieAlternativeTitles); err != nil {
-		return nil, err
-	}
-	return &movieAlternativeTitles, nil
 }
 
 // MovieChanges type is a struct for changes JSON response.
@@ -247,30 +186,6 @@ type MovieChanges struct {
 			OriginalValue jsoniter.RawMessage `json:"original_value"`
 		} `json:"items"`
 	} `json:"changes"`
-}
-
-// GetMovieChanges get the changes for a movie.
-//
-// By default only the last 24 hours are returned.
-// You can query up to 14 days in a single query by using
-// the start_date and end_date query parameters.
-//
-// https://developers.themoviedb.org/3/movies/get-movie-changes
-func (c *Client) GetMovieChanges(id int64, urlOptions map[string]string) (*MovieChanges, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/changes?api_key=%s%s",
-		baseURL,
-		movieURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	movieChanges := MovieChanges{}
-	if err := c.get(tmdbURL, &movieChanges); err != nil {
-		return nil, err
-	}
-	return &movieChanges, nil
 }
 
 // MovieCredits type is a struct for credits JSON response.
@@ -305,6 +220,219 @@ type MovieCredits struct {
 	} `json:"crew"`
 }
 
+// MovieExternalIDs type is a struct for external ids JSON response.
+type MovieExternalIDs struct {
+	IMDbID      string `json:"imdb_id"`
+	FacebookID  string `json:"facebook_id"`
+	InstagramID string `json:"instagram_id"`
+	TwitterID   string `json:"twitter_id"`
+	ID          int64  `json:"id,omitempty"`
+}
+
+// MovieImages type is a struct for images JSON response.
+type MovieImages struct {
+	ID        int64   `json:"id,omitempty"`
+	Backdrops []Image `json:"backdrops"`
+	Logos     []Image `json:"logos"`
+	Posters   []Image `json:"posters"`
+}
+
+// MovieKeywords type is a struct for keywords JSON response.
+type MovieKeywords struct {
+	ID       int64 `json:"id,omitempty"`
+	Keywords []struct {
+		ID   int64  `json:"id"`
+		Name string `json:"name"`
+	} `json:"keywords"`
+}
+
+// MovieReleaseDates type is a struct for release dates JSON response.
+type MovieReleaseDates struct {
+	ID int64 `json:"id,omitempty"`
+	*MovieReleaseDatesResults
+}
+
+// MovieVideos type is a struct for videos JSON response.
+type MovieVideos struct {
+	ID int64 `json:"id,omitempty"`
+	*MovieVideosResults
+}
+
+// MovieWatchProviders type is a struct for watch/providers JSON response.
+type MovieWatchProviders struct {
+	ID int64 `json:"id,omitempty"`
+	*MovieWatchProvidersResults
+}
+
+// MovieTranslations type is a struct for translations JSON response.
+type MovieTranslations struct {
+	ID           int64 `json:"id,omitempty"`
+	Translations []struct {
+		LanguageCode string `json:"iso_639_1"`
+		CountryCode  string `json:"iso_3166_1"`
+		Name         string `json:"name"`
+		EnglishName  string `json:"english_name"`
+		Data         struct {
+			Title    string `json:"title"`
+			Overview string `json:"overview"`
+			Runtime  int    `json:"runtime"`
+			Tagline  string `json:"tagline"`
+			Homepage string `json:"homepage"`
+		} `json:"data"`
+	} `json:"translations"`
+}
+
+// MovieRecommendations type is a struct for recommendations JSON response.
+type MovieRecommendations struct {
+	Page int64 `json:"page"`
+	*MovieRecommendationsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// MovieSimilar type is a struct for similar movies JSON response.
+type MovieSimilar struct {
+	*MovieRecommendations
+}
+
+// MovieReviews type is a struct for reviews JSON response.
+type MovieReviews struct {
+	ID   int64 `json:"id,omitempty"`
+	Page int64 `json:"page"`
+	*MovieReviewsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// MovieLists type is a struct for lists JSON response.
+type MovieLists struct {
+	ID   int64 `json:"id"`
+	Page int64 `json:"page"`
+	*MovieListsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// MovieLatest type is a struct for latest JSON response.
+type MovieLatest struct {
+	*MovieDetails
+}
+
+// MovieNowPlaying type is a struct for now playing JSON response.
+type MovieNowPlaying struct {
+	Page int64 `json:"page"`
+	*MovieNowPlayingResults
+	Dates struct {
+		Maximum string `json:"maximum"`
+		Minimum string `json:"minimum"`
+	} `json:"dates"`
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// MoviePopular type is a struct for popular JSON response.
+type MoviePopular struct {
+	Page int64 `json:"page"`
+	*MoviePopularResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// MovieTopRated type is a struct for top rated JSON response.
+type MovieTopRated struct {
+	*MoviePopular
+}
+
+// GetMovieDetails get the primary information about a movie.
+//
+// https://developers.themoviedb.org/3/movies
+func (c *Client) GetMovieDetails(id int64, urlOptions map[string]string) (*MovieDetails, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d?api_key=%s%s",
+		baseURL,
+		movieURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	movieDetails := MovieDetails{}
+	if err := c.get(tmdbURL, &movieDetails); err != nil {
+		return nil, err
+	}
+	return &movieDetails, nil
+}
+
+// GetMovieAccountStates grab the following account states for a session:
+//
+// Movie rating.
+//
+// If it belongs to your watchlist.
+//
+// If it belongs to your favourite list.
+//
+// https://developers.themoviedb.org/3/movies/get-movie-account-states
+func (c *Client) GetMovieAccountStates(id int64, urlOptions map[string]string) (*MovieAccountStates, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/account_states?api_key=%s%s",
+		baseURL,
+		movieURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	movieAccountStates := MovieAccountStates{}
+	if err := c.get(tmdbURL, &movieAccountStates); err != nil {
+		return nil, err
+	}
+	return &movieAccountStates, nil
+}
+
+// GetMovieAlternativeTitles get all of the alternative titles for a movie.
+//
+// https://developers.themoviedb.org/3/movies/get-movie-alternative-titles
+func (c *Client) GetMovieAlternativeTitles(id int64, urlOptions map[string]string) (*MovieAlternativeTitles, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/alternative_titles?api_key=%s%s",
+		baseURL,
+		movieURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	movieAlternativeTitles := MovieAlternativeTitles{}
+	if err := c.get(tmdbURL, &movieAlternativeTitles); err != nil {
+		return nil, err
+	}
+	return &movieAlternativeTitles, nil
+}
+
+// GetMovieChanges get the changes for a movie.
+//
+// By default only the last 24 hours are returned.
+// You can query up to 14 days in a single query by using
+// the start_date and end_date query parameters.
+//
+// https://developers.themoviedb.org/3/movies/get-movie-changes
+func (c *Client) GetMovieChanges(id int64, urlOptions map[string]string) (*MovieChanges, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/changes?api_key=%s%s",
+		baseURL,
+		movieURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	movieChanges := MovieChanges{}
+	if err := c.get(tmdbURL, &movieChanges); err != nil {
+		return nil, err
+	}
+	return &movieChanges, nil
+}
+
 // GetMovieCredits get the cast and crew for a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-credits
@@ -322,15 +450,6 @@ func (c *Client) GetMovieCredits(id int64, urlOptions map[string]string) (*Movie
 		return nil, err
 	}
 	return &movieCredits, nil
-}
-
-// MovieExternalIDs type is a struct for external ids JSON response.
-type MovieExternalIDs struct {
-	IMDbID      string `json:"imdb_id"`
-	FacebookID  string `json:"facebook_id"`
-	InstagramID string `json:"instagram_id"`
-	TwitterID   string `json:"twitter_id"`
-	ID          int64  `json:"id,omitempty"`
 }
 
 // GetMovieExternalIDs get the external ids for a movie.
@@ -359,14 +478,6 @@ func (c *Client) GetMovieExternalIDs(id int64, urlOptions map[string]string) (*M
 	return &movieExternalIDs, nil
 }
 
-// MovieImages type is a struct for images JSON response.
-type MovieImages struct {
-	ID        int64   `json:"id,omitempty"`
-	Backdrops []Image `json:"backdrops"`
-	Logos     []Image `json:"logos"`
-	Posters   []Image `json:"posters"`
-}
-
 // GetMovieImages get the images that belong to a movie.
 //
 // Querying images with a language parameter will filter the results.
@@ -392,15 +503,6 @@ func (c *Client) GetMovieImages(id int64, urlOptions map[string]string) (*MovieI
 	return &movieImages, nil
 }
 
-// MovieKeywords type is a struct for keywords JSON response.
-type MovieKeywords struct {
-	ID       int64 `json:"id,omitempty"`
-	Keywords []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"keywords"`
-}
-
 // GetMovieKeywords get the keywords that have been added to a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-keywords
@@ -419,12 +521,6 @@ func (c *Client) GetMovieKeywords(id int64) (*MovieKeywords, error) {
 	return &movieKeywords, nil
 }
 
-// MovieReleaseDates type is a struct for release dates JSON response.
-type MovieReleaseDates struct {
-	ID int64 `json:"id,omitempty"`
-	*MovieReleaseDatesResults
-}
-
 // GetMovieReleaseDates get the release date along with the certification for a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-release-dates
@@ -441,12 +537,6 @@ func (c *Client) GetMovieReleaseDates(id int64) (*MovieReleaseDates, error) {
 		return nil, err
 	}
 	return &movieReleaseDates, nil
-}
-
-// MovieVideos type is a struct for videos JSON response.
-type MovieVideos struct {
-	ID int64 `json:"id,omitempty"`
-	*MovieVideosResults
 }
 
 // GetMovieVideos get the videos that have been added to a movie.
@@ -469,12 +559,6 @@ func (c *Client) GetMovieVideos(id int64, urlOptions map[string]string) (*MovieV
 	return &movieVideos, nil
 }
 
-// MovieWatchProviders type is a struct for watch/providers JSON response.
-type MovieWatchProviders struct {
-	ID int64 `json:"id,omitempty"`
-	*MovieWatchProvidersResults
-}
-
 // GetMovieWatchProviders get a list of the availabilities per country by provider for a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-watch-providers
@@ -493,24 +577,6 @@ func (c *Client) GetMovieWatchProviders(id int64, urlOptions map[string]string) 
 		return nil, err
 	}
 	return &movieWatchProviders, nil
-}
-
-// MovieTranslations type is a struct for translations JSON response.
-type MovieTranslations struct {
-	ID           int64 `json:"id,omitempty"`
-	Translations []struct {
-		LanguageCode string `json:"iso_639_1"`
-		CountryCode  string `json:"iso_3166_1"`
-		Name         string `json:"name"`
-		EnglishName  string `json:"english_name"`
-		Data         struct {
-			Title    string `json:"title"`
-			Overview string `json:"overview"`
-			Runtime  int    `json:"runtime"`
-			Tagline  string `json:"tagline"`
-			Homepage string `json:"homepage"`
-		} `json:"data"`
-	} `json:"translations"`
 }
 
 // GetMovieTranslations get a list of translations that have been created for a movie.
@@ -533,14 +599,6 @@ func (c *Client) GetMovieTranslations(id int64, urlOptions map[string]string) (*
 	return &movieTranslations, nil
 }
 
-// MovieRecommendations type is a struct for recommendations JSON response.
-type MovieRecommendations struct {
-	Page int64 `json:"page"`
-	*MovieRecommendationsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetMovieRecommendations get a list of recommended movies for a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-recommendations
@@ -559,11 +617,6 @@ func (c *Client) GetMovieRecommendations(id int64, urlOptions map[string]string)
 		return nil, err
 	}
 	return &movieRecommendations, nil
-}
-
-// MovieSimilar type is a struct for similar movies JSON response.
-type MovieSimilar struct {
-	*MovieRecommendations
 }
 
 // GetMovieSimilar get a list of similar movies.
@@ -589,15 +642,6 @@ func (c *Client) GetMovieSimilar(id int64, urlOptions map[string]string) (*Movie
 	return &movieSimilar, nil
 }
 
-// MovieReviews type is a struct for reviews JSON response.
-type MovieReviews struct {
-	ID   int64 `json:"id,omitempty"`
-	Page int64 `json:"page"`
-	*MovieReviewsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetMovieReviews get the user reviews for a movie.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-reviews
@@ -618,15 +662,6 @@ func (c *Client) GetMovieReviews(id int64, urlOptions map[string]string) (*Movie
 	return &movieReviews, nil
 }
 
-// MovieLists type is a struct for lists JSON response.
-type MovieLists struct {
-	ID   int64 `json:"id"`
-	Page int64 `json:"page"`
-	*MovieListsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetMovieLists get a list of lists that this movie belongs to.
 //
 // https://developers.themoviedb.org/3/movies/get-movie-lists
@@ -645,11 +680,6 @@ func (c *Client) GetMovieLists(id int64, urlOptions map[string]string) (*MovieLi
 		return nil, err
 	}
 	return &movieLists, nil
-}
-
-// MovieLatest type is a struct for latest JSON response.
-type MovieLatest struct {
-	*MovieDetails
 }
 
 // GetMovieLatest get the most newly created movie.
@@ -673,18 +703,6 @@ func (c *Client) GetMovieLatest(
 		return nil, err
 	}
 	return &movieLastest, nil
-}
-
-// MovieNowPlaying type is a struct for now playing JSON response.
-type MovieNowPlaying struct {
-	Page int64 `json:"page"`
-	*MovieNowPlayingResults
-	Dates struct {
-		Maximum string `json:"maximum"`
-		Minimum string `json:"minimum"`
-	} `json:"dates"`
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
 }
 
 // GetMovieNowPlaying get a list of movies in theatres.
@@ -715,14 +733,6 @@ func (c *Client) GetMovieNowPlaying(
 	return &movieNowPlaying, nil
 }
 
-// MoviePopular type is a struct for popular JSON response.
-type MoviePopular struct {
-	Page int64 `json:"page"`
-	*MoviePopularResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetMoviePopular get a list of the current popular movies on TMDb.
 //
 // This list updates daily.
@@ -744,11 +754,6 @@ func (c *Client) GetMoviePopular(
 		return nil, err
 	}
 	return &moviePopular, nil
-}
-
-// MovieTopRated type is a struct for top rated JSON response.
-type MovieTopRated struct {
-	*MoviePopular
 }
 
 // GetMovieTopRated get the top rated movies on TMDb.

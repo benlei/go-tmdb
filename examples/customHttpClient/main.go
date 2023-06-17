@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"net/http"
 	"os"
 	"time"
@@ -10,8 +11,8 @@ import (
 )
 
 func main() {
-
-	tmdbClient, err := tmdb.Init(os.Getenv("APIKey"))
+	godotenv.Load()
+	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
 
 	// Setting a custom config for http.Client.
 	tmdbClient.SetClientConfig(http.Client{Timeout: time.Second * 5})

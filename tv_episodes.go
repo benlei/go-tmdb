@@ -7,8 +7,8 @@ import (
 // TVEpisodeDetails type is a struct for details JSON response.
 type TVEpisodeDetails struct {
 	AirDate        string               `json:"air_date"`
-	Crew           []TVEpisodeCrew      `json:"crew"`
 	EpisodeNumber  int                  `json:"episode_number"`
+	Crew           []TVEpisodeCrew      `json:"crew"`
 	GuestStars     []TVEpisodeGuestStar `json:"guest_stars"`
 	Name           string               `json:"name"`
 	Overview       string               `json:"overview"`

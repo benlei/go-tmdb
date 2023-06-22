@@ -4,7 +4,11 @@ import "fmt"
 
 // ChangesMovie type is a struct for movie changes JSON response.
 type ChangesMovie struct {
-	*ChangesMovieResults
+	*Changes
+}
+
+type Changes struct {
+	*ChangeResults
 	Page         int64 `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
@@ -38,7 +42,7 @@ func (c *Client) GetChangesMovie(
 
 // ChangesTV type is a struct for tv changes JSON response.
 type ChangesTV struct {
-	*ChangesMovie
+	*Changes
 }
 
 // GetChangesTV get a list of all of the TV show ids

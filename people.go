@@ -76,28 +76,6 @@ type PersonTranslationsAppend struct {
 	Translations *PersonTranslations `json:"translations,omitempty"`
 }
 
-// GetPersonDetails get the primary person details by id.
-//
-// Supports append_to_response.
-//
-// https://developers.themoviedb.org/3/people/get-person-details
-func (c *Client) GetPersonDetails(id int64, urlOptions map[string]string) (*PersonDetails, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personDetails := PersonDetails{}
-	if err := c.get(tmdbURL, &personDetails); err != nil {
-		return nil, err
-	}
-	return &personDetails, nil
-}
-
 // PersonChanges type is a struct for changes JSON response.
 type PersonChanges struct {
 	Changes []struct {
@@ -113,31 +91,6 @@ type PersonChanges struct {
 			} `json:"original_value"`
 		} `json:"items"`
 	} `json:"changes"`
-}
-
-// GetPersonChanges get the changes for a person.
-// By default only the last 24 hours are returned.
-//
-// You can query up to 14 days in a single query by
-// using the start_date and end_date query parameters.
-//
-// https://developers.themoviedb.org/3/people/get-person-changes
-func (c *Client) GetPersonChanges(id int64, urlOptions map[string]string) (*PersonChanges, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/changes?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personChanges := PersonChanges{}
-	err := c.get(tmdbURL, &personChanges)
-	if err != nil {
-		return nil, err
-	}
-	return &personChanges, nil
 }
 
 // PersonMovieCredits type is a struct for movie credits JSON response.
@@ -183,26 +136,6 @@ type PersonMovieCredits struct {
 	ID int64 `json:"id,omitempty"`
 }
 
-// GetPersonMovieCredits get the movie credits for a person.
-//
-// https://developers.themoviedb.org/3/people/get-person-movie-credits
-func (c *Client) GetPersonMovieCredits(id int64, urlOptions map[string]string) (*PersonMovieCredits, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/movie_credits?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personMovieCredits := PersonMovieCredits{}
-	if err := c.get(tmdbURL, &personMovieCredits); err != nil {
-		return nil, err
-	}
-	return &personMovieCredits, nil
-}
-
 // PersonTVCredits type is a struct for tv credits JSON response.
 type PersonTVCredits struct {
 	Cast []struct {
@@ -243,26 +176,6 @@ type PersonTVCredits struct {
 		CreditID         string   `json:"credit_id"`
 	} `json:"crew"`
 	ID int64 `json:"id,omitempty"`
-}
-
-// GetPersonTVCredits get the TV show credits for a person.
-//
-// https://developers.themoviedb.org/3/people/get-person-tv-credits
-func (c *Client) GetPersonTVCredits(id int64, urlOptions map[string]string) (*PersonTVCredits, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/tv_credits?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personTVCredits := PersonTVCredits{}
-	if err := c.get(tmdbURL, &personTVCredits); err != nil {
-		return nil, err
-	}
-	return &personTVCredits, nil
 }
 
 // PersonCombinedCredits type is a struct for combined credits JSON response.
@@ -314,26 +227,6 @@ type PersonCombinedCredits struct {
 	ID int64 `json:"id,omitempty"`
 }
 
-// GetPersonCombinedCredits get the movie and TV credits together in a single response.
-//
-// https://developers.themoviedb.org/3/people/get-person-combined-credits
-func (c *Client) GetPersonCombinedCredits(id int64, urlOptions map[string]string) (*PersonCombinedCredits, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/combined_credits?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personCombinedCredits := PersonCombinedCredits{}
-	if err := c.get(tmdbURL, &personCombinedCredits); err != nil {
-		return nil, err
-	}
-	return &personCombinedCredits, nil
-}
-
 // PersonExternalIDs type is a struct for external ids JSON response.
 type PersonExternalIDs struct {
 	ID          int64  `json:"id,omitempty"`
@@ -346,52 +239,10 @@ type PersonExternalIDs struct {
 	FreebaseID  string `json:"freebase_id"`
 }
 
-// GetPersonExternalIDs get the external ids for a person.
-// We currently support the following external sources.
-//
-// External Sources: IMDb ID, Facebook, Freebase MID, Freebase ID,
-// Instagram, TVRage ID, Twitter.
-//
-// https://developers.themoviedb.org/3/people/get-person-external-ids
-func (c *Client) GetPersonExternalIDs(id int64, urlOptions map[string]string) (*PersonExternalIDs, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/external_ids?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personExternalIDS := PersonExternalIDs{}
-	if err := c.get(tmdbURL, &personExternalIDS); err != nil {
-		return nil, err
-	}
-	return &personExternalIDS, nil
-}
-
 // PersonImages type is a struct for images JSON response.
 type PersonImages struct {
 	Profiles []Image `json:"profiles"`
 	ID       int     `json:"id,omitempty"`
-}
-
-// GetPersonImages get the images for a person.
-//
-// https://developers.themoviedb.org/3/people/get-person-images
-func (c *Client) GetPersonImages(id int64) (*PersonImages, error) {
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/images?api_key=%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-	)
-	personImages := PersonImages{}
-	if err := c.get(tmdbURL, &personImages); err != nil {
-		return nil, err
-	}
-	return &personImages, nil
 }
 
 // PersonTaggedImages type is a struct for tagged images JSON response.
@@ -428,26 +279,6 @@ type PersonTaggedImages struct {
 	} `json:"results"`
 }
 
-// GetPersonTaggedImages get the images that this person has been tagged in.
-//
-// https://developers.themoviedb.org/3/people/get-tagged-images
-func (c *Client) GetPersonTaggedImages(id int64, urlOptions map[string]string) (*PersonTaggedImages, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/tagged_images?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personTaggedImages := PersonTaggedImages{}
-	if err := c.get(tmdbURL, &personTaggedImages); err != nil {
-		return nil, err
-	}
-	return &personTaggedImages, nil
-}
-
 // PersonTranslations type is a struct for translations JSON response.
 type PersonTranslations struct {
 	Translations []struct {
@@ -460,26 +291,6 @@ type PersonTranslations struct {
 		EnglishName string `json:"english_name"`
 	} `json:"translations"`
 	ID int64 `json:"id,omitempty"`
-}
-
-// GetPersonTranslations get a list of translations that have been created for a person.
-//
-// https://developers.themoviedb.org/3/people/get-person-translations
-func (c *Client) GetPersonTranslations(id int64, urlOptions map[string]string) (*PersonTranslations, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/translations?api_key=%s%s",
-		baseURL,
-		personURL,
-		id,
-		c.apiKey,
-		options,
-	)
-	personTranslations := PersonTranslations{}
-	if err := c.get(tmdbURL, &personTranslations); err != nil {
-		return nil, err
-	}
-	return &personTranslations, nil
 }
 
 // PersonLatest type is a struct for latest JSON response.
@@ -497,28 +308,6 @@ type PersonLatest struct {
 	Adult        bool     `json:"adult"`
 	IMDbID       string   `json:"imdb_id"`
 	Homepage     string   `json:"homepage"`
-}
-
-// GetPersonLatest get the most newly created person.
-// This is a live response and will continuously change.
-//
-// https://developers.themoviedb.org/3/people/get-latest-person
-func (c *Client) GetPersonLatest(
-	urlOptions map[string]string,
-) (*PersonLatest, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%slatest?api_key=%s%s",
-		baseURL,
-		personURL,
-		c.apiKey,
-		options,
-	)
-	personLatest := PersonLatest{}
-	if err := c.get(tmdbURL, &personLatest); err != nil {
-		return nil, err
-	}
-	return &personLatest, nil
 }
 
 // PersonPopular type is a struct for popular JSON response.
@@ -552,6 +341,217 @@ type PersonPopular struct {
 		} `json:"known_for"`
 		Adult bool `json:"adult"`
 	} `json:"results"`
+}
+
+// GetPersonDetails get the primary person details by id.
+//
+// Supports append_to_response.
+//
+// https://developers.themoviedb.org/3/people/get-person-details
+func (c *Client) GetPersonDetails(id int64, urlOptions map[string]string) (*PersonDetails, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personDetails := PersonDetails{}
+	if err := c.get(tmdbURL, &personDetails); err != nil {
+		return nil, err
+	}
+	return &personDetails, nil
+}
+
+// GetPersonChanges get the changes for a person.
+// By default only the last 24 hours are returned.
+//
+// You can query up to 14 days in a single query by
+// using the start_date and end_date query parameters.
+//
+// https://developers.themoviedb.org/3/people/get-person-changes
+func (c *Client) GetPersonChanges(id int64, urlOptions map[string]string) (*PersonChanges, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/changes?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personChanges := PersonChanges{}
+	err := c.get(tmdbURL, &personChanges)
+	if err != nil {
+		return nil, err
+	}
+	return &personChanges, nil
+}
+
+// GetPersonMovieCredits get the movie credits for a person.
+//
+// https://developers.themoviedb.org/3/people/get-person-movie-credits
+func (c *Client) GetPersonMovieCredits(id int64, urlOptions map[string]string) (*PersonMovieCredits, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/movie_credits?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personMovieCredits := PersonMovieCredits{}
+	if err := c.get(tmdbURL, &personMovieCredits); err != nil {
+		return nil, err
+	}
+	return &personMovieCredits, nil
+}
+
+// GetPersonTVCredits get the TV show credits for a person.
+//
+// https://developers.themoviedb.org/3/people/get-person-tv-credits
+func (c *Client) GetPersonTVCredits(id int64, urlOptions map[string]string) (*PersonTVCredits, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/tv_credits?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personTVCredits := PersonTVCredits{}
+	if err := c.get(tmdbURL, &personTVCredits); err != nil {
+		return nil, err
+	}
+	return &personTVCredits, nil
+}
+
+// GetPersonCombinedCredits get the movie and TV credits together in a single response.
+//
+// https://developers.themoviedb.org/3/people/get-person-combined-credits
+func (c *Client) GetPersonCombinedCredits(id int64, urlOptions map[string]string) (*PersonCombinedCredits, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/combined_credits?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personCombinedCredits := PersonCombinedCredits{}
+	if err := c.get(tmdbURL, &personCombinedCredits); err != nil {
+		return nil, err
+	}
+	return &personCombinedCredits, nil
+}
+
+// GetPersonExternalIDs get the external ids for a person.
+// We currently support the following external sources.
+//
+// External Sources: IMDb ID, Facebook, Freebase MID, Freebase ID,
+// Instagram, TVRage ID, Twitter.
+//
+// https://developers.themoviedb.org/3/people/get-person-external-ids
+func (c *Client) GetPersonExternalIDs(id int64, urlOptions map[string]string) (*PersonExternalIDs, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/external_ids?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personExternalIDS := PersonExternalIDs{}
+	if err := c.get(tmdbURL, &personExternalIDS); err != nil {
+		return nil, err
+	}
+	return &personExternalIDS, nil
+}
+
+// GetPersonImages get the images for a person.
+//
+// https://developers.themoviedb.org/3/people/get-person-images
+func (c *Client) GetPersonImages(id int64) (*PersonImages, error) {
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/images?api_key=%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+	)
+	personImages := PersonImages{}
+	if err := c.get(tmdbURL, &personImages); err != nil {
+		return nil, err
+	}
+	return &personImages, nil
+}
+
+// GetPersonTaggedImages get the images that this person has been tagged in.
+//
+// https://developers.themoviedb.org/3/people/get-tagged-images
+func (c *Client) GetPersonTaggedImages(id int64, urlOptions map[string]string) (*PersonTaggedImages, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/tagged_images?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personTaggedImages := PersonTaggedImages{}
+	if err := c.get(tmdbURL, &personTaggedImages); err != nil {
+		return nil, err
+	}
+	return &personTaggedImages, nil
+}
+
+// GetPersonTranslations get a list of translations that have been created for a person.
+//
+// https://developers.themoviedb.org/3/people/get-person-translations
+func (c *Client) GetPersonTranslations(id int64, urlOptions map[string]string) (*PersonTranslations, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/translations?api_key=%s%s",
+		baseURL,
+		personURL,
+		id,
+		c.apiKey,
+		options,
+	)
+	personTranslations := PersonTranslations{}
+	if err := c.get(tmdbURL, &personTranslations); err != nil {
+		return nil, err
+	}
+	return &personTranslations, nil
+}
+
+// GetPersonLatest get the most newly created person.
+// This is a live response and will continuously change.
+//
+// https://developers.themoviedb.org/3/people/get-latest-person
+func (c *Client) GetPersonLatest(
+	urlOptions map[string]string,
+) (*PersonLatest, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%slatest?api_key=%s%s",
+		baseURL,
+		personURL,
+		c.apiKey,
+		options,
+	)
+	personLatest := PersonLatest{}
+	if err := c.get(tmdbURL, &personLatest); err != nil {
+		return nil, err
+	}
+	return &personLatest, nil
 }
 
 // GetPersonPopular get the list of popular people on TMDb.

@@ -79,12 +79,12 @@ type AccountRatedTVEpisodesResult struct {
 	Rating         float32 `json:"rating"`
 }
 
-// ChangesMovieResults Result Types
-type ChangesMovieResults struct {
-	Results []ChangesMovieResult `json:"results"`
+// ChangeResults Result Types
+type ChangeResults struct {
+	Results []ChangeResult `json:"results"`
 }
 
-type ChangesMovieResult struct {
+type ChangeResult struct {
 	ID    int64 `json:"id"`
 	Adult bool  `json:"adult"`
 }

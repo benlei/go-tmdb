@@ -12,6 +12,23 @@ type NetworkDetails struct {
 	OriginCountry string `json:"origin_country"`
 }
 
+// NetworkAlternativeNames type is a struct for alternative names JSON response.
+type NetworkAlternativeNames struct {
+	ID      int64                          `json:"id"`
+	Results []NetworkAlternativeNameResult `json:"results"`
+}
+
+type NetworkAlternativeNameResult struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
+}
+
+// NetworkImages type is a struct for images JSON response.
+type NetworkImages struct {
+	ID    int64   `json:"id"`
+	Logos []Image `json:"logos"`
+}
+
 // GetNetworkDetails get the details of a network.
 //
 // https://developers.themoviedb.org/3/networks/get-network-details
@@ -30,15 +47,6 @@ func (c *Client) GetNetworkDetails(id int64) (*NetworkDetails, error) {
 	return &networkDetails, nil
 }
 
-// NetworkAlternativeNames type is a struct for alternative names JSON response.
-type NetworkAlternativeNames struct {
-	ID      int64 `json:"id"`
-	Results []struct {
-		Name string `json:"name"`
-		Type string `json:"type"`
-	} `json:"results"`
-}
-
 // GetNetworkAlternativeNames get the alternative names of a network.
 //
 // https://developers.themoviedb.org/3/networks/get-network-alternative-names
@@ -55,12 +63,6 @@ func (c *Client) GetNetworkAlternativeNames(id int64) (*NetworkAlternativeNames,
 		return nil, err
 	}
 	return &networkAltenativeNames, nil
-}
-
-// NetworkImages type is a struct for images JSON response.
-type NetworkImages struct {
-	ID    int64   `json:"id"`
-	Logos []Image `json:"logos"`
 }
 
 // GetNetworkImages get the TV network logos by id.

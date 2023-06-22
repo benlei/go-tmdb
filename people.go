@@ -81,87 +81,95 @@ type PersonChanges ChangeSet
 
 // PersonMovieCredits type is a struct for movie credits JSON response.
 type PersonMovieCredits struct {
-	Cast []struct {
-		Character        string  `json:"character"`
-		CreditID         string  `json:"credit_id"`
-		PosterPath       string  `json:"poster_path"`
-		ID               int64   `json:"id"`
-		Order            int     `json:"order"`
-		Video            bool    `json:"video"`
-		VoteCount        int64   `json:"vote_count"`
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Popularity       float32 `json:"popularity"`
-		Title            string  `json:"title"`
-		VoteAverage      float32 `json:"vote_average"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-	} `json:"cast"`
-	Crew []struct {
-		ID               int64   `json:"id"`
-		Department       string  `json:"department"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Job              string  `json:"job"`
-		Overview         string  `json:"overview"`
-		VoteCount        int64   `json:"vote_count"`
-		Video            bool    `json:"video"`
-		ReleaseDate      string  `json:"release_date"`
-		VoteAverage      float32 `json:"vote_average"`
-		Title            string  `json:"title"`
-		Popularity       float32 `json:"popularity"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Adult            bool    `json:"adult"`
-		PosterPath       string  `json:"poster_path"`
-		CreditID         string  `json:"credit_id"`
-	} `json:"crew"`
-	ID int64 `json:"id,omitempty"`
+	Cast []PersonMovieCreditCast `json:"cast"`
+	Crew []PersonMovieCreditCrew `json:"crew"`
+	ID   int64                   `json:"id,omitempty"`
+}
+
+type PersonMovieCreditCast struct {
+	Character        string  `json:"character"`
+	CreditID         string  `json:"credit_id"`
+	PosterPath       string  `json:"poster_path"`
+	ID               int64   `json:"id"`
+	Order            int     `json:"order"`
+	Video            bool    `json:"video"`
+	VoteCount        int64   `json:"vote_count"`
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	Popularity       float32 `json:"popularity"`
+	Title            string  `json:"title"`
+	VoteAverage      float32 `json:"vote_average"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
+}
+
+type PersonMovieCreditCrew struct {
+	ID               int64   `json:"id"`
+	Department       string  `json:"department"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	Job              string  `json:"job"`
+	Overview         string  `json:"overview"`
+	VoteCount        int64   `json:"vote_count"`
+	Video            bool    `json:"video"`
+	ReleaseDate      string  `json:"release_date"`
+	VoteAverage      float32 `json:"vote_average"`
+	Title            string  `json:"title"`
+	Popularity       float32 `json:"popularity"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	BackdropPath     string  `json:"backdrop_path"`
+	Adult            bool    `json:"adult"`
+	PosterPath       string  `json:"poster_path"`
+	CreditID         string  `json:"credit_id"`
 }
 
 // PersonTVCredits type is a struct for tv credits JSON response.
 type PersonTVCredits struct {
-	Cast []struct {
-		CreditID         string   `json:"credit_id"`
-		OriginalName     string   `json:"original_name"`
-		ID               int64    `json:"id"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		Character        string   `json:"character"`
-		Name             string   `json:"name"`
-		PosterPath       string   `json:"poster_path"`
-		VoteCount        int64    `json:"vote_count"`
-		VoteAverage      float32  `json:"vote_average"`
-		Popularity       float32  `json:"popularity"`
-		EpisodeCount     int      `json:"episode_count"`
-		OriginalLanguage string   `json:"original_language"`
-		FirstAirDate     string   `json:"first_air_date"`
-		BackdropPath     string   `json:"backdrop_path"`
-		Overview         string   `json:"overview"`
-		OriginCountry    []string `json:"origin_country"`
-	} `json:"cast"`
-	Crew []struct {
-		ID               int64    `json:"id"`
-		Department       string   `json:"department"`
-		OriginalLanguage string   `json:"original_language"`
-		EpisodeCount     int      `json:"episode_count"`
-		Job              string   `json:"job"`
-		Overview         string   `json:"overview"`
-		OriginCountry    []string `json:"origin_country"`
-		OriginalName     string   `json:"original_name"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		Name             string   `json:"name"`
-		FirstAirDate     string   `json:"first_air_date"`
-		BackdropPath     string   `json:"backdrop_path"`
-		Popularity       float32  `json:"popularity"`
-		VoteCount        int64    `json:"vote_count"`
-		VoteAverage      float32  `json:"vote_average"`
-		PosterPath       string   `json:"poster_path"`
-		CreditID         string   `json:"credit_id"`
-	} `json:"crew"`
-	ID int64 `json:"id,omitempty"`
+	Cast []PersonTvCreditCast `json:"cast"`
+	Crew []PersonTvCreditCrew `json:"crew"`
+	ID   int64                `json:"id,omitempty"`
+}
+
+type PersonTvCreditCast struct {
+	CreditID         string   `json:"credit_id"`
+	OriginalName     string   `json:"original_name"`
+	ID               int64    `json:"id"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	Character        string   `json:"character"`
+	Name             string   `json:"name"`
+	PosterPath       string   `json:"poster_path"`
+	VoteCount        int64    `json:"vote_count"`
+	VoteAverage      float32  `json:"vote_average"`
+	Popularity       float32  `json:"popularity"`
+	EpisodeCount     int      `json:"episode_count"`
+	OriginalLanguage string   `json:"original_language"`
+	FirstAirDate     string   `json:"first_air_date"`
+	BackdropPath     string   `json:"backdrop_path"`
+	Overview         string   `json:"overview"`
+	OriginCountry    []string `json:"origin_country"`
+}
+
+type PersonTvCreditCrew struct {
+	ID               int64    `json:"id"`
+	Department       string   `json:"department"`
+	OriginalLanguage string   `json:"original_language"`
+	EpisodeCount     int      `json:"episode_count"`
+	Job              string   `json:"job"`
+	Overview         string   `json:"overview"`
+	OriginCountry    []string `json:"origin_country"`
+	OriginalName     string   `json:"original_name"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	Name             string   `json:"name"`
+	FirstAirDate     string   `json:"first_air_date"`
+	BackdropPath     string   `json:"backdrop_path"`
+	Popularity       float32  `json:"popularity"`
+	VoteCount        int64    `json:"vote_count"`
+	VoteAverage      float32  `json:"vote_average"`
+	PosterPath       string   `json:"poster_path"`
+	CreditID         string   `json:"credit_id"`
 }
 
 // PersonCombinedCredits type is a struct for combined credits JSON response.

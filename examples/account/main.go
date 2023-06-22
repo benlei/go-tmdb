@@ -16,7 +16,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	if err := tmdbClient.SetSessionID(os.Getenv("SessionID")); err != nil {
+	if err := tmdbClient.SetSessionID(os.Getenv("SESSION_ID")); err != nil {
 		fmt.Println(err)
 	}
 

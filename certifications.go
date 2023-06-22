@@ -9,82 +9,62 @@ type Certification struct {
 	Order         int    `json:"order"`
 }
 
+type MovieCertifications struct {
+	AU    []*Certification `json:"AU"`
+	BG    []*Certification `json:"BG"`
+	BR    []*Certification `json:"BR"`
+	CA    []*Certification `json:"CA"`
+	CA_QC []*Certification `json:"CA-QC"`
+	DE    []*Certification `json:"DE"`
+	DK    []*Certification `json:"DK"`
+	ES    []*Certification `json:"ES"`
+	FI    []*Certification `json:"FI"`
+	FR    []*Certification `json:"FR"`
+	GB    []*Certification `json:"GB"`
+	HU    []*Certification `json:"HU"`
+	IN    []*Certification `json:"IN"`
+	IT    []*Certification `json:"IT"`
+	LT    []*Certification `json:"LT"`
+	MY    []*Certification `json:"MY"`
+	NL    []*Certification `json:"NL"`
+	NO    []*Certification `json:"NO"`
+	NZ    []*Certification `json:"NZ"`
+	PH    []*Certification `json:"PH"`
+	PT    []*Certification `json:"PT"`
+	RU    []*Certification `json:"RU"`
+	SE    []*Certification `json:"SE"`
+	US    []*Certification `json:"US"`
+}
+
 // CertificationMovie type is a struct for movie certifications JSON response.
 type CertificationMovie struct {
-	Certifications struct {
-		AU []struct {
-			*Certification
-		} `json:"AU"`
-		BG []struct {
-			*Certification
-		} `json:"BG"`
-		BR []struct {
-			*Certification
-		} `json:"BR"`
-		CA []struct {
-			*Certification
-		} `json:"CA"`
-		CA_QC []struct {
-			*Certification
-		} `json:"CA-QC"`
-		DE []struct {
-			*Certification
-		} `json:"DE"`
-		DK []struct {
-			*Certification
-		} `json:"DK"`
-		ES []struct {
-			*Certification
-		} `json:"ES"`
-		FI []struct {
-			*Certification
-		} `json:"FI"`
-		FR []struct {
-			*Certification
-		} `json:"FR"`
-		GB []struct {
-			*Certification
-		} `json:"GB"`
-		HU []struct {
-			*Certification
-		} `json:"HU"`
-		IN []struct {
-			*Certification
-		} `json:"IN"`
-		IT []struct {
-			*Certification
-		} `json:"IT"`
-		LT []struct {
-			*Certification
-		} `json:"LT"`
-		MY []struct {
-			*Certification
-		} `json:"MY"`
-		NL []struct {
-			*Certification
-		} `json:"NL"`
-		NO []struct {
-			*Certification
-		} `json:"NO"`
-		NZ []struct {
-			*Certification
-		} `json:"NZ"`
-		PH []struct {
-			*Certification
-		} `json:"PH"`
-		PT []struct {
-			*Certification
-		} `json:"PT"`
-		RU []struct {
-			*Certification
-		} `json:"RU"`
-		SE []struct {
-			*Certification
-		} `json:"SE"`
-		US []struct {
-			*Certification
-		} `json:"US"`
-	} `json:"certifications"`
+	Certifications MovieCertifications `json:"certifications"`
+}
+
+type TVCertifications struct {
+	AU    []*Certification `json:"AU"`
+	BR    []*Certification `json:"BR"`
+	CA    []*Certification `json:"CA"`
+	CA_QC []*Certification `json:"CA-QC"`
+	DE    []*Certification `json:"DE"`
+	ES    []*Certification `json:"ES"`
+	FR    []*Certification `json:"FR"`
+	GB    []*Certification `json:"GB"`
+	HU    []*Certification `json:"HU"`
+	KR    []*Certification `json:"KR"`
+	LT    []*Certification `json:"LT"`
+	NL    []*Certification `json:"NL"`
+	PH    []*Certification `json:"PH"`
+	PT    []*Certification `json:"PT"`
+	RU    []*Certification `json:"RU"`
+	SK    []*Certification `json:"SK"`
+	TH    []*Certification `json:"TH"`
+	US    []*Certification `json:"US"`
+}
+
+// CertificationTV type is a struct for tv certifications JSON response.
+type CertificationTV struct {
+	Certifications TVCertifications `json:"certifications"`
 }
 
 // GetCertificationMovie get an up to date list of the
@@ -106,66 +86,6 @@ func (c *Client) GetCertificationMovie() (
 		return nil, err
 	}
 	return &certificationMovie, nil
-}
-
-// CertificationTV type is a struct for tv certifications JSON response.
-type CertificationTV struct {
-	Certifications struct {
-		AU []struct {
-			*Certification
-		} `json:"AU"`
-		BR []struct {
-			*Certification
-		} `json:"BR"`
-		CA []struct {
-			*Certification
-		} `json:"CA"`
-		CA_QC []struct {
-			*Certification
-		} `json:"CA-QC"`
-		DE []struct {
-			*Certification
-		} `json:"DE"`
-		ES []struct {
-			*Certification
-		} `json:"ES"`
-		FR []struct {
-			*Certification
-		} `json:"FR"`
-		GB []struct {
-			*Certification
-		} `json:"GB"`
-		HU []struct {
-			*Certification
-		} `json:"HU"`
-		KR []struct {
-			*Certification
-		} `json:"KR"`
-		LT []struct {
-			*Certification
-		} `json:"LT"`
-		NL []struct {
-			*Certification
-		} `json:"NL"`
-		PH []struct {
-			*Certification
-		} `json:"PH"`
-		PT []struct {
-			*Certification
-		} `json:"PT"`
-		RU []struct {
-			*Certification
-		} `json:"RU"`
-		SK []struct {
-			*Certification
-		} `json:"SK"`
-		TH []struct {
-			*Certification
-		} `json:"TH"`
-		US []struct {
-			*Certification
-		} `json:"US"`
-	} `json:"certifications"`
 }
 
 // GetCertificationTV get an up to date list of the

@@ -4,23 +4,27 @@ import "fmt"
 
 // WatchRegionList type is a struct for watch region list JSON response.
 type WatchRegionList struct {
-	Regions []struct {
-		Iso3166_1   string `json:"iso_3166_1"`
-		EnglishName string `json:"english_name"`
-		NativeName  string `json:"native_name"`
-	} `json:"results"`
+	Regions []WatchRegion `json:"results"`
+}
+
+type WatchRegion struct {
+	CountryCode string `json:"iso_3166_1"`
+	EnglishName string `json:"english_name"`
+	NativeName  string `json:"native_name"`
 }
 
 // WatchProviderList type is a struct for watch provider list JSON response.
 type WatchProviderList struct {
-	Providers []struct {
-		ID              int64  `json:"id"`
-		Name            string `json:"name"`
-		DisplayPriority int64  `json:"display_priority"`
-		LogoPath        string `json:"logo_path"`
-		ProviderName    string `json:"provider_name"`
-		ProviderID      int    `json:"provider_id"`
-	} `json:"results"`
+	Providers []WatchProvider `json:"results"`
+}
+
+type WatchProvider struct {
+	ID              int64  `json:"id,omitempty"`
+	Name            string `json:"name"`
+	DisplayPriority int64  `json:"display_priority"`
+	LogoPath        string `json:"logo_path"`
+	ProviderName    string `json:"provider_name"`
+	ProviderID      int    `json:"provider_id"`
 }
 
 // GetAvailableWatchProviderRegions get a list of all of the countries we have watch provider (OTT/streaming) data for.
@@ -70,7 +74,7 @@ func (c *Client) GetWatchProvidersMovie(
 // You can specify a watch_region param if you want to further filter the list by country.
 //
 // https://developers.themoviedb.org/3/watch-providers/get-tv-providers
-func (c *Client) GetWatchProvidersTv(
+func (c *Client) GetWatchProvidersTV(
 	urlOptions map[string]string,
 ) (*WatchProviderList, error) {
 	options := c.fmtOptions(urlOptions)

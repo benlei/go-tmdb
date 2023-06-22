@@ -1,13 +1,44 @@
 package tmdb
 
-import "fmt"
+import (
+	"fmt"
+	jsoniter "github.com/json-iterator/go"
+)
 
 // ChangesMovie type is a struct for movie changes JSON response.
-type ChangesMovie struct {
-	*ChangesMovieResults
+type ChangesMovie Changes
+
+type Changes struct {
+	*ChangeResults
 	Page         int64 `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
+}
+
+// ChangesTV type is a struct for tv changes JSON response.
+type ChangesTV Changes
+
+// ChangesPerson type is a struct for person changes JSON response.
+type ChangesPerson Changes
+
+// ChangeSet type is a struct for changes JSON response.
+type ChangeSet struct {
+	Changes []ChangeSetItems `json:"changes"`
+}
+
+type ChangeSetItems struct {
+	Key   string          `json:"key"`
+	Items []ChangeSetItem `json:"items"`
+}
+
+type ChangeSetItem struct {
+	ID            string       `json:"id"`
+	Action        string       `json:"action"`
+	Time          string       `json:"time"`
+	LanguageCode  string       `json:"iso_639_1,omitempty"`
+	CountryCode   string       `json:"iso_3166_1,omitempty"`
+	Value         jsoniter.Any `json:"value"`
+	OriginalValue jsoniter.Any `json:"original_value,omitempty"`
 }
 
 // GetChangesMovie get a list of all of the movie ids
@@ -36,11 +67,6 @@ func (c *Client) GetChangesMovie(
 	return &changesMovies, nil
 }
 
-// ChangesTV type is a struct for tv changes JSON response.
-type ChangesTV struct {
-	*ChangesMovie
-}
-
 // GetChangesTV get a list of all of the TV show ids
 // that have been changed in the past 24 hours.
 //
@@ -65,11 +91,6 @@ func (c *Client) GetChangesTV(
 		return nil, err
 	}
 	return &changesTV, nil
-}
-
-// ChangesPerson type is a struct for person changes JSON response.
-type ChangesPerson struct {
-	*ChangesMovie
 }
 
 // GetChangesPerson get a list of all of the person ids

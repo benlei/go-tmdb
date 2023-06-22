@@ -13,6 +13,54 @@ type SearchCompanies struct {
 	TotalResults int64 `json:"total_results"`
 }
 
+// SearchCollections type is a strcut for collections JSON response.
+type SearchCollections struct {
+	Page int64 `json:"page"`
+	*SearchCollectionsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// SearchKeywords type is a struct for keywords JSON response.
+type SearchKeywords struct {
+	Page int64 `json:"page"`
+	*SearchKeywordsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// SearchMovies type is a struct for movies JSON response.
+type SearchMovies struct {
+	Page         int64 `json:"page"`
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+	*SearchMoviesResults
+}
+
+// SearchMulti type is a struct for multi JSON response.
+type SearchMulti struct {
+	Page int `json:"page"`
+	*SearchMultiResults
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+}
+
+// SearchPeople type is a struct for people JSON response.
+type SearchPeople struct {
+	Page         int64 `json:"page"`
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+	*SearchPeopleResults
+}
+
+// SearchTVShows type is a struct for tv show JSON response.
+type SearchTVShows struct {
+	Page         int64 `json:"page"`
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+	*SearchTVShowsResults
+}
+
 // GetSearchCompanies search for companies.
 //
 // https://developers.themoviedb.org/3/search/search-companies
@@ -34,14 +82,6 @@ func (c *Client) GetSearchCompanies(
 		return nil, err
 	}
 	return &SearchCompanies, nil
-}
-
-// SearchCollections type is a strcut for collections JSON response.
-type SearchCollections struct {
-	Page int64 `json:"page"`
-	*SearchCollectionsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
 }
 
 // GetSearchCollections search for collections.
@@ -67,14 +107,6 @@ func (c *Client) GetSearchCollections(
 	return &searchCollections, nil
 }
 
-// SearchKeywords type is a struct for keywords JSON response.
-type SearchKeywords struct {
-	Page int64 `json:"page"`
-	*SearchKeywordsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetSearchKeywords search for keywords.
 //
 // https://developers.themoviedb.org/3/search/search-keywords
@@ -98,14 +130,6 @@ func (c *Client) GetSearchKeywords(
 	return &searchKeywords, nil
 }
 
-// SearchMovies type is a struct for movies JSON response.
-type SearchMovies struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	*SearchMoviesResults
-}
-
 // GetSearchMovies search for keywords.
 //
 // https://developers.themoviedb.org/3/search/search-movies
@@ -127,14 +151,6 @@ func (c *Client) GetSearchMovies(
 		return nil, err
 	}
 	return &searchMovies, nil
-}
-
-// SearchMulti type is a struct for multi JSON response.
-type SearchMulti struct {
-	Page int `json:"page"`
-	*SearchMultiResults
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
 }
 
 // GetSearchMulti search multiple models in a single request.
@@ -162,14 +178,6 @@ func (c *Client) GetSearchMulti(
 	return &searchMulti, nil
 }
 
-// SearchPeople type is a struct for people JSON response.
-type SearchPeople struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	*SearchPeopleResults
-}
-
 // GetSearchPeople search for people.
 //
 // https://developers.themoviedb.org/3/search/search-people
@@ -191,14 +199,6 @@ func (c *Client) GetSearchPeople(
 		return nil, err
 	}
 	return &searchPeople, nil
-}
-
-// SearchTVShows type is a struct for tv show JSON response.
-type SearchTVShows struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	*SearchTVShowsResults
 }
 
 // GetSearchTVShow search for a TV Show.

@@ -9,90 +9,36 @@ import (
 
 // TVDetails type is a struct for details JSON response.
 type TVDetails struct {
-	BackdropPath string `json:"backdrop_path"`
-	CreatedBy    []struct {
-		ID          int64  `json:"id"`
-		CreditID    string `json:"credit_id"`
-		Name        string `json:"name"`
-		Gender      int    `json:"gender"`
-		ProfilePath string `json:"profile_path"`
-	} `json:"created_by"`
-	EpisodeRunTime []int  `json:"episode_run_time"`
-	FirstAirDate   string `json:"first_air_date"`
-	Genres         []struct {
-		ID   int64  `json:"id"`
-		Name string `json:"name"`
-	} `json:"genres"`
-	Homepage         string   `json:"homepage"`
-	ID               int64    `json:"id"`
-	InProduction     bool     `json:"in_production"`
-	Languages        []string `json:"languages"`
-	LastAirDate      string   `json:"last_air_date"`
-	LastEpisodeToAir struct {
-		AirDate        string  `json:"air_date"`
-		EpisodeNumber  int     `json:"episode_number"`
-		ID             int64   `json:"id"`
-		Name           string  `json:"name"`
-		Overview       string  `json:"overview"`
-		ProductionCode string  `json:"production_code"`
-		SeasonNumber   int     `json:"season_number"`
-		ShowID         int64   `json:"show_id"`
-		StillPath      string  `json:"still_path"`
-		VoteAverage    float32 `json:"vote_average"`
-		VoteCount      int64   `json:"vote_count"`
-	} `json:"last_episode_to_air"`
-	Name             string `json:"name"`
-	NextEpisodeToAir struct {
-		AirDate        string  `json:"air_date"`
-		EpisodeNumber  int     `json:"episode_number"`
-		ID             int64   `json:"id"`
-		Name           string  `json:"name"`
-		Overview       string  `json:"overview"`
-		ProductionCode string  `json:"production_code"`
-		SeasonNumber   int     `json:"season_number"`
-		ShowID         int64   `json:"show_id"`
-		StillPath      string  `json:"still_path"`
-		VoteAverage    float32 `json:"vote_average"`
-		VoteCount      int64   `json:"vote_count"`
-	} `json:"next_episode_to_air"`
-	Networks []struct {
-		Name          string `json:"name"`
-		ID            int64  `json:"id"`
-		LogoPath      string `json:"logo_path"`
-		OriginCountry string `json:"origin_country"`
-	} `json:"networks"`
-	NumberOfEpisodes    int      `json:"number_of_episodes"`
-	NumberOfSeasons     int      `json:"number_of_seasons"`
-	OriginCountry       []string `json:"origin_country"`
-	OriginalLanguage    string   `json:"original_language"`
-	OriginalName        string   `json:"original_name"`
-	Overview            string   `json:"overview"`
-	Popularity          float32  `json:"popularity"`
-	PosterPath          string   `json:"poster_path"`
-	ProductionCompanies []struct {
-		Name          string `json:"name"`
-		ID            int64  `json:"id"`
-		LogoPath      string `json:"logo_path"`
-		OriginCountry string `json:"origin_country"`
-	} `json:"production_companies"`
-	ProductionCountries []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
-		Name      string `json:"name"`
-	} `json:"production_countries"`
-	Seasons []struct {
-		AirDate      string `json:"air_date"`
-		EpisodeCount int    `json:"episode_count"`
-		ID           int64  `json:"id"`
-		Name         string `json:"name"`
-		Overview     string `json:"overview"`
-		PosterPath   string `json:"poster_path"`
-		SeasonNumber int    `json:"season_number"`
-	} `json:"seasons"`
-	Status      string  `json:"status"`
-	Tagline     string  `json:"tagline"`
-	Type        string  `json:"type"`
-	VoteAverage float32 `json:"vote_average"`
-	VoteCount   int64   `json:"vote_count"`
+	BackdropPath        string                `json:"backdrop_path"`
+	CreatedBy           []TVCreatedBy         `json:"created_by"`
+	EpisodeRunTime      []int                 `json:"episode_run_time"`
+	FirstAirDate        string                `json:"first_air_date"`
+	Genres              []Genre               `json:"genres"`
+	Homepage            string                `json:"homepage"`
+	ID                  int64                 `json:"id"`
+	InProduction        bool                  `json:"in_production"`
+	Languages           []string              `json:"languages"`
+	LastAirDate         string                `json:"last_air_date"`
+	LastEpisodeToAir    TVEpisodeToAir        `json:"last_episode_to_air"`
+	Name                string                `json:"name"`
+	NextEpisodeToAir    TVEpisodeToAir        `json:"next_episode_to_air"`
+	Networks            []TVNetwork           `json:"networks"`
+	NumberOfEpisodes    int                   `json:"number_of_episodes"`
+	NumberOfSeasons     int                   `json:"number_of_seasons"`
+	OriginCountry       []string              `json:"origin_country"`
+	OriginalLanguage    string                `json:"original_language"`
+	OriginalName        string                `json:"original_name"`
+	Overview            string                `json:"overview"`
+	Popularity          float32               `json:"popularity"`
+	PosterPath          string                `json:"poster_path"`
+	ProductionCompanies []TVProductionCompany `json:"production_companies"`
+	ProductionCountries []TVProductionCountry `json:"production_countries"`
+	Seasons             []TVSeason            `json:"seasons"`
+	Status              string                `json:"status"`
+	Tagline             string                `json:"tagline"`
+	Type                string                `json:"type"`
+	VoteAverage         float32               `json:"vote_average"`
+	VoteCount           int64                 `json:"vote_count"`
 	*TVAggregateCreditsAppend
 	*TVAlternativeTitlesAppend
 	*TVChangesAppend
@@ -109,6 +55,57 @@ type TVDetails struct {
 	*TVTranslationsAppend
 	*TVVideosAppend
 	*TVWatchProvidersAppend
+}
+
+type TVCreatedBy struct {
+	ID          int64  `json:"id"`
+	CreditID    string `json:"credit_id"`
+	Name        string `json:"name"`
+	Gender      int    `json:"gender"`
+	ProfilePath string `json:"profile_path"`
+}
+
+type TVEpisodeToAir struct {
+	AirDate        string  `json:"air_date"`
+	EpisodeNumber  int     `json:"episode_number"`
+	ID             int64   `json:"id"`
+	Name           string  `json:"name"`
+	Overview       string  `json:"overview"`
+	ProductionCode string  `json:"production_code"`
+	SeasonNumber   int     `json:"season_number"`
+	ShowID         int64   `json:"show_id"`
+	StillPath      string  `json:"still_path"`
+	VoteAverage    float32 `json:"vote_average"`
+	VoteCount      int64   `json:"vote_count"`
+}
+
+type TVNetwork struct {
+	Name          string `json:"name"`
+	ID            int64  `json:"id"`
+	LogoPath      string `json:"logo_path"`
+	OriginCountry string `json:"origin_country"`
+}
+
+type TVProductionCompany struct {
+	Name          string `json:"name"`
+	ID            int64  `json:"id"`
+	LogoPath      string `json:"logo_path"`
+	OriginCountry string `json:"origin_country"`
+}
+
+type TVProductionCountry struct {
+	CountryCode string `json:"iso_3166_1"`
+	Name        string `json:"name"`
+}
+
+type TVSeason struct {
+	AirDate      string `json:"air_date"`
+	EpisodeCount int    `json:"episode_count"`
+	ID           int64  `json:"id"`
+	Name         string `json:"name"`
+	Overview     string `json:"overview"`
+	PosterPath   string `json:"poster_path"`
+	SeasonNumber int    `json:"season_number"`
 }
 
 // TVAggregateCreditsAppend type is a struct
@@ -136,9 +133,7 @@ type TVContentRatingsAppend struct {
 
 // TVCreditsAppend type is a struct for credits in append to response.
 type TVCreditsAppend struct {
-	Credits struct {
-		*TVCredits
-	} `json:"credits,omitempty"`
+	Credits *TVCredits `json:"credits,omitempty"`
 }
 
 // TVEpisodeGroupsAppend type is a struct for
@@ -160,9 +155,7 @@ type TVImagesAppend struct {
 
 // TVKeywordsAppend type is a struct for keywords in append to response.
 type TVKeywordsAppend struct {
-	Keywords struct {
-		*TVKeywords
-	} `json:"keywords,omitempty"`
+	Keywords *TVKeywords `json:"keywords,omitempty"`
 }
 
 // TVRecommendationsAppend type is a struct
@@ -173,9 +166,7 @@ type TVRecommendationsAppend struct {
 
 // TVReviewsAppend type is a struct for reviews in append to response.
 type TVReviewsAppend struct {
-	Reviews struct {
-		*TVReviews
-	} `json:"reviews,omitempty"`
+	Reviews *TVReviews `json:"reviews,omitempty"`
 }
 
 // TVScreenedTheatricallyAppend type is a struct
@@ -198,9 +189,7 @@ type TVTranslationsAppend struct {
 
 // TVVideosAppend type is a struct for videos in append to response.
 type TVVideosAppend struct {
-	Videos struct {
-		*TVVideos
-	} `json:"videos,omitempty"`
+	Videos *TVVideos `json:"videos,omitempty"`
 }
 
 // TVWatchProvidersAppend type is a struct for
@@ -208,6 +197,220 @@ type TVVideosAppend struct {
 type TVWatchProvidersAppend struct {
 	WatchProviders *TVWatchProviders `json:"watch/providers,omitempty"`
 }
+
+// TVAccountStates type is a struct for account states JSON response.
+type TVAccountStates struct {
+	ID        int64               `json:"id"`
+	Favorite  bool                `json:"favorite"`
+	Rated     jsoniter.RawMessage `json:"rated"`
+	Watchlist bool                `json:"watchlist"`
+}
+
+// TVAggregateCredits type is a struct for aggregate credits JSON response.
+type TVAggregateCredits struct {
+	ID   int64                   `json:"id,omitempty"`
+	Cast []TVAggregateCreditCast `json:"cast"`
+	Crew []TVAggregateCreditCrew `json:"crew"`
+}
+
+type TVAggregateCreditCast struct {
+	ID                 int64                       `json:"id"`
+	Adult              bool                        `json:"adult"`
+	Gender             int                         `json:"gender"`
+	KnownForDepartment string                      `json:"known_for_department"`
+	Name               string                      `json:"name"`
+	Order              int                         `json:"order"`
+	OriginalName       string                      `json:"original_name"`
+	Popularity         float64                     `json:"popularity"`
+	ProfilePath        string                      `json:"profile_path"`
+	Roles              []TVAggregateCreditCastRole `json:"roles"`
+	TotalEpisodeCount  int                         `json:"total_episode_count"`
+}
+
+type TVAggregateCreditCastRole struct {
+	Character    string `json:"character"`
+	CreditID     string `json:"credit_id"`
+	EpisodeCount int    `json:"episode_count"`
+}
+
+type TVAggregateCreditCrew struct {
+	ID                 int64                      `json:"id"`
+	Adult              bool                       `json:"adult"`
+	Department         string                     `json:"department"`
+	Gender             int                        `json:"gender"`
+	Jobs               []TVAggregateCreditCrewJob `json:"jobs"`
+	TotalEpisodeCount  int                        `json:"total_episode_count"`
+	KnownForDepartment string                     `json:"known_for_department"`
+	Name               string                     `json:"name"`
+	OriginalName       string                     `json:"original_name"`
+	Popularity         float64                    `json:"popularity"`
+	ProfilePath        string                     `json:"profile_path"`
+}
+
+type TVAggregateCreditCrewJob struct {
+	CreditID     string `json:"credit_id"`
+	EpisodeCount int    `json:"episode_count"`
+	Job          string `json:"job"`
+}
+
+// TVAlternativeTitles type is a struct for alternative titles JSON response.
+type TVAlternativeTitles struct {
+	ID int `json:"id,omitempty"`
+	*TVAlternativeTitlesResults
+}
+
+// TVChanges type is a struct for changes JSON response.
+type TVChanges ChangeSet
+
+// TVContentRatings type is a struct for content ratings JSON response.
+type TVContentRatings struct {
+	*TVContentRatingsResults
+	ID int64 `json:"id,omitempty"`
+}
+
+// TVCredits type is a struct for credits JSON response.
+type TVCredits struct {
+	ID   int64          `json:"id,omitempty"`
+	Cast []TVCreditCast `json:"cast"`
+	Crew []TVCreditCrew `json:"crew"`
+}
+
+type TVCreditCast struct {
+	Character          string  `json:"character"`
+	CreditID           string  `json:"credit_id"`
+	Gender             int     `json:"gender"`
+	ID                 int64   `json:"id"`
+	KnownForDepartment string  `json:"known_for_department"`
+	Name               string  `json:"name"`
+	Order              int     `json:"order"`
+	OriginalName       string  `json:"original_name"`
+	Popularity         float32 `json:"popularity"`
+	ProfilePath        string  `json:"profile_path"`
+}
+
+type TVCreditCrew struct {
+	CreditID           string  `json:"credit_id"`
+	Department         string  `json:"department"`
+	Gender             int     `json:"gender"`
+	ID                 int64   `json:"id"`
+	Job                string  `json:"job"`
+	KnownForDepartment string  `json:"known_for_department"`
+	Name               string  `json:"name"`
+	OriginalName       string  `json:"original_name"`
+	Popularity         float32 `json:"popularity"`
+	ProfilePath        string  `json:"profile_path"`
+}
+
+// TVEpisodeGroups type is a struct for episode groups JSON response.
+type TVEpisodeGroups struct {
+	*TVEpisodeGroupsResults
+	ID int64 `json:"id,omitempty"`
+}
+
+// TVExternalIDs type is a struct for external ids JSON response.
+type TVExternalIDs struct {
+	IMDbID      string `json:"imdb_id"`
+	FreebaseMID string `json:"freebase_mid"`
+	FreebaseID  string `json:"freebase_id"`
+	TVDBID      int64  `json:"tvdb_id"`
+	TVRageID    int64  `json:"tvrage_id"`
+	FacebookID  string `json:"facebook_id"`
+	InstagramID string `json:"instagram_id"`
+	TwitterID   string `json:"twitter_id"`
+	ID          int64  `json:"id,omitempty"`
+}
+
+// TVImages type is a struct for images JSON response.
+type TVImages struct {
+	ID        int64   `json:"id,omitempty"`
+	Backdrops []Image `json:"backdrops"`
+	Posters   []Image `json:"posters"`
+}
+
+// TVKeywords type is a struct for keywords JSON response.
+type TVKeywords struct {
+	ID int64 `json:"id,omitempty"`
+	*TVKeywordsResults
+}
+
+// TVRecommendations type is a struct for recommendations JSON response.
+type TVRecommendations struct {
+	Page int64 `json:"page"`
+	*TVRecommendationsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// TVReviews type is a struct for reviews JSON response.
+type TVReviews struct {
+	ID   int64 `json:"id,omitempty"`
+	Page int64 `json:"page"`
+	*TVReviewsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// TVScreenedTheatrically type is a struct for screened theatrically JSON response.
+type TVScreenedTheatrically struct {
+	ID int64 `json:"id,omitempty"`
+	*TVScreenedTheatricallyResults
+}
+
+// TVWatchProviders type is a struct for watch/providers JSON response.
+type TVWatchProviders struct {
+	ID int64 `json:"id,omitempty"`
+	*TVWatchProvidersResults
+}
+
+// TVSimilar type is a struct for similar tv shows JSON response.
+type TVSimilar TVRecommendations
+
+// TVTranslations type is a struct for translations JSON response.
+type TVTranslations struct {
+	ID           int64           `json:"id,omitempty"`
+	Translations []TVTranslation `json:"translations"`
+}
+
+type TVTranslation struct {
+	CountryCode  string            `json:"iso_3166_1"`
+	LanguageCode string            `json:"iso_639_1"`
+	Name         string            `json:"name"`
+	EnglishName  string            `json:"english_name"`
+	Data         TVTranslationData `json:"data"`
+}
+
+type TVTranslationData struct {
+	Name     string `json:"name"`
+	Overview string `json:"overview"`
+	Tagline  string `json:"tagline"`
+	Homepage string `json:"homepage"`
+}
+
+// TVVideos type is a struct for videos JSON response.
+type TVVideos struct {
+	ID int64 `json:"id,omitempty"`
+	*TVVideosResults
+}
+
+// TVLatest type is a struct for latest JSON response.
+type TVLatest TVDetails
+
+// TVAiringToday type is a struct for airing today JSON response.
+type TVAiringToday struct {
+	Page         int64 `json:"page"`
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+	*TVAiringTodayResults
+}
+
+// TVOnTheAir type is a struct for on the air JSON response.
+type TVOnTheAir TVAiringToday
+
+// TVPopular type is a struct for popular JSON response.
+type TVPopular TVAiringToday
+
+// TVTopRated type is a struct for top rated JSON response.
+type TVTopRated TVAiringToday
 
 // GetTVDetails get the primary TV show details by id.
 //
@@ -229,14 +432,6 @@ func (c *Client) GetTVDetails(id int64, urlOptions map[string]string) (*TVDetail
 		return nil, err
 	}
 	return &tvDetails, nil
-}
-
-// TVAccountStates type is a struct for account states JSON response.
-type TVAccountStates struct {
-	ID        int64               `json:"id"`
-	Favorite  bool                `json:"favorite"`
-	Rated     jsoniter.RawMessage `json:"rated"`
-	Watchlist bool                `json:"watchlist"`
 }
 
 // GetTVAccountStates grab the following account states for a session:
@@ -265,45 +460,6 @@ func (c *Client) GetTVAccountStates(id int64, urlOptions map[string]string) (*TV
 	return &tvAccountStates, nil
 }
 
-// TVAggregateCredits type is a struct for aggregate credits JSON response.
-type TVAggregateCredits struct {
-	ID   int64 `json:"id,omitempty"`
-	Cast []struct {
-		ID                 int64   `json:"id"`
-		Adult              bool    `json:"adult"`
-		Gender             int     `json:"gender"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		Order              int     `json:"order"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float64 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-		Roles              []struct {
-			Character    string `json:"character"`
-			CreditID     string `json:"credit_id"`
-			EpisodeCount int    `json:"episode_count"`
-		} `json:"roles"`
-		TotalEpisodeCount int `json:"total_episode_count"`
-	} `json:"cast"`
-	Crew []struct {
-		ID         int64  `json:"id"`
-		Adult      bool   `json:"adult"`
-		Department string `json:"department"`
-		Gender     int    `json:"gender"`
-		Jobs       []struct {
-			CreditID     string `json:"credit_id"`
-			EpisodeCount int    `json:"episode_count"`
-			Job          string `json:"job"`
-		} `json:"jobs"`
-		TotalEpisodeCount  int     `json:"total_episode_count"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float64 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"crew"`
-}
-
 // GetTVAggregateCredits get the aggregate credits (cast and crew) that have been added to a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-aggregate-credits
@@ -324,12 +480,6 @@ func (c *Client) GetTVAggregateCredits(id int64, urlOptions map[string]string) (
 	return &tvAggregateCredits, nil
 }
 
-// TVAlternativeTitles type is a struct for alternative titles JSON response.
-type TVAlternativeTitles struct {
-	ID int `json:"id,omitempty"`
-	*TVAlternativeTitlesResults
-}
-
 // GetTVAlternativeTitles get all of the alternative titles for a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-alternative-titles
@@ -348,22 +498,6 @@ func (c *Client) GetTVAlternativeTitles(id int64, urlOptions map[string]string) 
 		return nil, err
 	}
 	return &tvAlternativeTitles, nil
-}
-
-// TVChanges type is a struct for changes JSON response.
-type TVChanges struct {
-	Changes []struct {
-		Key   string `json:"key"`
-		Items []struct {
-			ID            string              `json:"id"`
-			Action        string              `json:"action"`
-			Time          string              `json:"time"`
-			Iso639_1      string              `json:"iso_639_1"`
-			Iso3166_1     string              `json:"iso_3166_1"`
-			Value         jsoniter.RawMessage `json:"value"`
-			OriginalValue jsoniter.RawMessage `json:"original_value"`
-		} `json:"items"`
-	} `json:"changes"`
 }
 
 // GetTVChanges get the changes for a TV show.
@@ -396,12 +530,6 @@ func (c *Client) GetTVChanges(id int64, urlOptions map[string]string) (*TVChange
 	return &tVChanges, nil
 }
 
-// TVContentRatings type is a struct for content ratings JSON response.
-type TVContentRatings struct {
-	*TVContentRatingsResults
-	ID int64 `json:"id,omitempty"`
-}
-
 // GetTVContentRatings get the list of content ratings (certifications) that have been added to a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-content-ratings
@@ -420,35 +548,6 @@ func (c *Client) GetTVContentRatings(id int64, urlOptions map[string]string) (*T
 		return nil, err
 	}
 	return &tvContentRatings, nil
-}
-
-// TVCredits type is a struct for credits JSON response.
-type TVCredits struct {
-	ID   int64 `json:"id,omitempty"`
-	Cast []struct {
-		Character          string  `json:"character"`
-		CreditID           string  `json:"credit_id"`
-		Gender             int     `json:"gender"`
-		ID                 int64   `json:"id"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		Order              int     `json:"order"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float32 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"cast"`
-	Crew []struct {
-		CreditID           string  `json:"credit_id"`
-		Department         string  `json:"department"`
-		Gender             int     `json:"gender"`
-		ID                 int64   `json:"id"`
-		Job                string  `json:"job"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float32 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"crew"`
 }
 
 // GetTVCredits get the credits (cast and crew) that have been added to a TV show.
@@ -471,12 +570,6 @@ func (c *Client) GetTVCredits(id int64, urlOptions map[string]string) (*TVCredit
 	return &tvCredits, nil
 }
 
-// TVEpisodeGroups type is a struct for episode groups JSON response.
-type TVEpisodeGroups struct {
-	*TVEpisodeGroupsResults
-	ID int64 `json:"id,omitempty"`
-}
-
 // GetTVEpisodeGroups get all of the episode groups that have been created for a TV show.
 //
 // With a group ID you can call the get TV episode group details method.
@@ -497,19 +590,6 @@ func (c *Client) GetTVEpisodeGroups(id int64, urlOptions map[string]string) (*TV
 		return nil, err
 	}
 	return &tVEpisodeGroups, nil
-}
-
-// TVExternalIDs type is a struct for external ids JSON response.
-type TVExternalIDs struct {
-	IMDbID      string `json:"imdb_id"`
-	FreebaseMID string `json:"freebase_mid"`
-	FreebaseID  string `json:"freebase_id"`
-	TVDBID      int64  `json:"tvdb_id"`
-	TVRageID    int64  `json:"tvrage_id"`
-	FacebookID  string `json:"facebook_id"`
-	InstagramID string `json:"instagram_id"`
-	TwitterID   string `json:"twitter_id"`
-	ID          int64  `json:"id,omitempty"`
 }
 
 // GetTVExternalIDs get the external ids for a TV show.
@@ -540,29 +620,6 @@ func (c *Client) GetTVExternalIDs(id int64, urlOptions map[string]string) (*TVEx
 	return &tvExternalIDs, nil
 }
 
-// TVImages type is a struct for images JSON response.
-type TVImages struct {
-	ID        int64 `json:"id,omitempty"`
-	Backdrops []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		Iso639_1    string  `json:"iso_639_1"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"backdrops"`
-	Posters []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		Iso639_1    string  `json:"iso_639_1"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"posters"`
-}
-
 // GetTVImages get the images that belong to a TV show.
 //
 // Querying images with a language parameter will filter the results.
@@ -588,12 +645,6 @@ func (c *Client) GetTVImages(id int64, urlOptions map[string]string) (*TVImages,
 	return &tvImages, nil
 }
 
-// TVKeywords type is a struct for keywords JSON response.
-type TVKeywords struct {
-	ID int64 `json:"id,omitempty"`
-	*TVKeywordsResults
-}
-
 // GetTVKeywords get the keywords that have been added to a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-keywords
@@ -610,14 +661,6 @@ func (c *Client) GetTVKeywords(id int64) (*TVKeywords, error) {
 		return nil, err
 	}
 	return &tvKeywords, nil
-}
-
-// TVRecommendations type is a struct for recommendations JSON response.
-type TVRecommendations struct {
-	Page int64 `json:"page"`
-	*TVRecommendationsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
 }
 
 // GetTVRecommendations get the list of TV show recommendations for this item.
@@ -640,15 +683,6 @@ func (c *Client) GetTVRecommendations(id int64, urlOptions map[string]string) (*
 	return &tvRecommendations, nil
 }
 
-// TVReviews type is a struct for reviews JSON response.
-type TVReviews struct {
-	ID   int64 `json:"id,omitempty"`
-	Page int64 `json:"page"`
-	*TVReviewsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetTVReviews get the reviews for a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-reviews
@@ -669,12 +703,6 @@ func (c *Client) GetTVReviews(id int64, urlOptions map[string]string) (*TVReview
 	return &tvReviews, nil
 }
 
-// TVScreenedTheatrically type is a struct for screened theatrically JSON response.
-type TVScreenedTheatrically struct {
-	ID int64 `json:"id,omitempty"`
-	*TVScreenedTheatricallyResults
-}
-
 // GetTVScreenedTheatrically get a list of seasons or episodes that
 // have been screened in a film festival or theatre.
 //
@@ -692,11 +720,6 @@ func (c *Client) GetTVScreenedTheatrically(id int64) (*TVScreenedTheatrically, e
 		return nil, err
 	}
 	return &tvScreenedTheatrically, nil
-}
-
-// TVSimilar type is a struct for similar tv shows JSON response.
-type TVSimilar struct {
-	*TVRecommendations
 }
 
 // GetTVSimilar a list of similar TV shows.
@@ -720,12 +743,6 @@ func (c *Client) GetTVSimilar(id int64, urlOptions map[string]string) (*TVSimila
 	return &tVSimilar, nil
 }
 
-// TVWatchProviders type is a struct for watch/providers JSON response.
-type TVWatchProviders struct {
-	ID int64 `json:"id,omitempty"`
-	*TVWatchProvidersResults
-}
-
 // GetTVWatchProviders get a list of the availabilities per country by provider for a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-watch-providers
@@ -744,23 +761,6 @@ func (c *Client) GetTVWatchProviders(id int64, urlOptions map[string]string) (*T
 		return nil, err
 	}
 	return &tvWatchProviders, nil
-}
-
-// TVTranslations type is a struct for translations JSON response.
-type TVTranslations struct {
-	ID           int64 `json:"id,omitempty"`
-	Translations []struct {
-		Iso3166_1   string `json:"iso_3166_1"`
-		Iso639_1    string `json:"iso_639_1"`
-		Name        string `json:"name"`
-		EnglishName string `json:"english_name"`
-		Data        struct {
-			Name     string `json:"name"`
-			Overview string `json:"overview"`
-			Tagline  string `json:"tagline"`
-			Homepage string `json:"homepage"`
-		} `json:"data"`
-	} `json:"translations"`
 }
 
 // GetTVTranslations get a list fo translations that have been created for a TV Show.
@@ -783,12 +783,6 @@ func (c *Client) GetTVTranslations(id int64, urlOptions map[string]string) (*TVT
 	return &tvTranslations, nil
 }
 
-// TVVideos type is a struct for videos JSON response.
-type TVVideos struct {
-	ID int64 `json:"id,omitempty"`
-	*TVVideosResults
-}
-
 // GetTVVideos get the videos that have been added to a TV show.
 //
 // https://developers.themoviedb.org/3/tv/get-tv-videos
@@ -807,11 +801,6 @@ func (c *Client) GetTVVideos(id int64, urlOptions map[string]string) (*TVVideos,
 		return nil, err
 	}
 	return &tvVideos, nil
-}
-
-// TVLatest type is a struct for latest JSON response.
-type TVLatest struct {
-	*TVDetails
 }
 
 // GetTVLatest get the most newly created TV show.
@@ -835,14 +824,6 @@ func (c *Client) GetTVLatest(
 		return nil, err
 	}
 	return &tvLatest, nil
-}
-
-// TVAiringToday type is a struct for airing today JSON response.
-type TVAiringToday struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	*TVAiringTodayResults
 }
 
 // GetTVAiringToday get a list of TV shows that are airing today.
@@ -872,11 +853,6 @@ func (c *Client) GetTVAiringToday(
 	return &tvAiringToday, nil
 }
 
-// TVOnTheAir type is a struct for on the air JSON response.
-type TVOnTheAir struct {
-	*TVAiringToday
-}
-
 // GetTVOnTheAir get a list of shows that are currently on the air.
 //
 // This query looks for any TV show that has an episode with an
@@ -901,11 +877,6 @@ func (c *Client) GetTVOnTheAir(
 	return &tvOnTheAir, nil
 }
 
-// TVPopular type is a struct for popular JSON response.
-type TVPopular struct {
-	*TVAiringToday
-}
-
 // GetTVPopular get a list of the current popular TV shows on TMDb.
 // This list updates daily.
 //
@@ -926,11 +897,6 @@ func (c *Client) GetTVPopular(
 		return nil, err
 	}
 	return &tvPopular, nil
-}
-
-// TVTopRated type is a struct for top rated JSON response.
-type TVTopRated struct {
-	*TVAiringToday
 }
 
 // GetTVTopRated get a list of the top rated TV shows on TMDb.

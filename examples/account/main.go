@@ -2,18 +2,21 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 
 	tmdb "github.com/benlei/go-tmdb"
 )
 
 func main() {
-	tmdbClient, err := tmdb.Init(os.Getenv("APIKey"))
+	godotenv.Load()
+	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
+
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	if err := tmdbClient.SetSessionID(os.Getenv("SessionID")); err != nil {
+	if err := tmdbClient.SetSessionID(os.Getenv("SESSION_ID")); err != nil {
 		fmt.Println(err)
 	}
 

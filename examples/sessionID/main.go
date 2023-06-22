@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 
 	tmdb "github.com/benlei/go-tmdb"
 )
 
 func main() {
-
-	tmdbClient, err := tmdb.Init(os.Getenv("APIKey"))
+	godotenv.Load()
+	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -20,7 +21,7 @@ func main() {
 	// https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id
 	//
 	// Once you have the SessionID, you can load it from a ENV variable or a database.
-	if err := tmdbClient.SetSessionID(os.Getenv("SessionID")); err != nil {
+	if err := tmdbClient.SetSessionID(os.Getenv("SESSION_ID")); err != nil {
 		fmt.Println(err)
 	}
 

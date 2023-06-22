@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 
 	tmdb "github.com/benlei/go-tmdb"
 )
 
 func main() {
-	tmdbClient, err := tmdb.Init(os.Getenv("APIKey"))
+	godotenv.Load()
+	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -27,7 +29,7 @@ func main() {
 	fmt.Println(tmdb.GetImageURL(movie.PosterPath, tmdb.Original))
 
 	// Generating Video URLs
-	for _, video := range movie.MovieVideosAppend.Videos.MovieVideos.Results {
+	for _, video := range movie.MovieVideosAppend.Videos.Results {
 		if video.Key != "" {
 			fmt.Println(tmdb.GetVideoURL(video.Key))
 		}

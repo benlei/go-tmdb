@@ -6,18 +6,33 @@ import (
 
 // CompanyDetails type is a struct for details JSON response.
 type CompanyDetails struct {
-	Description   string `json:"description"`
-	Headquarters  string `json:"headquarters"`
-	Homepage      string `json:"homepage"`
-	ID            int64  `json:"id"`
-	LogoPath      string `json:"logo_path"`
-	Name          string `json:"name"`
-	OriginCountry string `json:"origin_country"`
-	ParentCompany struct {
-		Name     string `json:"name"`
-		ID       int64  `json:"id"`
-		LogoPath string `json:"logo_path"`
-	} `json:"parent_company"`
+	Description   string        `json:"description"`
+	Headquarters  string        `json:"headquarters"`
+	Homepage      string        `json:"homepage"`
+	ID            int64         `json:"id"`
+	LogoPath      string        `json:"logo_path"`
+	Name          string        `json:"name"`
+	OriginCountry string        `json:"origin_country"`
+	ParentCompany ParentCompany `json:"parent_company"`
+}
+
+type ParentCompany struct {
+	Name     string `json:"name"`
+	ID       int64  `json:"id"`
+	LogoPath string `json:"logo_path"`
+}
+
+// CompanyAlternativeNames type is a struct for alternative
+// names JSON response.
+type CompanyAlternativeNames struct {
+	ID int64 `json:"id"`
+	*CompanyAlternativeNamesResults
+}
+
+// CompanyImages type is a struct for images JSON response.
+type CompanyImages struct {
+	ID    int64   `json:"id"`
+	Logos []Image `json:"logos"`
 }
 
 // GetCompanyDetails get a companies details by id.
@@ -38,13 +53,6 @@ func (c *Client) GetCompanyDetails(id int64) (*CompanyDetails, error) {
 	return &companyDetails, nil
 }
 
-// CompanyAlternativeNames type is a struct for alternative
-// names JSON response.
-type CompanyAlternativeNames struct {
-	ID int64 `json:"id"`
-	*CompanyAlternativeNamesResult
-}
-
 // GetCompanyAlternativeNames get the alternative names of a company.
 //
 // https://developers.themoviedb.org/3/companies/get-company-alternative-names
@@ -61,21 +69,6 @@ func (c *Client) GetCompanyAlternativeNames(id int64) (*CompanyAlternativeNames,
 		return nil, err
 	}
 	return &companyAlternativeNames, nil
-}
-
-// CompanyImages type is a struct for images JSON response.
-type CompanyImages struct {
-	ID    int64 `json:"id"`
-	Logos []struct {
-		AspectRatio float32 `json:"aspect_ratio"`
-		FilePath    string  `json:"file_path"`
-		Height      int     `json:"height"`
-		ID          string  `json:"id"`
-		FileType    string  `json:"file_type"`
-		VoteAverage float32 `json:"vote_average"`
-		VoteCount   int64   `json:"vote_count"`
-		Width       int     `json:"width"`
-	} `json:"logos"`
 }
 
 // GetCompanyImages get a companies logos by id.

@@ -8,6 +8,32 @@ type KeywordDetails struct {
 	Name string `json:"name"`
 }
 
+// KeywordMovies type is a struct for movies that belong to a keyword JSON response.
+type KeywordMovies struct {
+	ID           int64                `json:"id"`
+	Page         int64                `json:"page"`
+	Results      []KeywordMovieResult `json:"results"`
+	TotalPages   int64                `json:"total_pages"`
+	TotalResults int64                `json:"total_results"`
+}
+
+type KeywordMovieResult struct {
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	ID               int64   `json:"id"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	Overview         string  `json:"overview"`
+	PosterPath       string  `json:"poster_path"`
+	ReleaseDate      string  `json:"release_date"`
+	Title            string  `json:"title"`
+	Video            bool    `json:"video"`
+	VoteAverage      float32 `json:"vote_average"`
+	VoteCount        int64   `json:"vote_count"`
+	Popularity       float32 `json:"popularity"`
+}
+
 // GetKeywordDetails get keyword details by id.
 //
 // https://developers.themoviedb.org/3/keywords/get-keyword-details
@@ -24,30 +50,6 @@ func (c *Client) GetKeywordDetails(id int64) (*KeywordDetails, error) {
 		return nil, err
 	}
 	return &keywordDetails, nil
-}
-
-// KeywordMovies type is a struct for movies that belong to a keyword JSON response.
-type KeywordMovies struct {
-	ID      int64 `json:"id"`
-	Page    int64 `json:"page"`
-	Results []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		PosterPath       string  `json:"poster_path"`
-		ReleaseDate      string  `json:"release_date"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		VoteAverage      float32 `json:"vote_average"`
-		VoteCount        int64   `json:"vote_count"`
-		Popularity       float32 `json:"popularity"`
-	} `json:"results"`
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
 }
 
 // GetKeywordMovies get the movies that belong to a keyword.

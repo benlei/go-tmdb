@@ -32,14 +32,14 @@ func (suite *TMBDTestSuite) TestGetWatchProvidersMovieFail() {
 	suite.NotNil(err)
 }
 
-func (suite *TMBDTestSuite) TestGetWatchProvidersTv() {
-	watchProviders, err := suite.client.GetWatchProvidersTv(nil)
+func (suite *TMBDTestSuite) TestGetWatchProvidersTV() {
+	watchProviders, err := suite.client.GetWatchProvidersTV(nil)
 	suite.Nil(err)
 	suite.NotNil(watchProviders)
 }
 
-func (suite *TMBDTestSuite) TestGetWatchProvidersTvFail() {
+func (suite *TMBDTestSuite) TestGetWatchProvidersTVFail() {
 	suite.client.apiKey = ""
-	_, err := suite.client.GetWatchProvidersTv(nil)
+	_, err := suite.client.GetWatchProvidersTV(nil)
 	suite.NotNil(err)
 }

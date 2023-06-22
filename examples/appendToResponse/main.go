@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 
 	tmdb "github.com/benlei/go-tmdb"
 )
 
 func main() {
-	tmdbClient, err := tmdb.Init(os.Getenv("APIKey"))
+	godotenv.Load()
+	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
 
 	if err != nil {
 		fmt.Println(err)
@@ -25,6 +27,6 @@ func main() {
 	}
 
 	for _, v := range movie.MovieWatchProvidersAppend.WatchProviders.Results {
-		fmt.Println(v.Flatrate)
+		fmt.Println(v.FlatRate)
 	}
 }

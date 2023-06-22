@@ -10,6 +10,14 @@ type DiscoverMovie struct {
 	*DiscoverMovieResults
 }
 
+// DiscoverTV type is a struct for tv JSON response.
+type DiscoverTV struct {
+	Page         int64 `json:"page"`
+	TotalResults int64 `json:"total_results"`
+	TotalPages   int64 `json:"total_pages"`
+	*DiscoverTVResults
+}
+
 // GetDiscoverMovie discover movies by different types of data like
 // average rating, number of votes, genres and certifications. You can
 // get a valid list of certifications from the  method.
@@ -50,14 +58,6 @@ func (c *Client) GetDiscoverMovie(
 		return nil, err
 	}
 	return &discoverMovie, nil
-}
-
-// DiscoverTV type is a struct for tv JSON response.
-type DiscoverTV struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	*DiscoverTVResults
 }
 
 // GetDiscoverTV Discover TV shows by different types of data like average

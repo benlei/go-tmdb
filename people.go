@@ -314,35 +314,39 @@ type PersonLatest struct {
 
 // PersonPopular type is a struct for popular JSON response.
 type PersonPopular struct {
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	Results      []struct {
-		Popularity  float32 `json:"popularity"`
-		ID          int64   `json:"id"`
-		ProfilePath string  `json:"profile_path"`
-		Name        string  `json:"name"`
-		KnownFor    []struct {
-			OriginalTitle    string   `json:"original_title,omitempty"`
-			OriginalName     string   `json:"original_name,omitempty"`
-			ID               int64    `json:"id"`
-			MediaType        string   `json:"media_type"`
-			Name             string   `json:"name,omitempty"`
-			Title            string   `json:"title,omitempty"`
-			VoteCount        int64    `json:"vote_count"`
-			VoteAverage      float32  `json:"vote_average"`
-			PosterPath       string   `json:"poster_path"`
-			FirstAirDate     string   `json:"first_air_date,omitempty"`
-			ReleaseDate      string   `json:"release_date,omitempty"`
-			Popularity       float32  `json:"popularity"`
-			GenreIDs         []int64  `json:"genre_ids"`
-			OriginalLanguage string   `json:"original_language"`
-			BackdropPath     string   `json:"backdrop_path"`
-			Overview         string   `json:"overview"`
-			OriginCountry    []string `json:"origin_country,omitempty"`
-		} `json:"known_for"`
-		Adult bool `json:"adult"`
-	} `json:"results"`
+	Page         int64                 `json:"page"`
+	TotalResults int64                 `json:"total_results"`
+	TotalPages   int64                 `json:"total_pages"`
+	Results      []PersonPopularResult `json:"results"`
+}
+
+type PersonPopularResult struct {
+	Popularity  float32                 `json:"popularity"`
+	ID          int64                   `json:"id"`
+	ProfilePath string                  `json:"profile_path"`
+	Name        string                  `json:"name"`
+	KnownFor    []PersonPopularKnownFor `json:"known_for"`
+	Adult       bool                    `json:"adult"`
+}
+
+type PersonPopularKnownFor struct {
+	OriginalTitle    string   `json:"original_title,omitempty"`
+	OriginalName     string   `json:"original_name,omitempty"`
+	ID               int64    `json:"id"`
+	MediaType        string   `json:"media_type"`
+	Name             string   `json:"name,omitempty"`
+	Title            string   `json:"title,omitempty"`
+	VoteCount        int64    `json:"vote_count"`
+	VoteAverage      float32  `json:"vote_average"`
+	PosterPath       string   `json:"poster_path"`
+	FirstAirDate     string   `json:"first_air_date,omitempty"`
+	ReleaseDate      string   `json:"release_date,omitempty"`
+	Popularity       float32  `json:"popularity"`
+	GenreIDs         []int64  `json:"genre_ids"`
+	OriginalLanguage string   `json:"original_language"`
+	BackdropPath     string   `json:"backdrop_path"`
+	Overview         string   `json:"overview"`
+	OriginCountry    []string `json:"origin_country,omitempty"`
 }
 
 // GetPersonDetails get the primary person details by id.

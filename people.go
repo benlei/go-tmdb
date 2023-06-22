@@ -77,21 +77,7 @@ type PersonTranslationsAppend struct {
 }
 
 // PersonChanges type is a struct for changes JSON response.
-type PersonChanges struct {
-	Changes []struct {
-		Key   string `json:"key"`
-		Items []struct {
-			ID            string `json:"id"`
-			Action        string `json:"action"`
-			Time          string `json:"time"`
-			OriginalValue struct {
-				Profile struct {
-					FilePath string `json:"file_path"`
-				} `json:"profile"`
-			} `json:"original_value"`
-		} `json:"items"`
-	} `json:"changes"`
-}
+type PersonChanges ChangeSet
 
 // PersonMovieCredits type is a struct for movie credits JSON response.
 type PersonMovieCredits struct {

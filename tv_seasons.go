@@ -99,22 +99,7 @@ func (c *Client) GetTVSeasonDetails(id int64, seasonNumber int, urlOptions map[s
 }
 
 // TVSeasonChanges is a struct for changes JSON response.
-type TVSeasonChanges struct {
-	Changes []struct {
-		Items []struct {
-			ID           string `json:"id"`
-			Action       string `json:"action"`
-			Time         string `json:"time"`
-			LanguageCode string `json:"iso_639_1"`
-			CountryCode  string `json:"iso_3166_1"`
-			Value        struct {
-				EpisodeID     int64 `json:"episode_id"`
-				EpisodeNumber int   `json:"episode_number"`
-			} `json:"value"`
-		} `json:"items"`
-		Key string `json:"key"`
-	} `json:"changes"`
-}
+type TVSeasonChanges ChangeSet
 
 // GetTVSeasonChanges get the changes for a TV season.
 // By default only the last 24 hours are returned.

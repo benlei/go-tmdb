@@ -2,8 +2,6 @@ package tmdb
 
 import (
 	"fmt"
-
-	jsoniter "github.com/json-iterator/go"
 )
 
 // TVEpisodeDetails type is a struct for details JSON response.
@@ -100,25 +98,7 @@ func (c *Client) GetTVEpisodeDetails(id int64, seasonNumber int, episodeNumber i
 }
 
 // TVEpisodeChanges type is a struct for changes JSON response.
-type TVEpisodeChanges struct {
-	Changes []struct {
-		Key   string `json:"key"`
-		Items []struct {
-			ID            string `json:"id"`
-			Action        string `json:"action"`
-			Time          string `json:"time"`
-			LanguageCode  string `json:"iso_639_1"`
-			CountryCode   string `json:"iso_3166_1"`
-			OriginalValue struct {
-				PersonID  int64  `json:"person_id"`
-				Character string `json:"character"`
-				Order     int64  `json:"order"`
-				CreditID  string `json:"credit_id"`
-			} `json:"original_values,omitempty"`
-			Value jsoniter.RawMessage `json:"value,omitempty"`
-		} `json:"items"`
-	} `json:"changes"`
-}
+type TVEpisodeChanges ChangeSet
 
 // GetTVEpisodeChanges get the changes for a TV episode.
 // By default only the last 24 hours are returned.

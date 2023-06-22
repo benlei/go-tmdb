@@ -168,24 +168,7 @@ type MovieAlternativeTitle struct {
 }
 
 // MovieChanges type is a struct for changes JSON response.
-type MovieChanges struct {
-	Changes []MovieChange `json:"changes"`
-}
-
-type MovieChange struct {
-	Key   string            `json:"key"`
-	Items []MovieChangeItem `json:"items"`
-}
-
-type MovieChangeItem struct {
-	ID            string       `json:"id"`
-	Action        string       `json:"action"`
-	Time          string       `json:"time"`
-	LanguageCode  string       `json:"iso_639_1,omitempty"`
-	CountryCode   string       `json:"iso_3166_1,omitempty"`
-	Value         jsoniter.Any `json:"value"`
-	OriginalValue jsoniter.Any `json:"original_value,omitempty"`
-}
+type MovieChanges ChangeSet
 
 // MovieCredits type is a struct for credits JSON response.
 type MovieCredits struct {

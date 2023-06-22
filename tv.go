@@ -351,20 +351,7 @@ func (c *Client) GetTVAlternativeTitles(id int64, urlOptions map[string]string) 
 }
 
 // TVChanges type is a struct for changes JSON response.
-type TVChanges struct {
-	Changes []struct {
-		Key   string `json:"key"`
-		Items []struct {
-			ID            string              `json:"id"`
-			Action        string              `json:"action"`
-			Time          string              `json:"time"`
-			LanguageCode  string              `json:"iso_639_1"`
-			CountryCode   string              `json:"iso_3166_1"`
-			Value         jsoniter.RawMessage `json:"value"`
-			OriginalValue jsoniter.RawMessage `json:"original_value"`
-		} `json:"items"`
-	} `json:"changes"`
-}
+type TVChanges ChangeSet
 
 // GetTVChanges get the changes for a TV show.
 //

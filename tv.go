@@ -270,31 +270,35 @@ type TVContentRatings struct {
 
 // TVCredits type is a struct for credits JSON response.
 type TVCredits struct {
-	ID   int64 `json:"id,omitempty"`
-	Cast []struct {
-		Character          string  `json:"character"`
-		CreditID           string  `json:"credit_id"`
-		Gender             int     `json:"gender"`
-		ID                 int64   `json:"id"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		Order              int     `json:"order"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float32 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"cast"`
-	Crew []struct {
-		CreditID           string  `json:"credit_id"`
-		Department         string  `json:"department"`
-		Gender             int     `json:"gender"`
-		ID                 int64   `json:"id"`
-		Job                string  `json:"job"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float32 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"crew"`
+	ID   int64          `json:"id,omitempty"`
+	Cast []TVCreditCast `json:"cast"`
+	Crew []TVCreditCrew `json:"crew"`
+}
+
+type TVCreditCast struct {
+	Character          string  `json:"character"`
+	CreditID           string  `json:"credit_id"`
+	Gender             int     `json:"gender"`
+	ID                 int64   `json:"id"`
+	KnownForDepartment string  `json:"known_for_department"`
+	Name               string  `json:"name"`
+	Order              int     `json:"order"`
+	OriginalName       string  `json:"original_name"`
+	Popularity         float32 `json:"popularity"`
+	ProfilePath        string  `json:"profile_path"`
+}
+
+type TVCreditCrew struct {
+	CreditID           string  `json:"credit_id"`
+	Department         string  `json:"department"`
+	Gender             int     `json:"gender"`
+	ID                 int64   `json:"id"`
+	Job                string  `json:"job"`
+	KnownForDepartment string  `json:"known_for_department"`
+	Name               string  `json:"name"`
+	OriginalName       string  `json:"original_name"`
+	Popularity         float32 `json:"popularity"`
+	ProfilePath        string  `json:"profile_path"`
 }
 
 // TVEpisodeGroups type is a struct for episode groups JSON response.

@@ -22,6 +22,19 @@ type ParentCompany struct {
 	LogoPath string `json:"logo_path"`
 }
 
+// CompanyAlternativeNames type is a struct for alternative
+// names JSON response.
+type CompanyAlternativeNames struct {
+	ID int64 `json:"id"`
+	*CompanyAlternativeNamesResults
+}
+
+// CompanyImages type is a struct for images JSON response.
+type CompanyImages struct {
+	ID    int64   `json:"id"`
+	Logos []Image `json:"logos"`
+}
+
 // GetCompanyDetails get a companies details by id.
 //
 // https://developers.themoviedb.org/3/companies/get-company-details
@@ -40,13 +53,6 @@ func (c *Client) GetCompanyDetails(id int64) (*CompanyDetails, error) {
 	return &companyDetails, nil
 }
 
-// CompanyAlternativeNames type is a struct for alternative
-// names JSON response.
-type CompanyAlternativeNames struct {
-	ID int64 `json:"id"`
-	*CompanyAlternativeNamesResults
-}
-
 // GetCompanyAlternativeNames get the alternative names of a company.
 //
 // https://developers.themoviedb.org/3/companies/get-company-alternative-names
@@ -63,12 +69,6 @@ func (c *Client) GetCompanyAlternativeNames(id int64) (*CompanyAlternativeNames,
 		return nil, err
 	}
 	return &companyAlternativeNames, nil
-}
-
-// CompanyImages type is a struct for images JSON response.
-type CompanyImages struct {
-	ID    int64   `json:"id"`
-	Logos []Image `json:"logos"`
 }
 
 // GetCompanyImages get a companies logos by id.

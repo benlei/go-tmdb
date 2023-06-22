@@ -41,27 +41,6 @@ type CertificationMovie struct {
 	Certifications MovieCertifications `json:"certifications"`
 }
 
-// GetCertificationMovie get an up to date list of the
-// officially supported movie certifications on TMDb.
-//
-// https://developers.themoviedb.org/3/certifications/get-movie-certifications
-func (c *Client) GetCertificationMovie() (
-	*CertificationMovie,
-	error,
-) {
-	tmdbURL := fmt.Sprintf(
-		"%s/certification%slist?api_key=%s",
-		baseURL,
-		movieURL,
-		c.apiKey,
-	)
-	certificationMovie := CertificationMovie{}
-	if err := c.get(tmdbURL, &certificationMovie); err != nil {
-		return nil, err
-	}
-	return &certificationMovie, nil
-}
-
 type TVCertifications struct {
 	AU    []*Certification `json:"AU"`
 	BR    []*Certification `json:"BR"`
@@ -86,6 +65,27 @@ type TVCertifications struct {
 // CertificationTV type is a struct for tv certifications JSON response.
 type CertificationTV struct {
 	Certifications TVCertifications `json:"certifications"`
+}
+
+// GetCertificationMovie get an up to date list of the
+// officially supported movie certifications on TMDb.
+//
+// https://developers.themoviedb.org/3/certifications/get-movie-certifications
+func (c *Client) GetCertificationMovie() (
+	*CertificationMovie,
+	error,
+) {
+	tmdbURL := fmt.Sprintf(
+		"%s/certification%slist?api_key=%s",
+		baseURL,
+		movieURL,
+		c.apiKey,
+	)
+	certificationMovie := CertificationMovie{}
+	if err := c.get(tmdbURL, &certificationMovie); err != nil {
+		return nil, err
+	}
+	return &certificationMovie, nil
 }
 
 // GetCertificationTV get an up to date list of the

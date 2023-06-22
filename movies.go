@@ -331,6 +331,9 @@ type MoviePopular struct {
 // MovieTopRated type is a struct for top rated JSON response.
 type MovieTopRated MoviePopular
 
+// MovieUpcoming type is a struct for upcoming JSON response.
+type MovieUpcoming MovieNowPlaying
+
 // GetMovieDetails get the primary information about a movie.
 //
 // https://developers.themoviedb.org/3/movies
@@ -763,11 +766,6 @@ func (c *Client) GetMovieTopRated(
 		return nil, err
 	}
 	return &movieTopRated, nil
-}
-
-// MovieUpcoming type is a struct for upcoming JSON response.
-type MovieUpcoming struct {
-	*MovieNowPlaying
 }
 
 // GetMovieUpcoming get a list of upcoming movies in theatres.

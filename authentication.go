@@ -12,6 +12,24 @@ type RequestToken struct {
 	RequestToken   string `json:"request_token,omitempty"`
 }
 
+// AccessToken type is a struct for access token JSON request.
+type AccessToken struct {
+	AccessToken string `json:"access_token"`
+}
+
+// Session type is a struct for session JSON response.
+type Session struct {
+	Success   bool   `json:"success"`
+	SessionID string `json:"session_id"`
+}
+
+// SessionWithLogin type is a struct for session with login JSON response.
+type SessionWithLogin struct {
+	Username     string `json:"username"`
+	Password     string `json:"password"`
+	RequestToken string `json:"request_token"`
+}
+
 // CreateGuestSession creates a temporary request token
 // that can be used to validate a TMDb user login.
 //
@@ -46,24 +64,6 @@ func (c *Client) CreateRequestToken() (*RequestToken, error) {
 		return nil, err
 	}
 	return &requestToken, nil
-}
-
-// AccessToken type is a struct for access token JSON request.
-type AccessToken struct {
-	AccessToken string `json:"access_token"`
-}
-
-// Session type is a struct for session JSON response.
-type Session struct {
-	Success   bool   `json:"success"`
-	SessionID string `json:"session_id"`
-}
-
-// SessionWithLogin type is a struct for session with login JSON response.
-type SessionWithLogin struct {
-	Username     string `json:"username"`
-	Password     string `json:"password"`
-	RequestToken string `json:"request_token"`
 }
 
 // CreateSession creates a new session id.

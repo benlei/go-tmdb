@@ -54,6 +54,66 @@ type AccountCreatedLists struct {
 	TotalResults int64 `json:"total_results"`
 }
 
+// AccountFavoriteMovies type is a struct for favorite movies JSON response.
+type AccountFavoriteMovies struct {
+	Page int64 `json:"page"`
+	*AccountFavoriteMoviesResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// AccountFavoriteTVShows type is a struct for favorite tv shows JSON response.
+type AccountFavoriteTVShows struct {
+	Page int64 `json:"page"`
+	*AccountFavoriteTVShowsResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// AccountFavorite type is a struct for movies or TV shows
+// favorite JSON request.
+type AccountFavorite struct {
+	MediaType string `json:"media_type"`
+	MediaID   int64  `json:"media_id"`
+	Favorite  bool   `json:"favorite"`
+}
+
+// AccountRatedMovies type is a struct for rated movies JSON response.
+type AccountRatedMovies struct {
+	*AccountFavoriteMovies
+}
+
+// AccountRatedTVShows type is a struct for rated TV shows JSON response.
+type AccountRatedTVShows struct {
+	*AccountFavoriteTVShows
+}
+
+// AccountRatedTVEpisodes type is a struct for rated TV episodes JSON response.
+type AccountRatedTVEpisodes struct {
+	Page int64 `json:"page"`
+	*AccountRatedTVEpisodesResults
+	TotalPages   int64 `json:"total_pages"`
+	TotalResults int64 `json:"total_results"`
+}
+
+// AccountMovieWatchlist type is a struct for movie watchlist JSON response.
+type AccountMovieWatchlist struct {
+	*AccountFavoriteMovies
+}
+
+// AccountTVShowsWatchlist type is a struct for tv shows watchlist JSON response.
+type AccountTVShowsWatchlist struct {
+	*AccountFavoriteTVShows
+}
+
+// AccountWatchlist type is a struct for movies or TV shows
+// watchlist JSON request.
+type AccountWatchlist struct {
+	MediaType string `json:"media_type"`
+	MediaID   int64  `json:"media_id"`
+	Watchlist bool   `json:"watchlist"`
+}
+
 // GetCreatedLists get all of the lists created by an account.
 // Will invlude private lists if you are the owner.
 //
@@ -74,14 +134,6 @@ func (c *Client) GetCreatedLists(id int64, urlOptions map[string]string) (*Accou
 		return nil, err
 	}
 	return &createdLists, nil
-}
-
-// AccountFavoriteMovies type is a struct for favorite movies JSON response.
-type AccountFavoriteMovies struct {
-	Page int64 `json:"page"`
-	*AccountFavoriteMoviesResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
 }
 
 // GetFavoriteMovies get the list of your favorite movies.
@@ -105,14 +157,6 @@ func (c *Client) GetFavoriteMovies(id int64, urlOptions map[string]string) (*Acc
 	return &favoriteMovies, nil
 }
 
-// AccountFavoriteTVShows type is a struct for favorite tv shows JSON response.
-type AccountFavoriteTVShows struct {
-	Page int64 `json:"page"`
-	*AccountFavoriteTVShowsResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetFavoriteTVShows get the list of your favorite TV shows.
 //
 // https://developers.themoviedb.org/3/account/get-favorite-tv-shows
@@ -132,14 +176,6 @@ func (c *Client) GetFavoriteTVShows(id int64, urlOptions map[string]string) (*Ac
 		return nil, err
 	}
 	return &favoriteTVShows, nil
-}
-
-// AccountFavorite type is a struct for movies or TV shows
-// favorite JSON request.
-type AccountFavorite struct {
-	MediaType string `json:"media_type"`
-	MediaID   int64  `json:"media_id"`
-	Favorite  bool   `json:"favorite"`
 }
 
 // MarkAsFavorite this method allows you to mark a movie
@@ -167,11 +203,6 @@ func (c *Client) MarkAsFavorite(id int64, title *AccountFavorite) (*Response, er
 	return &markAsFavorite, nil
 }
 
-// AccountRatedMovies type is a struct for rated movies JSON response.
-type AccountRatedMovies struct {
-	*AccountFavoriteMovies
-}
-
 // GetRatedMovies get a list of all the movies you have rated.
 //
 // https://developers.themoviedb.org/3/account/get-rated-movies
@@ -191,11 +222,6 @@ func (c *Client) GetRatedMovies(id int64, urlOptions map[string]string) (*Accoun
 		return nil, err
 	}
 	return &ratedMovies, nil
-}
-
-// AccountRatedTVShows type is a struct for rated TV shows JSON response.
-type AccountRatedTVShows struct {
-	*AccountFavoriteTVShows
 }
 
 // GetRatedTVShows get a list of all the TV shows you have rated.
@@ -219,14 +245,6 @@ func (c *Client) GetRatedTVShows(id int64, urlOptions map[string]string) (*Accou
 	return &ratedTVShows, nil
 }
 
-// AccountRatedTVEpisodes type is a struct for rated TV episodes JSON response.
-type AccountRatedTVEpisodes struct {
-	Page int64 `json:"page"`
-	*AccountRatedTVEpisodesResults
-	TotalPages   int64 `json:"total_pages"`
-	TotalResults int64 `json:"total_results"`
-}
-
 // GetRatedTVEpisodes get a list of all the TV episodes you have rated.
 //
 // https://developers.themoviedb.org/3/account/get-rated-tv-episodes
@@ -246,11 +264,6 @@ func (c *Client) GetRatedTVEpisodes(id int64, urlOptions map[string]string) (*Ac
 		return nil, err
 	}
 	return &ratedTVEpisodes, nil
-}
-
-// AccountMovieWatchlist type is a struct for movie watchlist JSON response.
-type AccountMovieWatchlist struct {
-	*AccountFavoriteMovies
 }
 
 // GetMovieWatchlist get a list of all the movies you have added to your watchlist.
@@ -274,11 +287,6 @@ func (c *Client) GetMovieWatchlist(id int64, urlOptions map[string]string) (*Acc
 	return &movieWatchlist, nil
 }
 
-// AccountTVShowsWatchlist type is a struct for tv shows watchlist JSON response.
-type AccountTVShowsWatchlist struct {
-	*AccountFavoriteTVShows
-}
-
 // GetTVShowsWatchlist get a list of all the TV shows you have added to your watchlist.
 //
 // https://developers.themoviedb.org/3/account/get-tv-show-watchlist
@@ -298,14 +306,6 @@ func (c *Client) GetTVShowsWatchlist(id int64, urlOptions map[string]string) (*A
 		return nil, err
 	}
 	return &tvShowsWatchlist, nil
-}
-
-// AccountWatchlist type is a struct for movies or TV shows
-// watchlist JSON request.
-type AccountWatchlist struct {
-	MediaType string `json:"media_type"`
-	MediaID   int64  `json:"media_id"`
-	Watchlist bool   `json:"watchlist"`
 }
 
 // AddToWatchlist add a movie or TV show to your watchlist.

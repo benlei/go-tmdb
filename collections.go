@@ -52,22 +52,6 @@ type CollectionImages struct {
 	Posters   []Image `json:"posters"`
 }
 
-// GetCollectionImages get the images for a collection by id.
-//
-// https://developers.themoviedb.org/3/collections/get-collection-images
-func (c *Client) GetCollectionImages(id int64, urlOptions map[string]string) (*CollectionImages, error) {
-	options := c.fmtOptions(urlOptions)
-	tmdbURL := fmt.Sprintf(
-		"%s%s%d/images?api_key=%s%s",
-		baseURL, collectionURL, id, c.apiKey, options,
-	)
-	collectionImages := CollectionImages{}
-	if err := c.get(tmdbURL, &collectionImages); err != nil {
-		return nil, err
-	}
-	return &collectionImages, nil
-}
-
 // CollectionTranslations type is a struct for translations JSON response.
 type CollectionTranslations struct {
 	ID           int64                   `json:"id"`
@@ -86,6 +70,22 @@ type CollectionTranslationData struct {
 	Title    string `json:"title"`
 	Overview string `json:"overview"`
 	Homepage string `json:"homepage"`
+}
+
+// GetCollectionImages get the images for a collection by id.
+//
+// https://developers.themoviedb.org/3/collections/get-collection-images
+func (c *Client) GetCollectionImages(id int64, urlOptions map[string]string) (*CollectionImages, error) {
+	options := c.fmtOptions(urlOptions)
+	tmdbURL := fmt.Sprintf(
+		"%s%s%d/images?api_key=%s%s",
+		baseURL, collectionURL, id, c.apiKey, options,
+	)
+	collectionImages := CollectionImages{}
+	if err := c.get(tmdbURL, &collectionImages); err != nil {
+		return nil, err
+	}
+	return &collectionImages, nil
 }
 
 // GetCollectionTranslations get the list translations for a collection by id.

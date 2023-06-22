@@ -241,50 +241,58 @@ type PersonImages struct {
 
 // PersonTaggedImages type is a struct for tagged images JSON response.
 type PersonTaggedImages struct {
-	ID           int64 `json:"id"`
-	Page         int64 `json:"page"`
-	TotalResults int64 `json:"total_results"`
-	TotalPages   int64 `json:"total_pages"`
-	Results      []struct {
-		LanguageCode string  `json:"iso_639_1"`
-		VoteCount    int64   `json:"vote_count"`
-		MediaType    string  `json:"media_type"`
-		FilePath     string  `json:"file_path"`
-		AspectRatio  float32 `json:"aspect_ratio"`
-		Media        struct {
-			Popularity       float32 `json:"popularity"`
-			VoteCount        int64   `json:"vote_count"`
-			Video            bool    `json:"video"`
-			PosterPath       string  `json:"poster_path"`
-			ID               int64   `json:"id"`
-			Adult            bool    `json:"adult"`
-			BackdropPath     string  `json:"backdrop_path"`
-			OriginalLanguage string  `json:"original_language"`
-			OriginalTitle    string  `json:"original_title"`
-			GenreIDs         []int64 `json:"genre_ids"`
-			Title            string  `json:"title"`
-			VoteAverage      float32 `json:"vote_average"`
-			Overview         string  `json:"overview"`
-			ReleaseDate      string  `json:"release_date"`
-		} `json:"media"`
-		Height      int     `json:"height"`
-		VoteAverage float32 `json:"vote_average"`
-		Width       int     `json:"width"`
-	} `json:"results"`
+	ID           int64                     `json:"id"`
+	Page         int64                     `json:"page"`
+	TotalResults int64                     `json:"total_results"`
+	TotalPages   int64                     `json:"total_pages"`
+	Results      []PersonTaggedImageResult `json:"results"`
+}
+
+type PersonTaggedImageResult struct {
+	LanguageCode string                 `json:"iso_639_1"`
+	VoteCount    int64                  `json:"vote_count"`
+	MediaType    string                 `json:"media_type"`
+	FilePath     string                 `json:"file_path"`
+	AspectRatio  float32                `json:"aspect_ratio"`
+	Media        PersonTaggedImageMedia `json:"media"`
+	Height       int                    `json:"height"`
+	VoteAverage  float32                `json:"vote_average"`
+	Width        int                    `json:"width"`
+}
+
+type PersonTaggedImageMedia struct {
+	Popularity       float32 `json:"popularity"`
+	VoteCount        int64   `json:"vote_count"`
+	Video            bool    `json:"video"`
+	PosterPath       string  `json:"poster_path"`
+	ID               int64   `json:"id"`
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	OriginalLanguage string  `json:"original_language"`
+	OriginalTitle    string  `json:"original_title"`
+	GenreIDs         []int64 `json:"genre_ids"`
+	Title            string  `json:"title"`
+	VoteAverage      float32 `json:"vote_average"`
+	Overview         string  `json:"overview"`
+	ReleaseDate      string  `json:"release_date"`
 }
 
 // PersonTranslations type is a struct for translations JSON response.
 type PersonTranslations struct {
-	Translations []struct {
-		LanguageCode string `json:"iso_639_1"`
-		CountryCode  string `json:"iso_3166_1"`
-		Name         string `json:"name"`
-		Data         struct {
-			Biography string `json:"biography"`
-		} `json:"data"`
-		EnglishName string `json:"english_name"`
-	} `json:"translations"`
-	ID int64 `json:"id,omitempty"`
+	Translations []PersonTranslation `json:"translations"`
+	ID           int64               `json:"id,omitempty"`
+}
+
+type PersonTranslation struct {
+	LanguageCode string                `json:"iso_639_1"`
+	CountryCode  string                `json:"iso_3166_1"`
+	Name         string                `json:"name"`
+	Data         PersonTranslationData `json:"data"`
+	EnglishName  string                `json:"english_name"`
+}
+
+type PersonTranslationData struct {
+	Biography string `json:"biography"`
 }
 
 // PersonLatest type is a struct for latest JSON response.

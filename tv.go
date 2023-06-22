@@ -208,41 +208,49 @@ type TVAccountStates struct {
 
 // TVAggregateCredits type is a struct for aggregate credits JSON response.
 type TVAggregateCredits struct {
-	ID   int64 `json:"id,omitempty"`
-	Cast []struct {
-		ID                 int64   `json:"id"`
-		Adult              bool    `json:"adult"`
-		Gender             int     `json:"gender"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		Order              int     `json:"order"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float64 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-		Roles              []struct {
-			Character    string `json:"character"`
-			CreditID     string `json:"credit_id"`
-			EpisodeCount int    `json:"episode_count"`
-		} `json:"roles"`
-		TotalEpisodeCount int `json:"total_episode_count"`
-	} `json:"cast"`
-	Crew []struct {
-		ID         int64  `json:"id"`
-		Adult      bool   `json:"adult"`
-		Department string `json:"department"`
-		Gender     int    `json:"gender"`
-		Jobs       []struct {
-			CreditID     string `json:"credit_id"`
-			EpisodeCount int    `json:"episode_count"`
-			Job          string `json:"job"`
-		} `json:"jobs"`
-		TotalEpisodeCount  int     `json:"total_episode_count"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
-		Popularity         float64 `json:"popularity"`
-		ProfilePath        string  `json:"profile_path"`
-	} `json:"crew"`
+	ID   int64                   `json:"id,omitempty"`
+	Cast []TVAggregateCreditCast `json:"cast"`
+	Crew []TVAggregateCreditCrew `json:"crew"`
+}
+
+type TVAggregateCreditCast struct {
+	ID                 int64                       `json:"id"`
+	Adult              bool                        `json:"adult"`
+	Gender             int                         `json:"gender"`
+	KnownForDepartment string                      `json:"known_for_department"`
+	Name               string                      `json:"name"`
+	Order              int                         `json:"order"`
+	OriginalName       string                      `json:"original_name"`
+	Popularity         float64                     `json:"popularity"`
+	ProfilePath        string                      `json:"profile_path"`
+	Roles              []TVAggregateCreditCastRole `json:"roles"`
+	TotalEpisodeCount  int                         `json:"total_episode_count"`
+}
+
+type TVAggregateCreditCastRole struct {
+	Character    string `json:"character"`
+	CreditID     string `json:"credit_id"`
+	EpisodeCount int    `json:"episode_count"`
+}
+
+type TVAggregateCreditCrew struct {
+	ID                 int64                      `json:"id"`
+	Adult              bool                       `json:"adult"`
+	Department         string                     `json:"department"`
+	Gender             int                        `json:"gender"`
+	Jobs               []TVAggregateCreditCrewJob `json:"jobs"`
+	TotalEpisodeCount  int                        `json:"total_episode_count"`
+	KnownForDepartment string                     `json:"known_for_department"`
+	Name               string                     `json:"name"`
+	OriginalName       string                     `json:"original_name"`
+	Popularity         float64                    `json:"popularity"`
+	ProfilePath        string                     `json:"profile_path"`
+}
+
+type TVAggregateCreditCrewJob struct {
+	CreditID     string `json:"credit_id"`
+	EpisodeCount int    `json:"episode_count"`
+	Job          string `json:"job"`
 }
 
 // TVAlternativeTitles type is a struct for alternative titles JSON response.
@@ -355,19 +363,23 @@ type TVSimilar TVRecommendations
 
 // TVTranslations type is a struct for translations JSON response.
 type TVTranslations struct {
-	ID           int64 `json:"id,omitempty"`
-	Translations []struct {
-		CountryCode  string `json:"iso_3166_1"`
-		LanguageCode string `json:"iso_639_1"`
-		Name         string `json:"name"`
-		EnglishName  string `json:"english_name"`
-		Data         struct {
-			Name     string `json:"name"`
-			Overview string `json:"overview"`
-			Tagline  string `json:"tagline"`
-			Homepage string `json:"homepage"`
-		} `json:"data"`
-	} `json:"translations"`
+	ID           int64           `json:"id,omitempty"`
+	Translations []TVTranslation `json:"translations"`
+}
+
+type TVTranslation struct {
+	CountryCode  string            `json:"iso_3166_1"`
+	LanguageCode string            `json:"iso_639_1"`
+	Name         string            `json:"name"`
+	EnglishName  string            `json:"english_name"`
+	Data         TVTranslationData `json:"data"`
+}
+
+type TVTranslationData struct {
+	Name     string `json:"name"`
+	Overview string `json:"overview"`
+	Tagline  string `json:"tagline"`
+	Homepage string `json:"homepage"`
 }
 
 // TVVideos type is a struct for videos JSON response.

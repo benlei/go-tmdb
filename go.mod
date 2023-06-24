@@ -1,4 +1,4 @@
-module github.com/benlei/go-tmdb
+module github.com/benlei/go-tmdb/v2
 
 go 1.13
 

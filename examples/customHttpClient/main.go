@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	tmdb "github.com/benlei/go-tmdb"
+	tmdb "github.com/benlei/go-tmdb/v2"
 )
 
 func main() {

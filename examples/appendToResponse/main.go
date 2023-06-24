@@ -5,7 +5,7 @@ import (
 	"github.com/joho/godotenv"
 	"os"
 
-	tmdb "github.com/benlei/go-tmdb"
+	tmdb "github.com/benlei/go-tmdb/v2"
 )
 
 func main() {

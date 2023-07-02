@@ -7,26 +7,26 @@ import (
 
 // SearchCompanies type is a struct for companies JSON response.
 type SearchCompanies struct {
-	Page int64 `json:"page"`
-	*SearchCompaniesResults
+	Page         int64 `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
+	*SearchCompaniesResults
 }
 
 // SearchCollections type is a strcut for collections JSON response.
 type SearchCollections struct {
-	Page int64 `json:"page"`
-	*SearchCollectionsResults
+	Page         int64 `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
+	*SearchCollectionsResults
 }
 
 // SearchKeywords type is a struct for keywords JSON response.
 type SearchKeywords struct {
-	Page int64 `json:"page"`
-	*SearchKeywordsResults
+	Page         int64 `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
+	*SearchKeywordsResults
 }
 
 // SearchMovies type is a struct for movies JSON response.
@@ -39,10 +39,10 @@ type SearchMovies struct {
 
 // SearchMulti type is a struct for multi JSON response.
 type SearchMulti struct {
-	Page int `json:"page"`
-	*SearchMultiResults
+	Page         int   `json:"page"`
 	TotalResults int64 `json:"total_results"`
 	TotalPages   int64 `json:"total_pages"`
+	*SearchMultiResults
 }
 
 // SearchPeople type is a struct for people JSON response.

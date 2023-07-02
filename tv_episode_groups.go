@@ -8,22 +8,22 @@ import (
 
 // TVEpisodeGroupsDetails type is a struct for details JSON response.
 type TVEpisodeGroupsDetails struct {
-	Description  string                `json:"description"`
-	EpisodeCount int                   `json:"episode_count"`
-	GroupCount   int                   `json:"group_count"`
-	Groups       []TVEpisodeGroup      `json:"groups"`
-	ID           string                `json:"id"`
-	Name         string                `json:"name"`
-	Network      TVEpisodeGroupNetwork `json:"network"`
-	Type         int                   `json:"type"`
+	Description  string                 `json:"description"`
+	EpisodeCount int                    `json:"episode_count"`
+	GroupCount   int                    `json:"group_count"`
+	Groups       []*TVEpisodeGroup      `json:"groups"`
+	ID           string                 `json:"id"`
+	Name         string                 `json:"name"`
+	Network      *TVEpisodeGroupNetwork `json:"network"`
+	Type         int                    `json:"type"`
 }
 
 type TVEpisodeGroup struct {
-	ID       string                  `json:"id"`
-	Name     string                  `json:"name"`
-	Order    int                     `json:"order"`
-	Episodes []TVEpisodeGroupEpisode `json:"episodes"`
-	Locked   bool                    `json:"locked"`
+	ID       string                   `json:"id"`
+	Name     string                   `json:"name"`
+	Order    int                      `json:"order"`
+	Episodes []*TVEpisodeGroupEpisode `json:"episodes"`
+	Locked   bool                     `json:"locked"`
 }
 
 type TVEpisodeGroupEpisode struct {

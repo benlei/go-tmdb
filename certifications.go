@@ -10,61 +10,61 @@ type Certification struct {
 }
 
 type MovieCertifications struct {
-	AU    []Certification `json:"AU"`
-	BG    []Certification `json:"BG"`
-	BR    []Certification `json:"BR"`
-	CA    []Certification `json:"CA"`
-	CA_QC []Certification `json:"CA-QC"`
-	DE    []Certification `json:"DE"`
-	DK    []Certification `json:"DK"`
-	ES    []Certification `json:"ES"`
-	FI    []Certification `json:"FI"`
-	FR    []Certification `json:"FR"`
-	GB    []Certification `json:"GB"`
-	HU    []Certification `json:"HU"`
-	IN    []Certification `json:"IN"`
-	IT    []Certification `json:"IT"`
-	LT    []Certification `json:"LT"`
-	MY    []Certification `json:"MY"`
-	NL    []Certification `json:"NL"`
-	NO    []Certification `json:"NO"`
-	NZ    []Certification `json:"NZ"`
-	PH    []Certification `json:"PH"`
-	PT    []Certification `json:"PT"`
-	RU    []Certification `json:"RU"`
-	SE    []Certification `json:"SE"`
-	US    []Certification `json:"US"`
+	AU    []*Certification `json:"AU"`
+	BG    []*Certification `json:"BG"`
+	BR    []*Certification `json:"BR"`
+	CA    []*Certification `json:"CA"`
+	CA_QC []*Certification `json:"CA-QC"`
+	DE    []*Certification `json:"DE"`
+	DK    []*Certification `json:"DK"`
+	ES    []*Certification `json:"ES"`
+	FI    []*Certification `json:"FI"`
+	FR    []*Certification `json:"FR"`
+	GB    []*Certification `json:"GB"`
+	HU    []*Certification `json:"HU"`
+	IN    []*Certification `json:"IN"`
+	IT    []*Certification `json:"IT"`
+	LT    []*Certification `json:"LT"`
+	MY    []*Certification `json:"MY"`
+	NL    []*Certification `json:"NL"`
+	NO    []*Certification `json:"NO"`
+	NZ    []*Certification `json:"NZ"`
+	PH    []*Certification `json:"PH"`
+	PT    []*Certification `json:"PT"`
+	RU    []*Certification `json:"RU"`
+	SE    []*Certification `json:"SE"`
+	US    []*Certification `json:"US"`
 }
 
 // CertificationMovie type is a struct for movie certifications JSON response.
 type CertificationMovie struct {
-	Certifications MovieCertifications `json:"certifications"`
+	Certifications *MovieCertifications `json:"certifications"`
 }
 
 type TVCertifications struct {
-	AU    []Certification `json:"AU"`
-	BR    []Certification `json:"BR"`
-	CA    []Certification `json:"CA"`
-	CA_QC []Certification `json:"CA-QC"`
-	DE    []Certification `json:"DE"`
-	ES    []Certification `json:"ES"`
-	FR    []Certification `json:"FR"`
-	GB    []Certification `json:"GB"`
-	HU    []Certification `json:"HU"`
-	KR    []Certification `json:"KR"`
-	LT    []Certification `json:"LT"`
-	NL    []Certification `json:"NL"`
-	PH    []Certification `json:"PH"`
-	PT    []Certification `json:"PT"`
-	RU    []Certification `json:"RU"`
-	SK    []Certification `json:"SK"`
-	TH    []Certification `json:"TH"`
-	US    []Certification `json:"US"`
+	AU    []*Certification `json:"AU"`
+	BR    []*Certification `json:"BR"`
+	CA    []*Certification `json:"CA"`
+	CA_QC []*Certification `json:"CA-QC"`
+	DE    []*Certification `json:"DE"`
+	ES    []*Certification `json:"ES"`
+	FR    []*Certification `json:"FR"`
+	GB    []*Certification `json:"GB"`
+	HU    []*Certification `json:"HU"`
+	KR    []*Certification `json:"KR"`
+	LT    []*Certification `json:"LT"`
+	NL    []*Certification `json:"NL"`
+	PH    []*Certification `json:"PH"`
+	PT    []*Certification `json:"PT"`
+	RU    []*Certification `json:"RU"`
+	SK    []*Certification `json:"SK"`
+	TH    []*Certification `json:"TH"`
+	US    []*Certification `json:"US"`
 }
 
 // CertificationTV type is a struct for tv certifications JSON response.
 type CertificationTV struct {
-	Certifications TVCertifications `json:"certifications"`
+	Certifications *TVCertifications `json:"certifications"`
 }
 
 // GetCertificationMovie get an up to date list of the

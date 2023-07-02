@@ -23,12 +23,12 @@ type ChangesPerson Changes
 
 // ChangeSet type is a struct for changes JSON response.
 type ChangeSet struct {
-	Changes []ChangeSetItems `json:"changes"`
+	Changes []*ChangeSetItems `json:"changes"`
 }
 
 type ChangeSetItems struct {
-	Key   string          `json:"key"`
-	Items []ChangeSetItem `json:"items"`
+	Key   string           `json:"key"`
+	Items []*ChangeSetItem `json:"items"`
 }
 
 type ChangeSetItem struct {

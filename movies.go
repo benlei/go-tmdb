@@ -9,31 +9,31 @@ import (
 
 // MovieDetails type is a struct for movie details JSON response.
 type MovieDetails struct {
-	Adult               bool                     `json:"adult"`
-	BackdropPath        string                   `json:"backdrop_path"`
-	BelongsToCollection MovieCollection          `json:"belongs_to_collection"`
-	Budget              int64                    `json:"budget"`
-	Genres              []Genre                  `json:"genres"`
-	Homepage            string                   `json:"homepage"`
-	ID                  int64                    `json:"id"`
-	IMDbID              string                   `json:"imdb_id"`
-	OriginalLanguage    string                   `json:"original_language"`
-	OriginalTitle       string                   `json:"original_title"`
-	Overview            string                   `json:"overview"`
-	Popularity          float32                  `json:"popularity"`
-	PosterPath          string                   `json:"poster_path"`
-	ProductionCompanies []MovieProductionCompany `json:"production_companies"`
-	ProductionCountries []MovieProductionCountry `json:"production_countries"`
-	ReleaseDate         string                   `json:"release_date"`
-	Revenue             int64                    `json:"revenue"`
-	Runtime             int                      `json:"runtime"`
-	SpokenLanguages     []MovieSpokenLanguage    `json:"spoken_languages"`
-	Status              string                   `json:"status"`
-	Tagline             string                   `json:"tagline"`
-	Title               string                   `json:"title"`
-	Video               bool                     `json:"video"`
-	VoteAverage         float32                  `json:"vote_average"`
-	VoteCount           int64                    `json:"vote_count"`
+	Adult               bool                      `json:"adult"`
+	BackdropPath        string                    `json:"backdrop_path"`
+	BelongsToCollection *MovieCollection          `json:"belongs_to_collection"`
+	Budget              int64                     `json:"budget"`
+	Genres              []*Genre                  `json:"genres"`
+	Homepage            string                    `json:"homepage"`
+	ID                  int64                     `json:"id"`
+	IMDbID              string                    `json:"imdb_id"`
+	OriginalLanguage    string                    `json:"original_language"`
+	OriginalTitle       string                    `json:"original_title"`
+	Overview            string                    `json:"overview"`
+	Popularity          float32                   `json:"popularity"`
+	PosterPath          string                    `json:"poster_path"`
+	ProductionCompanies []*MovieProductionCompany `json:"production_companies"`
+	ProductionCountries []*MovieProductionCountry `json:"production_countries"`
+	ReleaseDate         string                    `json:"release_date"`
+	Revenue             int64                     `json:"revenue"`
+	Runtime             int                       `json:"runtime"`
+	SpokenLanguages     []*MovieSpokenLanguage    `json:"spoken_languages"`
+	Status              string                    `json:"status"`
+	Tagline             string                    `json:"tagline"`
+	Title               string                    `json:"title"`
+	Video               bool                      `json:"video"`
+	VoteAverage         float32                   `json:"vote_average"`
+	VoteCount           int64                     `json:"vote_count"`
 	*MovieAlternativeTitlesAppend
 	*MovieChangesAppend
 	*MovieCreditsAppend
@@ -157,8 +157,8 @@ type MovieAccountStates struct {
 
 // MovieAlternativeTitles type is a struct for alternative titles JSON response.
 type MovieAlternativeTitles struct {
-	ID     int                     `json:"id,omitempty"`
-	Titles []MovieAlternativeTitle `json:"titles"`
+	ID     int                      `json:"id,omitempty"`
+	Titles []*MovieAlternativeTitle `json:"titles"`
 }
 
 type MovieAlternativeTitle struct {
@@ -172,9 +172,9 @@ type MovieChanges ChangeSet
 
 // MovieCredits type is a struct for credits JSON response.
 type MovieCredits struct {
-	ID   int64       `json:"id,omitempty"`
-	Cast []MovieCast `json:"cast"`
-	Crew []MovieCrew `json:"crew"`
+	ID   int64        `json:"id,omitempty"`
+	Cast []*MovieCast `json:"cast"`
+	Crew []*MovieCrew `json:"crew"`
 }
 
 type MovieCast struct {
@@ -217,16 +217,16 @@ type MovieExternalIDs struct {
 
 // MovieImages type is a struct for images JSON response.
 type MovieImages struct {
-	ID        int64   `json:"id,omitempty"`
-	Backdrops []Image `json:"backdrops"`
-	Logos     []Image `json:"logos"`
-	Posters   []Image `json:"posters"`
+	ID        int64    `json:"id,omitempty"`
+	Backdrops []*Image `json:"backdrops"`
+	Logos     []*Image `json:"logos"`
+	Posters   []*Image `json:"posters"`
 }
 
 // MovieKeywords type is a struct for keywords JSON response.
 type MovieKeywords struct {
-	ID       int64          `json:"id,omitempty"`
-	Keywords []MovieKeyword `json:"keywords"`
+	ID       int64           `json:"id,omitempty"`
+	Keywords []*MovieKeyword `json:"keywords"`
 }
 
 type MovieKeyword struct {
@@ -254,16 +254,16 @@ type MovieWatchProviders struct {
 
 // MovieTranslations type is a struct for translations JSON response.
 type MovieTranslations struct {
-	ID           int64              `json:"id,omitempty"`
-	Translations []MovieTranslation `json:"translations"`
+	ID           int64               `json:"id,omitempty"`
+	Translations []*MovieTranslation `json:"translations"`
 }
 
 type MovieTranslation struct {
-	LanguageCode string               `json:"iso_639_1"`
-	CountryCode  string               `json:"iso_3166_1"`
-	Name         string               `json:"name"`
-	EnglishName  string               `json:"english_name"`
-	Data         MovieTranslationDate `json:"data"`
+	LanguageCode string                `json:"iso_639_1"`
+	CountryCode  string                `json:"iso_3166_1"`
+	Name         string                `json:"name"`
+	EnglishName  string                `json:"english_name"`
+	Data         *MovieTranslationDate `json:"data"`
 }
 
 type MovieTranslationDate struct {
@@ -308,10 +308,10 @@ type MovieLatest MovieDetails
 
 // MovieNowPlaying type is a struct for now playing JSON response.
 type MovieNowPlaying struct {
-	Page         int64                    `json:"page"`
-	Dates        MovieNowPlayingDateRange `json:"dates"`
-	TotalPages   int64                    `json:"total_pages"`
-	TotalResults int64                    `json:"total_results"`
+	Page         int64                     `json:"page"`
+	Dates        *MovieNowPlayingDateRange `json:"dates"`
+	TotalPages   int64                     `json:"total_pages"`
+	TotalResults int64                     `json:"total_results"`
 	*MovieNowPlayingResults
 }
 

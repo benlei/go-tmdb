@@ -10,11 +10,11 @@ type KeywordDetails struct {
 
 // KeywordMovies type is a struct for movies that belong to a keyword JSON response.
 type KeywordMovies struct {
-	ID           int64                `json:"id"`
-	Page         int64                `json:"page"`
-	Results      []KeywordMovieResult `json:"results"`
-	TotalPages   int64                `json:"total_pages"`
-	TotalResults int64                `json:"total_results"`
+	ID           int64                 `json:"id"`
+	Page         int64                 `json:"page"`
+	Results      []*KeywordMovieResult `json:"results"`
+	TotalPages   int64                 `json:"total_pages"`
+	TotalResults int64                 `json:"total_results"`
 }
 
 type KeywordMovieResult struct {

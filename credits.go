@@ -6,37 +6,37 @@ import (
 
 // CreditsDetails type is a struct for credits JSON response.
 type CreditsDetails struct {
-	CreditType string       `json:"credit_type"`
-	Department string       `json:"department"`
-	Job        string       `json:"job"`
-	Media      CreditMedia  `json:"media"`
-	MediaType  string       `json:"media_type"`
-	ID         string       `json:"id"`
-	Person     CreditPerson `json:"person"`
+	CreditType string        `json:"credit_type"`
+	Department string        `json:"department"`
+	Job        string        `json:"job"`
+	Media      *CreditMedia  `json:"media"`
+	MediaType  string        `json:"media_type"`
+	ID         string        `json:"id"`
+	Person     *CreditPerson `json:"person"`
 }
 
 type CreditMedia struct {
-	Adult            bool                 `json:"adult,omitempty"`          // Movie
-	OriginalName     string               `json:"original_name,omitempty"`  // TV
-	OriginalTitle    string               `json:"original_title,omitempty"` // Movie
-	ID               int64                `json:"id"`
-	Name             string               `json:"name,omitempty"` // TV
-	VoteCount        int64                `json:"vote_count"`
-	VoteAverage      float32              `json:"vote_average"`
-	FirstAirDate     string               `json:"first_air_date,omitempty"` // TV
-	PosterPath       string               `json:"poster_path"`
-	ReleaseDate      string               `json:"release_date,omitempty"` // Movie
-	Title            string               `json:"title,omitempty"`        // Movie
-	Video            bool                 `json:"video,omitempty"`        // Movie
-	GenreIDs         []int64              `json:"genre_ids"`
-	OriginalLanguage string               `json:"original_language"`
-	BackdropPath     string               `json:"backdrop_path"`
-	Overview         string               `json:"overview"`
-	OriginCountry    []string             `json:"origin_country,omitempty"` // TV
-	Popularity       float32              `json:"popularity"`
-	Character        string               `json:"character"`
-	Episodes         []CreditMediaEpisode `json:"episodes,omitempty"` // TV
-	Seasons          []CreditMediaSeason  `json:"seasons,omitempty"`  // TV
+	Adult            bool                  `json:"adult,omitempty"`          // Movie
+	OriginalName     string                `json:"original_name,omitempty"`  // TV
+	OriginalTitle    string                `json:"original_title,omitempty"` // Movie
+	ID               int64                 `json:"id"`
+	Name             string                `json:"name,omitempty"` // TV
+	VoteCount        int64                 `json:"vote_count"`
+	VoteAverage      float32               `json:"vote_average"`
+	FirstAirDate     string                `json:"first_air_date,omitempty"` // TV
+	PosterPath       string                `json:"poster_path"`
+	ReleaseDate      string                `json:"release_date,omitempty"` // Movie
+	Title            string                `json:"title,omitempty"`        // Movie
+	Video            bool                  `json:"video,omitempty"`        // Movie
+	GenreIDs         []int64               `json:"genre_ids"`
+	OriginalLanguage string                `json:"original_language"`
+	BackdropPath     string                `json:"backdrop_path"`
+	Overview         string                `json:"overview"`
+	OriginCountry    []string              `json:"origin_country,omitempty"` // TV
+	Popularity       float32               `json:"popularity"`
+	Character        string                `json:"character"`
+	Episodes         []*CreditMediaEpisode `json:"episodes,omitempty"` // TV
+	Seasons          []*CreditMediaSeason  `json:"seasons,omitempty"`  // TV
 }
 
 type CreditMediaEpisode struct {
@@ -60,14 +60,14 @@ type CreditMediaSeason struct {
 }
 
 type CreditPerson struct {
-	Adult              bool                   `json:"adult"`
-	Gender             int                    `json:"gender"`
-	Name               string                 `json:"name"`
-	ID                 int64                  `json:"id"`
-	KnownFor           []CreditPersonKnownFor `json:"known_for"`
-	KnownForDepartment string                 `json:"known_for_department"`
-	ProfilePath        string                 `json:"profile_path"`
-	Popularity         float32                `json:"popularity"`
+	Adult              bool                    `json:"adult"`
+	Gender             int                     `json:"gender"`
+	Name               string                  `json:"name"`
+	ID                 int64                   `json:"id"`
+	KnownFor           []*CreditPersonKnownFor `json:"known_for"`
+	KnownForDepartment string                  `json:"known_for_department"`
+	ProfilePath        string                  `json:"profile_path"`
+	Popularity         float32                 `json:"popularity"`
 }
 
 // CreditPersonKnownFor some fields can be both an integer and a float...

@@ -6,10 +6,10 @@ import (
 
 // Trending type is a struct for treding JSON response.
 type Trending struct {
-	Page int `json:"page"`
-	*TrendingResults
+	Page         int   `json:"page"`
 	TotalPages   int64 `json:"total_pages"`
 	TotalResults int64 `json:"total_results"`
+	*TrendingResults
 }
 
 // GetTrending get the daily or weekly trending items.
@@ -19,7 +19,7 @@ type Trending struct {
 // list tracks items over a 7 day period, with a 7 day
 // half life.
 //
-// Valid Media Types
+// # Valid Media Types
 //
 // all - Include all movies, TV shows and people in the
 // results as a global trending list.
@@ -30,7 +30,7 @@ type Trending struct {
 //
 // person - Show the trending people in the results.
 //
-// Valid Time Windows
+// # Valid Time Windows
 //
 // day - View the trending list for the day.
 //

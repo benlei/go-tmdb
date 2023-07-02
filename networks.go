@@ -14,8 +14,8 @@ type NetworkDetails struct {
 
 // NetworkAlternativeNames type is a struct for alternative names JSON response.
 type NetworkAlternativeNames struct {
-	ID      int64                          `json:"id"`
-	Results []NetworkAlternativeNameResult `json:"results"`
+	ID      int64                           `json:"id"`
+	Results []*NetworkAlternativeNameResult `json:"results"`
 }
 
 type NetworkAlternativeNameResult struct {
@@ -25,8 +25,8 @@ type NetworkAlternativeNameResult struct {
 
 // NetworkImages type is a struct for images JSON response.
 type NetworkImages struct {
-	ID    int64   `json:"id"`
-	Logos []Image `json:"logos"`
+	ID    int64    `json:"id"`
+	Logos []*Image `json:"logos"`
 }
 
 // GetNetworkDetails get the details of a network.

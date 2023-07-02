@@ -4,14 +4,14 @@ import "fmt"
 
 // TVSeasonDetails is a struct for details JSON response.
 type TVSeasonDetails struct {
-	IDString     string            `json:"_id"`
-	AirDate      string            `json:"air_date"`
-	Episodes     []TVSeasonEpisode `json:"episodes"`
-	Name         string            `json:"name"`
-	Overview     string            `json:"overview"`
-	ID           int64             `json:"id"`
-	PosterPath   string            `json:"poster_path"`
-	SeasonNumber int               `json:"season_number"`
+	IDString     string             `json:"_id"`
+	AirDate      string             `json:"air_date"`
+	Episodes     []*TVSeasonEpisode `json:"episodes"`
+	Name         string             `json:"name"`
+	Overview     string             `json:"overview"`
+	ID           int64              `json:"id"`
+	PosterPath   string             `json:"poster_path"`
+	SeasonNumber int                `json:"season_number"`
 	*TVSeasonCreditsAppend
 	*TVSeasonExternalIDsAppend
 	*TVSeasonImagesAppend
@@ -52,9 +52,9 @@ type TVSeasonChanges ChangeSet
 
 // TVSeasonCredits type is a struct for credits JSON response.
 type TVSeasonCredits struct {
-	Cast []TVSeasonCreditCast `json:"cast"`
-	Crew []TVSeasonCreditCrew `json:"crew"`
-	ID   int                  `json:"id"`
+	Cast []*TVSeasonCreditCast `json:"cast"`
+	Crew []*TVSeasonCreditCrew `json:"crew"`
+	ID   int                   `json:"id"`
 }
 
 type TVSeasonCreditCast struct {
@@ -88,14 +88,14 @@ type TVSeasonExternalIDs struct {
 
 // TVSeasonImages type is a struct for images JSON response.
 type TVSeasonImages struct {
-	ID      int64   `json:"id,omitempty"`
-	Posters []Image `json:"posters"`
+	ID      int64    `json:"id,omitempty"`
+	Posters []*Image `json:"posters"`
 }
 
 // TVSeasonVideos type is a struct for videos JSON response.
 type TVSeasonVideos struct {
-	ID      int64                 `json:"id,omitempty"`
-	Results []TVSeasonVideoResult `json:"results"`
+	ID      int64                  `json:"id,omitempty"`
+	Results []*TVSeasonVideoResult `json:"results"`
 }
 
 type TVSeasonVideoResult struct {

@@ -4,17 +4,17 @@ import "fmt"
 
 // ReviewDetails type is a struct for details JSON response.
 type ReviewDetails struct {
-	ID            string              `json:"id"`
-	Author        string              `json:"author"`
-	AuthorDetails ReviewAuthorDetails `json:"author_details"`
-	Content       string              `json:"content"`
-	CreatedAt     string              `json:"created_at"`
-	UpdatedAt     string              `json:"updated_at"`
-	LanguageCode  string              `json:"iso_639_1"`
-	MediaID       int64               `json:"media_id"`
-	MediaTitle    string              `json:"media_title"`
-	MediaType     string              `json:"media_type"`
-	URL           string              `json:"url"`
+	ID            string               `json:"id"`
+	Author        string               `json:"author"`
+	AuthorDetails *ReviewAuthorDetails `json:"author_details"`
+	Content       string               `json:"content"`
+	CreatedAt     string               `json:"created_at"`
+	UpdatedAt     string               `json:"updated_at"`
+	LanguageCode  string               `json:"iso_639_1"`
+	MediaID       int64                `json:"media_id"`
+	MediaTitle    string               `json:"media_title"`
+	MediaType     string               `json:"media_type"`
+	URL           string               `json:"url"`
 }
 
 type ReviewAuthorDetails struct {

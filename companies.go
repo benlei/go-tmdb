@@ -6,14 +6,14 @@ import (
 
 // CompanyDetails type is a struct for details JSON response.
 type CompanyDetails struct {
-	Description   string        `json:"description"`
-	Headquarters  string        `json:"headquarters"`
-	Homepage      string        `json:"homepage"`
-	ID            int64         `json:"id"`
-	LogoPath      string        `json:"logo_path"`
-	Name          string        `json:"name"`
-	OriginCountry string        `json:"origin_country"`
-	ParentCompany ParentCompany `json:"parent_company"`
+	Description   string         `json:"description"`
+	Headquarters  string         `json:"headquarters"`
+	Homepage      string         `json:"homepage"`
+	ID            int64          `json:"id"`
+	LogoPath      string         `json:"logo_path"`
+	Name          string         `json:"name"`
+	OriginCountry string         `json:"origin_country"`
+	ParentCompany *ParentCompany `json:"parent_company"`
 }
 
 type ParentCompany struct {
@@ -31,8 +31,8 @@ type CompanyAlternativeNames struct {
 
 // CompanyImages type is a struct for images JSON response.
 type CompanyImages struct {
-	ID    int64   `json:"id"`
-	Logos []Image `json:"logos"`
+	ID    int64    `json:"id"`
+	Logos []*Image `json:"logos"`
 }
 
 // GetCompanyDetails get a companies details by id.

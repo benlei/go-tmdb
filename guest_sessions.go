@@ -4,10 +4,10 @@ import "fmt"
 
 // GuestSessionRatedMovies type is a struct for rated movies JSON response.
 type GuestSessionRatedMovies struct {
-	Page         int64                          `json:"page"`
-	Results      []GuestSessionRatedMovieResult `json:"results"`
-	TotalPages   int64                          `json:"total_pages"`
-	TotalResults int64                          `json:"total_results"`
+	Page         int64                           `json:"page"`
+	Results      []*GuestSessionRatedMovieResult `json:"results"`
+	TotalPages   int64                           `json:"total_pages"`
+	TotalResults int64                           `json:"total_results"`
 }
 
 type GuestSessionRatedMovieResult struct {
@@ -30,10 +30,10 @@ type GuestSessionRatedMovieResult struct {
 
 // GuestSessionRatedTVShows type is a struct for rated tv shows JSON response.
 type GuestSessionRatedTVShows struct {
-	Page         int64                           `json:"page"`
-	Results      []GuestSessionRatedTVShowResult `json:"results"`
-	TotalPages   int64                           `json:"total_pages"`
-	TotalResults int64                           `json:"total_results"`
+	Page         int64                            `json:"page"`
+	Results      []*GuestSessionRatedTVShowResult `json:"results"`
+	TotalPages   int64                            `json:"total_pages"`
+	TotalResults int64                            `json:"total_results"`
 }
 
 type GuestSessionRatedTVShowResult struct {
@@ -55,10 +55,10 @@ type GuestSessionRatedTVShowResult struct {
 
 // GuestSessionRatedTVEpisodes type is a struct for rated tv episodes JSON response.
 type GuestSessionRatedTVEpisodes struct {
-	Page         int64                              `json:"page"`
-	Results      []GuestSessionRatedTVEpisodeResult `json:"results"`
-	TotalPages   int64                              `json:"total_pages"`
-	TotalResults int64                              `json:"total_results"`
+	Page         int64                               `json:"page"`
+	Results      []*GuestSessionRatedTVEpisodeResult `json:"results"`
+	TotalPages   int64                               `json:"total_pages"`
+	TotalResults int64                               `json:"total_results"`
 }
 
 type GuestSessionRatedTVEpisodeResult struct {

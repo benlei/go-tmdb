@@ -15,7 +15,7 @@ func main() {
 	tmdbClient, err := tmdb.Init(os.Getenv("API_KEY"))
 
 	// Setting a custom config for http.Client.
-	tmdbClient.SetClientConfig(http.Client{Timeout: time.Second * 5})
+	tmdbClient.SetClientConfig(&http.Client{Timeout: time.Second * 5})
 
 	if err != nil {
 		fmt.Println(err)

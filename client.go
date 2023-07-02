@@ -141,7 +141,7 @@ type TMDBClient interface {
 	PostTVShowRating(id int64, rating float32, urlOptions map[string]string) (*Response, error)
 	RemoveMovie(listID int64, mediaID *ListMedia) (*Response, error)
 	SetClientAutoRetry()
-	SetClientConfig(httpClient http.Client)
+	SetClientConfig(httpClient *http.Client)
 	SetSessionID(sid string) error
 }
 

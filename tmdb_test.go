@@ -19,7 +19,7 @@ var apiKey = "<set API_KEY in .env>"
 
 type TMBDTestSuite struct {
 	suite.Suite
-	client Client
+	client *Client
 }
 
 func init() {
@@ -35,7 +35,10 @@ func (suite *TMBDTestSuite) SetupTest() {
 }
 
 func TestSuite(t *testing.T) {
-	suite.Run(t, new(TMBDTestSuite))
+	client, _ := Init("test")
+	suite.Run(t, &TMBDTestSuite{
+		client: client,
+	})
 }
 
 func (suite *TMBDTestSuite) TestGetFail() {
@@ -119,12 +122,12 @@ func (suite *TMBDTestSuite) TestInitFail() {
 }
 
 func (suite *TMBDTestSuite) TestSetClientConfig() {
-	suite.client.SetClientConfig(http.Client{Timeout: time.Second * 10})
+	suite.client.SetClientConfig(&http.Client{Timeout: time.Second * 10})
 	suite.Equal(time.Second*10, suite.client.http.Timeout)
 }
 
 func (suite *TMBDTestSuite) TestSetClientConfigNoTimeout() {
-	suite.client.SetClientConfig(http.Client{Timeout: 0})
+	suite.client.SetClientConfig(&http.Client{Timeout: 0})
 	suite.Equal(time.Second*0, suite.client.http.Timeout)
 }
 

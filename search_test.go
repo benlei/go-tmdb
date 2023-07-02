@@ -150,8 +150,7 @@ func (suite *TMBDTestSuite) TestGetSearchTVShowWithOptions() {
 }
 
 func BenchmarkGetSearchMulti(b *testing.B) {
-	var tmdbClient Client
-	tmdbClient.apiKey = apiKey
+	tmdbClient, _ := Init(apiKey)
 
 	b.ReportAllocs()
 	b.ResetTimer()

@@ -6,18 +6,18 @@ import (
 
 // TVEpisodeDetails type is a struct for details JSON response.
 type TVEpisodeDetails struct {
-	AirDate        string               `json:"air_date"`
-	EpisodeNumber  int                  `json:"episode_number"`
-	Crew           []TVEpisodeCrew      `json:"crew"`
-	GuestStars     []TVEpisodeGuestStar `json:"guest_stars"`
-	Name           string               `json:"name"`
-	Overview       string               `json:"overview"`
-	ID             int64                `json:"id"`
-	ProductionCode string               `json:"production_code"`
-	SeasonNumber   int                  `json:"season_number"`
-	StillPath      string               `json:"still_path"`
-	VoteAverage    float32              `json:"vote_average"`
-	VoteCount      int64                `json:"vote_count"`
+	AirDate        string                `json:"air_date"`
+	EpisodeNumber  int                   `json:"episode_number"`
+	Crew           []*TVEpisodeCrew      `json:"crew"`
+	GuestStars     []*TVEpisodeGuestStar `json:"guest_stars"`
+	Name           string                `json:"name"`
+	Overview       string                `json:"overview"`
+	ID             int64                 `json:"id"`
+	ProductionCode string                `json:"production_code"`
+	SeasonNumber   int                   `json:"season_number"`
+	StillPath      string                `json:"still_path"`
+	VoteAverage    float32               `json:"vote_average"`
+	VoteCount      int64                 `json:"vote_count"`
 	*TVEpisodeCreditsAppend
 	*TVEpisodeExternalIDsAppend
 	*TVEpisodeImagesAppend
@@ -80,10 +80,10 @@ type TVEpisodeChanges ChangeSet
 
 // TVEpisodeCredits type is a struct for credits JSON response.
 type TVEpisodeCredits struct {
-	Cast       []TVEpisodeCreditCast      `json:"cast"`
-	Crew       []TVEpisodeCreditCrew      `json:"crew"`
-	GuestStars []TVEpisodeCreditGuestStar `json:"guest_stars"`
-	ID         int64                      `json:"id,omitempty"`
+	Cast       []*TVEpisodeCreditCast      `json:"cast"`
+	Crew       []*TVEpisodeCreditCrew      `json:"crew"`
+	GuestStars []*TVEpisodeCreditGuestStar `json:"guest_stars"`
+	ID         int64                       `json:"id,omitempty"`
 }
 
 type TVEpisodeCreditCast struct {
@@ -128,22 +128,22 @@ type TVEpisodeExternalIDs struct {
 
 // TVEpisodeImages type is a struct for images JSON response.
 type TVEpisodeImages struct {
-	ID     int64   `json:"id,omitempty"`
-	Stills []Image `json:"stills"`
+	ID     int64    `json:"id,omitempty"`
+	Stills []*Image `json:"stills"`
 }
 
 // TVEpisodeTranslations type is a struct for translations JSON response.
 type TVEpisodeTranslations struct {
-	ID           int64                  `json:"id,omitempty"`
-	Translations []TVEpisodeTranslation `json:"translations"`
+	ID           int64                   `json:"id,omitempty"`
+	Translations []*TVEpisodeTranslation `json:"translations"`
 }
 
 type TVEpisodeTranslation struct {
-	CountryCode  string                   `json:"iso_3166_1"`
-	LanguageCode string                   `json:"iso_639_1"`
-	Name         string                   `json:"name"`
-	EnglishName  string                   `json:"english_name"`
-	Data         TVEpisodeTranslationData `json:"data"`
+	CountryCode  string                    `json:"iso_3166_1"`
+	LanguageCode string                    `json:"iso_639_1"`
+	Name         string                    `json:"name"`
+	EnglishName  string                    `json:"english_name"`
+	Data         *TVEpisodeTranslationData `json:"data"`
 }
 
 type TVEpisodeTranslationData struct {
@@ -159,8 +159,8 @@ type TVEpisodeRate struct {
 
 // TVEpisodeVideos type is a struct for videos JSON response.
 type TVEpisodeVideos struct {
-	ID      int64                  `json:"id,omitempty"`
-	Results []TVEpisodeVideoResult `json:"results"`
+	ID      int64                   `json:"id,omitempty"`
+	Results []*TVEpisodeVideoResult `json:"results"`
 }
 
 type TVEpisodeVideoResult struct {

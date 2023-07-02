@@ -4,8 +4,8 @@ import "fmt"
 
 // ConfigurationAPI type is a struct for api configuration JSON response.
 type ConfigurationAPI struct {
-	Images     ConfigurationImage `json:"images"`
-	ChangeKeys []string           `json:"change_keys"`
+	Images     *ConfigurationImage `json:"images"`
+	ChangeKeys []string            `json:"change_keys"`
 }
 
 type ConfigurationImage struct {

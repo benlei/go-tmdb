@@ -4,12 +4,12 @@ import "fmt"
 
 // CollectionDetails type is a struct for details JSON response.
 type CollectionDetails struct {
-	ID           int64            `json:"id"`
-	Name         string           `json:"name"`
-	Overview     string           `json:"overview"`
-	PosterPath   string           `json:"poster_path"`
-	BackdropPath string           `json:"backdrop_path"`
-	Parts        []CollectionPart `json:"parts"`
+	ID           int64             `json:"id"`
+	Name         string            `json:"name"`
+	Overview     string            `json:"overview"`
+	PosterPath   string            `json:"poster_path"`
+	BackdropPath string            `json:"backdrop_path"`
+	Parts        []*CollectionPart `json:"parts"`
 }
 
 type CollectionPart struct {
@@ -29,6 +29,33 @@ type CollectionPart struct {
 	Popularity       float32 `json:"popularity"`
 }
 
+// CollectionImages type is a struct for images JSON response.
+type CollectionImages struct {
+	ID        int64    `json:"id"`
+	Backdrops []*Image `json:"backdrops"`
+	Posters   []*Image `json:"posters"`
+}
+
+// CollectionTranslations type is a struct for translations JSON response.
+type CollectionTranslations struct {
+	ID           int64                    `json:"id"`
+	Translations []*CollectionTranslation `json:"translations"`
+}
+
+type CollectionTranslation struct {
+	CountryCode  string                     `json:"iso_3166_1"`
+	LanguageCode string                     `json:"iso_639_1"`
+	Name         string                     `json:"name"`
+	EnglishName  string                     `json:"english_name"`
+	Data         *CollectionTranslationData `json:"data"`
+}
+
+type CollectionTranslationData struct {
+	Title    string `json:"title"`
+	Overview string `json:"overview"`
+	Homepage string `json:"homepage"`
+}
+
 // GetCollectionDetails get collection details by id.
 //
 // https://developers.themoviedb.org/3/collections/get-collection-details
@@ -43,33 +70,6 @@ func (c *Client) GetCollectionDetails(id int64, urlOptions map[string]string) (*
 		return nil, err
 	}
 	return &collectionDetails, nil
-}
-
-// CollectionImages type is a struct for images JSON response.
-type CollectionImages struct {
-	ID        int64   `json:"id"`
-	Backdrops []Image `json:"backdrops"`
-	Posters   []Image `json:"posters"`
-}
-
-// CollectionTranslations type is a struct for translations JSON response.
-type CollectionTranslations struct {
-	ID           int64                   `json:"id"`
-	Translations []CollectionTranslation `json:"translations"`
-}
-
-type CollectionTranslation struct {
-	CountryCode  string                    `json:"iso_3166_1"`
-	LanguageCode string                    `json:"iso_639_1"`
-	Name         string                    `json:"name"`
-	EnglishName  string                    `json:"english_name"`
-	Data         CollectionTranslationData `json:"data"`
-}
-
-type CollectionTranslationData struct {
-	Title    string `json:"title"`
-	Overview string `json:"overview"`
-	Homepage string `json:"homepage"`
 }
 
 // GetCollectionImages get the images for a collection by id.

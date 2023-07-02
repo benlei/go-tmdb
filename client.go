@@ -39,8 +39,8 @@ type TMDBClient interface {
 	GetFavoriteMovies(id int64, urlOptions map[string]string) (*AccountFavoriteMovies, error)
 	GetFavoriteTVShows(id int64, urlOptions map[string]string) (*AccountFavoriteTVShows, error)
 	GetFindByID(id string, urlOptions map[string]string) (*FindByID, error)
-	GetGenreMovieList(urlOptions map[string]string) (*GenreMovieList, error)
-	GetGenreTVList(urlOptions map[string]string) (*GenreMovieList, error)
+	GetGenreMovieList(urlOptions map[string]string) (*GenreList, error)
+	GetGenreTVList(urlOptions map[string]string) (*GenreList, error)
 	GetGuestSessionRatedMovies(id string, urlOptions map[string]string) (*GuestSessionRatedMovies, error)
 	GetGuestSessionRatedTVEpisodes(id string, urlOptions map[string]string) (*GuestSessionRatedTVEpisodes, error)
 	GetGuestSessionRatedTVShows(id string, urlOptions map[string]string) (*GuestSessionRatedTVShows, error)
@@ -141,7 +141,7 @@ type TMDBClient interface {
 	PostTVShowRating(id int64, rating float32, urlOptions map[string]string) (*Response, error)
 	RemoveMovie(listID int64, mediaID *ListMedia) (*Response, error)
 	SetClientAutoRetry()
-	SetClientConfig(httpClient http.Client)
+	SetClientConfig(httpClient *http.Client)
 	SetSessionID(sid string) error
 }
 

@@ -54,7 +54,7 @@ type Client struct {
 	// should retry the previous operation.
 	autoRetry bool
 	// http.Client for custom configuration.
-	http http.Client
+	http *http.Client
 }
 
 // Response type is a struct for http responses.
@@ -68,7 +68,10 @@ func Init(apiKey string) (*Client, error) {
 	if apiKey == "" {
 		return nil, errors.New("api key is empty")
 	}
-	return &Client{apiKey: apiKey}, nil
+	return &Client{
+		apiKey: apiKey,
+		http:   &http.Client{},
+	}, nil
 }
 
 // SetSessionID will set the session id.
@@ -81,7 +84,7 @@ func (c *Client) SetSessionID(sid string) error {
 }
 
 // SetClientConfig sets a custom configuration for the http.Client.
-func (c *Client) SetClientConfig(httpClient http.Client) {
+func (c *Client) SetClientConfig(httpClient *http.Client) {
 	c.http = httpClient
 }
 

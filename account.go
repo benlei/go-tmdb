@@ -7,18 +7,18 @@ import (
 
 // AccountDetails type is a struct for details JSON response.
 type AccountDetails struct {
-	Avatar       AvatarDetails `json:"avatar"`
-	ID           int64         `json:"id"`
-	LanguageCode string        `json:"iso_639_1"`
-	CountryCode  string        `json:"iso_3166_1"`
-	Name         string        `json:"name"`
-	IncludeAdult bool          `json:"include_adult"`
-	Username     string        `json:"username"`
+	Avatar       *AvatarDetails `json:"avatar"`
+	ID           int64          `json:"id"`
+	LanguageCode string         `json:"iso_639_1"`
+	CountryCode  string         `json:"iso_3166_1"`
+	Name         string         `json:"name"`
+	IncludeAdult bool           `json:"include_adult"`
+	Username     string         `json:"username"`
 }
 
 type AvatarDetails struct {
-	Gravatar AccountAvatarGravatar `json:"gravatar"`
-	TMDB     AccountTMDBAvatar     `json:"tmdb"`
+	Gravatar *AccountAvatarGravatar `json:"gravatar"`
+	TMDB     *AccountTMDBAvatar     `json:"tmdb"`
 }
 
 type AccountAvatarGravatar struct {
@@ -27,23 +27,6 @@ type AccountAvatarGravatar struct {
 
 type AccountTMDBAvatar struct {
 	AvatarPath string `json:"avatar_path"`
-}
-
-// GetAccountDetails get your account details.
-//
-// https://developers.themoviedb.org/3/account/get-account-details
-func (c *Client) GetAccountDetails() (*AccountDetails, error) {
-	tmdbURL := fmt.Sprintf(
-		"%s/account?api_key=%s&session_id=%s",
-		baseURL,
-		c.apiKey,
-		c.sessionID,
-	)
-	details := AccountDetails{}
-	if err := c.get(tmdbURL, &details); err != nil {
-		return nil, err
-	}
-	return &details, nil
 }
 
 // AccountCreatedLists type is a struct for created lists JSON response.
@@ -112,6 +95,23 @@ type AccountWatchlist struct {
 	MediaType string `json:"media_type"`
 	MediaID   int64  `json:"media_id"`
 	Watchlist bool   `json:"watchlist"`
+}
+
+// GetAccountDetails get your account details.
+//
+// https://developers.themoviedb.org/3/account/get-account-details
+func (c *Client) GetAccountDetails() (*AccountDetails, error) {
+	tmdbURL := fmt.Sprintf(
+		"%s/account?api_key=%s&session_id=%s",
+		baseURL,
+		c.apiKey,
+		c.sessionID,
+	)
+	details := AccountDetails{}
+	if err := c.get(tmdbURL, &details); err != nil {
+		return nil, err
+	}
+	return &details, nil
 }
 
 // GetCreatedLists get all of the lists created by an account.

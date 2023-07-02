@@ -7,15 +7,15 @@ import (
 
 // ListDetails type is a struct for details JSON response.
 type ListDetails struct {
-	CreatedBy     string     `json:"created_by"`
-	Description   string     `json:"description"`
-	FavoriteCount int64      `json:"favorite_count"`
-	ID            string     `json:"id"`
-	Items         []ListItem `json:"items"`
-	ItemCount     int64      `json:"item_count"`
-	LanguageCode  string     `json:"iso_639_1"`
-	Name          string     `json:"name"`
-	PosterPath    string     `json:"poster_path"`
+	CreatedBy     string      `json:"created_by"`
+	Description   string      `json:"description"`
+	FavoriteCount int64       `json:"favorite_count"`
+	ID            string      `json:"id"`
+	Items         []*ListItem `json:"items"`
+	ItemCount     int64       `json:"item_count"`
+	LanguageCode  string      `json:"iso_639_1"`
+	Name          string      `json:"name"`
+	PosterPath    string      `json:"poster_path"`
 }
 
 type ListItem struct {

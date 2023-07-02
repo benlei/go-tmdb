@@ -2,7 +2,7 @@ package tmdb
 
 // AccountCreatedListsResults Result Types
 type AccountCreatedListsResults struct {
-	Results []AccountCreatedListsResult `json:"results"`
+	Results []*AccountCreatedListsResult `json:"results"`
 }
 
 type AccountCreatedListsResult struct {
@@ -18,7 +18,7 @@ type AccountCreatedListsResult struct {
 
 // AccountFavoriteMoviesResults Result Types
 type AccountFavoriteMoviesResults struct {
-	Results []AccountFavoriteMoviesResult `json:"results"`
+	Results []*AccountFavoriteMoviesResult `json:"results"`
 }
 
 type AccountFavoriteMoviesResult struct {
@@ -40,7 +40,7 @@ type AccountFavoriteMoviesResult struct {
 
 // AccountFavoriteTVShowsResults Result Types
 type AccountFavoriteTVShowsResults struct {
-	Results []AccountFavoriteTVShowsResult `json:"results"`
+	Results []*AccountFavoriteTVShowsResult `json:"results"`
 }
 
 type AccountFavoriteTVShowsResult struct {
@@ -61,7 +61,7 @@ type AccountFavoriteTVShowsResult struct {
 
 // AccountRatedTVEpisodesResults Result Types
 type AccountRatedTVEpisodesResults struct {
-	Results []AccountRatedTVEpisodesResult `json:"results"`
+	Results []*AccountRatedTVEpisodesResult `json:"results"`
 }
 
 type AccountRatedTVEpisodesResult struct {
@@ -81,7 +81,7 @@ type AccountRatedTVEpisodesResult struct {
 
 // ChangeResults Result Types
 type ChangeResults struct {
-	Results []ChangeResult `json:"results"`
+	Results []*ChangeResult `json:"results"`
 }
 
 type ChangeResult struct {
@@ -91,7 +91,7 @@ type ChangeResult struct {
 
 // CompanyAlternativeNamesResults Result Types
 type CompanyAlternativeNamesResults struct {
-	Results []CompanyAlternativeNamesResult `json:"results"`
+	Results []*CompanyAlternativeNamesResult `json:"results"`
 }
 
 type CompanyAlternativeNamesResult struct {
@@ -101,7 +101,7 @@ type CompanyAlternativeNamesResult struct {
 
 // DiscoverMovieResults Result Types
 type DiscoverMovieResults struct {
-	Results []DiscoverMovieResult `json:"results"`
+	Results []*DiscoverMovieResult `json:"results"`
 }
 
 type DiscoverMovieResult struct {
@@ -123,7 +123,7 @@ type DiscoverMovieResult struct {
 
 // DiscoverTVResults Result Types
 type DiscoverTVResults struct {
-	Results []DiscoverTVResult `json:"results"`
+	Results []*DiscoverTVResult `json:"results"`
 }
 
 type DiscoverTVResult struct {
@@ -144,7 +144,7 @@ type DiscoverTVResult struct {
 
 // SearchCompaniesResults Result Types
 type SearchCompaniesResults struct {
-	Results []SearchCompaniesResult `json:"results"`
+	Results []*SearchCompaniesResult `json:"results"`
 }
 
 type SearchCompaniesResult struct {
@@ -156,7 +156,7 @@ type SearchCompaniesResult struct {
 
 // SearchCollectionsResults Result Types
 type SearchCollectionsResults struct {
-	Results []SearchCollectionsResult `json:"results"`
+	Results []*SearchCollectionsResult `json:"results"`
 }
 
 type SearchCollectionsResult struct {
@@ -172,7 +172,7 @@ type SearchCollectionsResult struct {
 
 // SearchKeywordsResults Result Types
 type SearchKeywordsResults struct {
-	Results []SearchKeywordsResult `json:"results"`
+	Results []*SearchKeywordsResult `json:"results"`
 }
 
 type SearchKeywordsResult struct {
@@ -182,7 +182,7 @@ type SearchKeywordsResult struct {
 
 // SearchMoviesResults Result Types
 type SearchMoviesResults struct {
-	Results []SearchMoviesResult `json:"results"`
+	Results []*SearchMoviesResult `json:"results"`
 }
 
 type SearchMoviesResult struct {
@@ -204,31 +204,31 @@ type SearchMoviesResult struct {
 
 // SearchMultiResults Result Types
 type SearchMultiResults struct {
-	Results []SearchMultiResult `json:"results"`
+	Results []*SearchMultiResult `json:"results"`
 }
 
 type SearchMultiResult struct {
-	PosterPath       string                `json:"poster_path,omitempty"`
-	Popularity       float32               `json:"popularity"`
-	ID               int64                 `json:"id"`
-	Overview         string                `json:"overview,omitempty"`
-	BackdropPath     string                `json:"backdrop_path,omitempty"`
-	VoteAverage      float32               `json:"vote_average,omitempty"`
-	MediaType        string                `json:"media_type"`
-	FirstAirDate     string                `json:"first_air_date,omitempty"`
-	OriginCountry    []string              `json:"origin_country,omitempty"`
-	GenreIDs         []int64               `json:"genre_ids,omitempty"`
-	OriginalLanguage string                `json:"original_language,omitempty"`
-	VoteCount        int64                 `json:"vote_count,omitempty"`
-	Name             string                `json:"name,omitempty"`
-	OriginalName     string                `json:"original_name,omitempty"`
-	Adult            bool                  `json:"adult,omitempty"`
-	ReleaseDate      string                `json:"release_date,omitempty"`
-	OriginalTitle    string                `json:"original_title,omitempty"`
-	Title            string                `json:"title,omitempty"`
-	Video            bool                  `json:"video,omitempty"`
-	ProfilePath      string                `json:"profile_path,omitempty"`
-	KnownFor         []SearchMultiKnownFor `json:"known_for,omitempty"`
+	PosterPath       string                 `json:"poster_path,omitempty"`
+	Popularity       float32                `json:"popularity"`
+	ID               int64                  `json:"id"`
+	Overview         string                 `json:"overview,omitempty"`
+	BackdropPath     string                 `json:"backdrop_path,omitempty"`
+	VoteAverage      float32                `json:"vote_average,omitempty"`
+	MediaType        string                 `json:"media_type"`
+	FirstAirDate     string                 `json:"first_air_date,omitempty"`
+	OriginCountry    []string               `json:"origin_country,omitempty"`
+	GenreIDs         []int64                `json:"genre_ids,omitempty"`
+	OriginalLanguage string                 `json:"original_language,omitempty"`
+	VoteCount        int64                  `json:"vote_count,omitempty"`
+	Name             string                 `json:"name,omitempty"`
+	OriginalName     string                 `json:"original_name,omitempty"`
+	Adult            bool                   `json:"adult,omitempty"`
+	ReleaseDate      string                 `json:"release_date,omitempty"`
+	OriginalTitle    string                 `json:"original_title,omitempty"`
+	Title            string                 `json:"title,omitempty"`
+	Video            bool                   `json:"video,omitempty"`
+	ProfilePath      string                 `json:"profile_path,omitempty"`
+	KnownFor         []*SearchMultiKnownFor `json:"known_for,omitempty"`
 }
 
 type SearchMultiKnownFor struct {
@@ -251,18 +251,18 @@ type SearchMultiKnownFor struct {
 
 // SearchPeopleResults Result Types
 type SearchPeopleResults struct {
-	Results []SearchPeopleResult `json:"results"`
+	Results []*SearchPeopleResult `json:"results"`
 }
 
 type SearchPeopleResult struct {
-	Adult              bool                   `json:"adult"`
-	Gender             int                    `json:"gender,omitempty"`
-	ID                 int64                  `json:"id"`
-	KnownFor           []SearchPeopleKnownFor `json:"known_for"`
-	KnownForDepartment string                 `json:"known_for_department"`
-	Name               string                 `json:"name"`
-	Popularity         float32                `json:"popularity"`
-	ProfilePath        string                 `json:"profile_path"`
+	Adult              bool                    `json:"adult"`
+	Gender             int                     `json:"gender,omitempty"`
+	ID                 int64                   `json:"id"`
+	KnownFor           []*SearchPeopleKnownFor `json:"known_for"`
+	KnownForDepartment string                  `json:"known_for_department"`
+	Name               string                  `json:"name"`
+	Popularity         float32                 `json:"popularity"`
+	ProfilePath        string                  `json:"profile_path"`
 }
 
 type SearchPeopleKnownFor struct {
@@ -289,7 +289,7 @@ type SearchPeopleKnownFor struct {
 
 // SearchTVShowsResults Result Types
 type SearchTVShowsResults struct {
-	Results []SearchTVShowsResult `json:"results"`
+	Results []*SearchTVShowsResult `json:"results"`
 }
 
 type SearchTVShowsResult struct {
@@ -310,32 +310,32 @@ type SearchTVShowsResult struct {
 
 // TrendingResults Result Types
 type TrendingResults struct {
-	Results []TrendingResult `json:"results"`
+	Results []*TrendingResult `json:"results"`
 }
 
 type TrendingResult struct {
-	Adult              bool               `json:"adult,omitempty"`
-	Gender             int                `json:"gender,omitempty"`
-	BackdropPath       string             `json:"backdrop_path,omitempty"`
-	GenreIDs           []int64            `json:"genre_ids,omitempty"`
-	ID                 int64              `json:"id"`
-	OriginalLanguage   string             `json:"original_language"`
-	OriginalTitle      string             `json:"original_title,omitempty"`
-	Overview           string             `json:"overview,omitempty"`
-	PosterPath         string             `json:"poster_path,omitempty"`
-	ReleaseDate        string             `json:"release_date,omitempty"`
-	Title              string             `json:"title,omitempty"`
-	Video              bool               `json:"video,omitempty"`
-	VoteAverage        float32            `json:"vote_average,omitempty"`
-	VoteCount          int64              `json:"vote_count,omitempty"`
-	Popularity         float32            `json:"popularity,omitempty"`
-	FirstAirDate       string             `json:"first_air_date,omitempty"`
-	Name               string             `json:"name,omitempty"`
-	OriginCountry      []string           `json:"origin_country,omitempty"`
-	OriginalName       string             `json:"original_name,omitempty"`
-	KnownForDepartment string             `json:"known_for_department,omitempty"`
-	ProfilePath        string             `json:"profile_path,omitempty"`
-	KnownFor           []TrendingKnownFor `json:"known_for,omitempty"`
+	Adult              bool                `json:"adult,omitempty"`
+	Gender             int                 `json:"gender,omitempty"`
+	BackdropPath       string              `json:"backdrop_path,omitempty"`
+	GenreIDs           []int64             `json:"genre_ids,omitempty"`
+	ID                 int64               `json:"id"`
+	OriginalLanguage   string              `json:"original_language"`
+	OriginalTitle      string              `json:"original_title,omitempty"`
+	Overview           string              `json:"overview,omitempty"`
+	PosterPath         string              `json:"poster_path,omitempty"`
+	ReleaseDate        string              `json:"release_date,omitempty"`
+	Title              string              `json:"title,omitempty"`
+	Video              bool                `json:"video,omitempty"`
+	VoteAverage        float32             `json:"vote_average,omitempty"`
+	VoteCount          int64               `json:"vote_count,omitempty"`
+	Popularity         float32             `json:"popularity,omitempty"`
+	FirstAirDate       string              `json:"first_air_date,omitempty"`
+	Name               string              `json:"name,omitempty"`
+	OriginCountry      []string            `json:"origin_country,omitempty"`
+	OriginalName       string              `json:"original_name,omitempty"`
+	KnownForDepartment string              `json:"known_for_department,omitempty"`
+	ProfilePath        string              `json:"profile_path,omitempty"`
+	KnownFor           []*TrendingKnownFor `json:"known_for,omitempty"`
 }
 
 type TrendingKnownFor struct {
@@ -358,12 +358,12 @@ type TrendingKnownFor struct {
 
 // MovieReleaseDatesResults Result Types
 type MovieReleaseDatesResults struct {
-	Results []MovieReleaseDatesResult `json:"results"`
+	Results []*MovieReleaseDatesResult `json:"results"`
 }
 
 type MovieReleaseDatesResult struct {
-	CountryCode  string                   `json:"iso_3166_1"`
-	ReleaseDates []MovieReleaseDateResult `json:"release_dates"`
+	CountryCode  string                    `json:"iso_3166_1"`
+	ReleaseDates []*MovieReleaseDateResult `json:"release_dates"`
 }
 
 type MovieReleaseDateResult struct {
@@ -376,7 +376,7 @@ type MovieReleaseDateResult struct {
 
 // MovieVideosResults Result Types
 type MovieVideosResults struct {
-	Results []MovieVideosResult `json:"results"`
+	Results []*MovieVideosResult `json:"results"`
 }
 
 type MovieVideosResult struct {
@@ -394,19 +394,19 @@ type MovieVideosResult struct {
 
 // MovieWatchProvidersResults Result Types
 type MovieWatchProvidersResults struct {
-	Results map[string]MovieWatchProvidersResult `json:"results"`
+	Results map[string]*MovieWatchProvidersResult `json:"results"`
 }
 
 type MovieWatchProvidersResult struct {
-	Link     string          `json:"link"`
-	FlatRate []WatchProvider `json:"flatrate,omitempty"`
-	Rent     []WatchProvider `json:"rent,omitempty"`
-	Buy      []WatchProvider `json:"buy,omitempty"`
+	Link     string           `json:"link"`
+	FlatRate []*WatchProvider `json:"flatrate,omitempty"`
+	Rent     []*WatchProvider `json:"rent,omitempty"`
+	Buy      []*WatchProvider `json:"buy,omitempty"`
 }
 
 // MovieRecommendationsResults Result Types
 type MovieRecommendationsResults struct {
-	Results []MovieRecommendationsResult `json:"results"`
+	Results []*MovieRecommendationsResult `json:"results"`
 }
 
 type MovieRecommendationsResult struct {
@@ -428,7 +428,7 @@ type MovieRecommendationsResult struct {
 
 // MovieReviewsResults Result Types
 type MovieReviewsResults struct {
-	Results []MovieReviewsResult `json:"results"`
+	Results []*MovieReviewsResult `json:"results"`
 }
 
 type MovieReviewsResult struct {
@@ -440,7 +440,7 @@ type MovieReviewsResult struct {
 
 // MovieListsResults Result Types
 type MovieListsResults struct {
-	Results []MovieListsResult `json:"results"`
+	Results []*MovieListsResult `json:"results"`
 }
 
 type MovieListsResult struct {
@@ -456,51 +456,51 @@ type MovieListsResult struct {
 
 // MovieNowPlayingResults Result Types
 type MovieNowPlayingResults struct {
-	Results []MovieNowPlayingResult `json:"results"`
+	Results []*MovieNowPlayingResult `json:"results"`
 }
 
 type MovieNowPlayingResult struct {
-	PosterPath       string  `json:"poster_path"`
-	Adult            bool    `json:"adult"`
-	Overview         string  `json:"overview"`
-	ReleaseDate      string  `json:"release_date"`
-	Genres           []Genre `json:"genres"`
-	ID               int64   `json:"id"`
-	OriginalTitle    string  `json:"original_title"`
-	OriginalLanguage string  `json:"original_language"`
-	Title            string  `json:"title"`
-	BackdropPath     string  `json:"backdrop_path"`
-	Popularity       float32 `json:"popularity"`
-	VoteCount        int64   `json:"vote_count"`
-	Video            bool    `json:"video"`
-	VoteAverage      float32 `json:"vote_average"`
+	PosterPath       string   `json:"poster_path"`
+	Adult            bool     `json:"adult"`
+	Overview         string   `json:"overview"`
+	ReleaseDate      string   `json:"release_date"`
+	Genres           []*Genre `json:"genres"`
+	ID               int64    `json:"id"`
+	OriginalTitle    string   `json:"original_title"`
+	OriginalLanguage string   `json:"original_language"`
+	Title            string   `json:"title"`
+	BackdropPath     string   `json:"backdrop_path"`
+	Popularity       float32  `json:"popularity"`
+	VoteCount        int64    `json:"vote_count"`
+	Video            bool     `json:"video"`
+	VoteAverage      float32  `json:"vote_average"`
 }
 
 // MoviePopularResults Result Types
 type MoviePopularResults struct {
-	Results []MoviePopularResult `json:"results"`
+	Results []*MoviePopularResult `json:"results"`
 }
 
 type MoviePopularResult struct {
-	PosterPath       string  `json:"poster_path"`
-	Adult            bool    `json:"adult"`
-	Overview         string  `json:"overview"`
-	ReleaseDate      string  `json:"release_date"`
-	Genres           []Genre `json:"genres"`
-	ID               int64   `json:"id"`
-	OriginalTitle    string  `json:"original_title"`
-	OriginalLanguage string  `json:"original_language"`
-	Title            string  `json:"title"`
-	BackdropPath     string  `json:"backdrop_path"`
-	Popularity       float32 `json:"popularity"`
-	VoteCount        int64   `json:"vote_count"`
-	Video            bool    `json:"video"`
-	VoteAverage      float32 `json:"vote_average"`
+	PosterPath       string   `json:"poster_path"`
+	Adult            bool     `json:"adult"`
+	Overview         string   `json:"overview"`
+	ReleaseDate      string   `json:"release_date"`
+	Genres           []*Genre `json:"genres"`
+	ID               int64    `json:"id"`
+	OriginalTitle    string   `json:"original_title"`
+	OriginalLanguage string   `json:"original_language"`
+	Title            string   `json:"title"`
+	BackdropPath     string   `json:"backdrop_path"`
+	Popularity       float32  `json:"popularity"`
+	VoteCount        int64    `json:"vote_count"`
+	Video            bool     `json:"video"`
+	VoteAverage      float32  `json:"vote_average"`
 }
 
 // TVAlternativeTitlesResults Result Types
 type TVAlternativeTitlesResults struct {
-	Results []TVAlternativeTitlesResult `json:"results"`
+	Results []*TVAlternativeTitlesResult `json:"results"`
 }
 
 type TVAlternativeTitlesResult struct {
@@ -511,7 +511,7 @@ type TVAlternativeTitlesResult struct {
 
 // TVContentRatingsResults Result Types
 type TVContentRatingsResults struct {
-	Results []TVContentRatingsResult `json:"results"`
+	Results []*TVContentRatingsResult `json:"results"`
 }
 
 type TVContentRatingsResult struct {
@@ -521,17 +521,17 @@ type TVContentRatingsResult struct {
 
 // TVEpisodeGroupsResults Result Types
 type TVEpisodeGroupsResults struct {
-	Results []TVEpisodeGroupsResult `json:"results"`
+	Results []*TVEpisodeGroupsResult `json:"results"`
 }
 
 type TVEpisodeGroupsResult struct {
-	Description  string                `json:"description"`
-	EpisodeCount int                   `json:"episode_count"`
-	GroupCount   int                   `json:"group_count"`
-	ID           string                `json:"id"`
-	Name         string                `json:"name"`
-	Network      TVEpisodeGroupNetwork `json:"network"`
-	Type         int                   `json:"type"`
+	Description  string                 `json:"description"`
+	EpisodeCount int                    `json:"episode_count"`
+	GroupCount   int                    `json:"group_count"`
+	ID           string                 `json:"id"`
+	Name         string                 `json:"name"`
+	Network      *TVEpisodeGroupNetwork `json:"network"`
+	Type         int                    `json:"type"`
 }
 
 type TVEpisodeGroupNetwork struct {
@@ -543,7 +543,7 @@ type TVEpisodeGroupNetwork struct {
 
 // TVKeywordsResults Result Types
 type TVKeywordsResults struct {
-	Results []TVKeywordsResult `json:"results"`
+	Results []*TVKeywordsResult `json:"results"`
 }
 
 type TVKeywordsResult struct {
@@ -553,7 +553,7 @@ type TVKeywordsResult struct {
 
 // TVRecommendationsResults Result Types
 type TVRecommendationsResults struct {
-	Results []TVRecommendationsResult `json:"results"`
+	Results []*TVRecommendationsResult `json:"results"`
 }
 
 type TVRecommendationsResult struct {
@@ -574,7 +574,7 @@ type TVRecommendationsResult struct {
 
 // TVReviewsResults Result Types
 type TVReviewsResults struct {
-	Results []TVReviewsResult `json:"results"`
+	Results []*TVReviewsResult `json:"results"`
 }
 
 type TVReviewsResult struct {
@@ -586,7 +586,7 @@ type TVReviewsResult struct {
 
 // TVScreenedTheatricallyResults Result Types
 type TVScreenedTheatricallyResults struct {
-	Results []TVScreenedTheatricallyResult `json:"results"`
+	Results []*TVScreenedTheatricallyResult `json:"results"`
 }
 
 type TVScreenedTheatricallyResult struct {
@@ -597,19 +597,19 @@ type TVScreenedTheatricallyResult struct {
 
 // TVWatchProvidersResults Result Types
 type TVWatchProvidersResults struct {
-	Results map[string]TVWatchProvidersResult `json:"results"`
+	Results map[string]*TVWatchProvidersResult `json:"results"`
 }
 
 type TVWatchProvidersResult struct {
-	Link     string          `json:"link"`
-	FlatRate []WatchProvider `json:"flatrate,omitempty"`
-	Rent     []WatchProvider `json:"rent,omitempty"`
-	Buy      []WatchProvider `json:"buy,omitempty"`
+	Link     string           `json:"link"`
+	FlatRate []*WatchProvider `json:"flatrate,omitempty"`
+	Rent     []*WatchProvider `json:"rent,omitempty"`
+	Buy      []*WatchProvider `json:"buy,omitempty"`
 }
 
 // TVVideosResults Result Types
 type TVVideosResults struct {
-	Results []TVVideosResult `json:"results"`
+	Results []*TVVideosResult `json:"results"`
 }
 
 type TVVideosResult struct {
@@ -625,7 +625,7 @@ type TVVideosResult struct {
 
 // TVAiringTodayResults Result Types
 type TVAiringTodayResults struct {
-	Results []TVAiringTodayResult `json:"results"`
+	Results []*TVAiringTodayResult `json:"results"`
 }
 
 type TVAiringTodayResult struct {

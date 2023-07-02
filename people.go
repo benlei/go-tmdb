@@ -81,9 +81,9 @@ type PersonChanges ChangeSet
 
 // PersonMovieCredits type is a struct for movie credits JSON response.
 type PersonMovieCredits struct {
-	Cast []PersonMovieCreditCast `json:"cast"`
-	Crew []PersonMovieCreditCrew `json:"crew"`
-	ID   int64                   `json:"id,omitempty"`
+	Cast []*PersonMovieCreditCast `json:"cast"`
+	Crew []*PersonMovieCreditCrew `json:"crew"`
+	ID   int64                    `json:"id,omitempty"`
 }
 
 type PersonMovieCreditCast struct {
@@ -128,9 +128,9 @@ type PersonMovieCreditCrew struct {
 
 // PersonTVCredits type is a struct for tv credits JSON response.
 type PersonTVCredits struct {
-	Cast []PersonTvCreditCast `json:"cast"`
-	Crew []PersonTvCreditCrew `json:"crew"`
-	ID   int64                `json:"id,omitempty"`
+	Cast []*PersonTvCreditCast `json:"cast"`
+	Crew []*PersonTvCreditCrew `json:"crew"`
+	ID   int64                 `json:"id,omitempty"`
 }
 
 type PersonTvCreditCast struct {
@@ -174,9 +174,9 @@ type PersonTvCreditCrew struct {
 
 // PersonCombinedCredits type is a struct for combined credits JSON response.
 type PersonCombinedCredits struct {
-	Cast []PersonCombinedCreditCast `json:"cast"`
-	Crew []PersonCombinedCreditCrew `json:"crew"`
-	ID   int64                      `json:"id,omitempty"`
+	Cast []*PersonCombinedCreditCast `json:"cast"`
+	Crew []*PersonCombinedCreditCrew `json:"crew"`
+	ID   int64                       `json:"id,omitempty"`
 }
 
 type PersonCombinedCreditCast struct {
@@ -238,29 +238,29 @@ type PersonExternalIDs struct {
 
 // PersonImages type is a struct for images JSON response.
 type PersonImages struct {
-	Profiles []Image `json:"profiles"`
-	ID       int     `json:"id,omitempty"`
+	Profiles []*Image `json:"profiles"`
+	ID       int      `json:"id,omitempty"`
 }
 
 // PersonTaggedImages type is a struct for tagged images JSON response.
 type PersonTaggedImages struct {
-	ID           int64                     `json:"id"`
-	Page         int64                     `json:"page"`
-	TotalResults int64                     `json:"total_results"`
-	TotalPages   int64                     `json:"total_pages"`
-	Results      []PersonTaggedImageResult `json:"results"`
+	ID           int64                      `json:"id"`
+	Page         int64                      `json:"page"`
+	TotalResults int64                      `json:"total_results"`
+	TotalPages   int64                      `json:"total_pages"`
+	Results      []*PersonTaggedImageResult `json:"results"`
 }
 
 type PersonTaggedImageResult struct {
-	LanguageCode string                 `json:"iso_639_1"`
-	VoteCount    int64                  `json:"vote_count"`
-	MediaType    string                 `json:"media_type"`
-	FilePath     string                 `json:"file_path"`
-	AspectRatio  float32                `json:"aspect_ratio"`
-	Media        PersonTaggedImageMedia `json:"media"`
-	Height       int                    `json:"height"`
-	VoteAverage  float32                `json:"vote_average"`
-	Width        int                    `json:"width"`
+	LanguageCode string                  `json:"iso_639_1"`
+	VoteCount    int64                   `json:"vote_count"`
+	MediaType    string                  `json:"media_type"`
+	FilePath     string                  `json:"file_path"`
+	AspectRatio  float32                 `json:"aspect_ratio"`
+	Media        *PersonTaggedImageMedia `json:"media"`
+	Height       int                     `json:"height"`
+	VoteAverage  float32                 `json:"vote_average"`
+	Width        int                     `json:"width"`
 }
 
 type PersonTaggedImageMedia struct {
@@ -282,16 +282,16 @@ type PersonTaggedImageMedia struct {
 
 // PersonTranslations type is a struct for translations JSON response.
 type PersonTranslations struct {
-	Translations []PersonTranslation `json:"translations"`
-	ID           int64               `json:"id,omitempty"`
+	Translations []*PersonTranslation `json:"translations"`
+	ID           int64                `json:"id,omitempty"`
 }
 
 type PersonTranslation struct {
-	LanguageCode string                `json:"iso_639_1"`
-	CountryCode  string                `json:"iso_3166_1"`
-	Name         string                `json:"name"`
-	Data         PersonTranslationData `json:"data"`
-	EnglishName  string                `json:"english_name"`
+	LanguageCode string                 `json:"iso_639_1"`
+	CountryCode  string                 `json:"iso_3166_1"`
+	Name         string                 `json:"name"`
+	Data         *PersonTranslationData `json:"data"`
+	EnglishName  string                 `json:"english_name"`
 }
 
 type PersonTranslationData struct {
@@ -317,19 +317,19 @@ type PersonLatest struct {
 
 // PersonPopular type is a struct for popular JSON response.
 type PersonPopular struct {
-	Page         int64                 `json:"page"`
-	TotalResults int64                 `json:"total_results"`
-	TotalPages   int64                 `json:"total_pages"`
-	Results      []PersonPopularResult `json:"results"`
+	Page         int64                  `json:"page"`
+	TotalResults int64                  `json:"total_results"`
+	TotalPages   int64                  `json:"total_pages"`
+	Results      []*PersonPopularResult `json:"results"`
 }
 
 type PersonPopularResult struct {
-	Popularity  float32                 `json:"popularity"`
-	ID          int64                   `json:"id"`
-	ProfilePath string                  `json:"profile_path"`
-	Name        string                  `json:"name"`
-	KnownFor    []PersonPopularKnownFor `json:"known_for"`
-	Adult       bool                    `json:"adult"`
+	Popularity  float32                  `json:"popularity"`
+	ID          int64                    `json:"id"`
+	ProfilePath string                   `json:"profile_path"`
+	Name        string                   `json:"name"`
+	KnownFor    []*PersonPopularKnownFor `json:"known_for"`
+	Adult       bool                     `json:"adult"`
 }
 
 type PersonPopularKnownFor struct {

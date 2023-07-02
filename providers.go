@@ -4,7 +4,7 @@ import "fmt"
 
 // WatchRegionList type is a struct for watch region list JSON response.
 type WatchRegionList struct {
-	Regions []WatchRegion `json:"results"`
+	Regions []*WatchRegion `json:"results"`
 }
 
 type WatchRegion struct {
@@ -15,7 +15,7 @@ type WatchRegion struct {
 
 // WatchProviderList type is a struct for watch provider list JSON response.
 type WatchProviderList struct {
-	Providers []WatchProvider `json:"results"`
+	Providers []*WatchProvider `json:"results"`
 }
 
 type WatchProvider struct {

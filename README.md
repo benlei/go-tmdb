@@ -131,17 +131,19 @@ For more examples, [click here](https://github.com/benlei/go-tmdb/tree/master/ex
 
 ## Performance
 
+Benchmarked using Macbook with Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz.
+
 Getting Movie Details:
 
-| Iterations | ns/op    | B/op  | allocs/op |
-| ---------- | -------- | ----- | --------- |
-| 19         | 60886648 | 60632 | 184       |
+| Iterations | ns/op   | B/op  | allocs/op |
+|------------|---------|-------|-----------|
+| 217        | 5677317 | 58806 | 157       |
 
 Multi Search:
 
-| Iterations | ns/op    | B/op   | allocs/op |
-| ---------- | -------- | ------ | --------- |
-| 16         | 66596963 | 107109 | 608       |
+| Iterations | ns/op   | B/op  | allocs/op |
+|------------|---------|-------|-----------|
+| 206        | 5743837 | 85659 | 452       |
 
 ## Contributing
 

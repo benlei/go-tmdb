@@ -2,9 +2,9 @@ package tmdb
 
 import "fmt"
 
-// GenreMovieList type is a struct for genres movie list JSON response.
-type GenreMovieList struct {
-	Genres []Genre `json:"genres"`
+// GenreList type is a struct for genres movie list JSON response.
+type GenreList struct {
+	Genres []*Genre `json:"genres"`
 }
 
 type Genre struct {
@@ -17,7 +17,7 @@ type Genre struct {
 // https://developers.themoviedb.org/3/genres/get-movie-list
 func (c *Client) GetGenreMovieList(
 	urlOptions map[string]string,
-) (*GenreMovieList, error) {
+) (*GenreList, error) {
 	options := c.fmtOptions(urlOptions)
 	tmdbURL := fmt.Sprintf(
 		"%s%smovie/list?api_key=%s%s",
@@ -26,7 +26,7 @@ func (c *Client) GetGenreMovieList(
 		c.apiKey,
 		options,
 	)
-	genreMovieList := GenreMovieList{}
+	genreMovieList := GenreList{}
 	if err := c.get(tmdbURL, &genreMovieList); err != nil {
 		return nil, err
 	}
@@ -38,7 +38,7 @@ func (c *Client) GetGenreMovieList(
 // https://developers.themoviedb.org/3/genres/get-tv-list
 func (c *Client) GetGenreTVList(
 	urlOptions map[string]string,
-) (*GenreMovieList, error) {
+) (*GenreList, error) {
 	options := c.fmtOptions(urlOptions)
 	tmdbURL := fmt.Sprintf(
 		"%s%stv/list?api_key=%s%s",
@@ -47,7 +47,7 @@ func (c *Client) GetGenreTVList(
 		c.apiKey,
 		options,
 	)
-	genreTVList := GenreMovieList{}
+	genreTVList := GenreList{}
 	if err := c.get(tmdbURL, &genreTVList); err != nil {
 		return nil, err
 	}

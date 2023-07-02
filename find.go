@@ -6,11 +6,11 @@ import (
 
 // FindByID type is a struct for find JSON response.
 type FindByID struct {
-	MovieResults     []FindMovieResult     `json:"movie_results,omitempty"`
-	PersonResults    []FindPersonResult    `json:"person_results,omitempty"`
-	TVResults        []FindTVResult        `json:"tv_results,omitempty"`
-	TVSeasonResults  []FindTVSeasonResult  `json:"tv_season_results,omitempty"`
-	TVEpisodeResults []FindTVEpisodeResult `json:"tv_episode_results,omitempty"`
+	MovieResults     []*FindMovieResult     `json:"movie_results,omitempty"`
+	PersonResults    []*FindPersonResult    `json:"person_results,omitempty"`
+	TVResults        []*FindTVResult        `json:"tv_results,omitempty"`
+	TVSeasonResults  []*FindTVSeasonResult  `json:"tv_season_results,omitempty"`
+	TVEpisodeResults []*FindTVEpisodeResult `json:"tv_episode_results,omitempty"`
 }
 
 type FindMovieResult struct {
@@ -31,14 +31,14 @@ type FindMovieResult struct {
 }
 
 type FindPersonResult struct {
-	Adult              bool                 `json:"adult"`
-	Gender             int                  `json:"gender"`
-	Name               string               `json:"name"`
-	ID                 int64                `json:"id"`
-	KnownFor           []FindPersonKnownFor `json:"known_for"`
-	KnownForDepartment string               `json:"known_for_department"`
-	ProfilePath        string               `json:"profile_path"`
-	Popularity         float32              `json:"popularity"`
+	Adult              bool                  `json:"adult"`
+	Gender             int                   `json:"gender"`
+	Name               string                `json:"name"`
+	ID                 int64                 `json:"id"`
+	KnownFor           []*FindPersonKnownFor `json:"known_for"`
+	KnownForDepartment string                `json:"known_for_department"`
+	ProfilePath        string                `json:"profile_path"`
+	Popularity         float32               `json:"popularity"`
 }
 
 type FindPersonKnownFor struct {

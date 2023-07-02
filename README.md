@@ -45,7 +45,7 @@ tmdbClient.SetAlternateBaseURL()
 // OPTIONAL: Setting a custom config for the http.Client.
 // The default timeout is 10 seconds. Here you can set other
 // options like Timeout and Transport.
-customClient := http.Client{
+customClient := &http.Client{
     Timeout: time.Second * 5,
     Transport: &http.Transport{
         MaxIdleConns: 10,
